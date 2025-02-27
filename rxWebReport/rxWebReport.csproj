@@ -1,0 +1,1498 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D313686D-52BA-48E7-87EF-2901D2E23D9F}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>rxWebReport</RootNamespace>
+    <AssemblyName>rxWebReport</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AspNet.ScriptManager.jQuery, Version=3.4.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\AspNet.ScriptManager.jQuery.3.4.1\lib\net45\AspNet.ScriptManager.jQuery.dll</HintPath>
+    </Reference>
+    <Reference Include="BouncyCastle.Crypto, Version=1.9.0.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
+      <HintPath>..\packages\Portable.BouncyCastle.1.9.0\lib\net40\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="BouncyCastle.Cryptography, Version=2.0.0.0, Culture=neutral, PublicKeyToken=072edcf4a5328938, processorArchitecture=MSIL">
+      <HintPath>..\packages\BouncyCastle.Cryptography.2.3.1\lib\net461\BouncyCastle.Cryptography.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Charts.v21.1.Core, Version=21.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Dashboard.v21.1.Core, Version=21.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Dashboard.v21.1.Web, Version=21.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.Dashboard.v21.1.Web.WebForms, Version=21.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.Data.v21.1, Version=21.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.DataAccess.v21.1, Version=21.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Map.v21.1.Core, Version=21.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Office.v21.1.Core, Version=21.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Pdf.v21.1.Core, Version=21.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.PivotGrid.v21.1.Core, Version=21.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Printing.v21.1.Core, Version=21.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.RichEdit.v21.1.Core, Version=21.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Sparkline.v21.1.Core, Version=21.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Data.Desktop.v21.1, Version=21.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Utils.v21.1, Version=21.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Web.ASPxGauges.v21.1, Version=21.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Web.ASPxThemes.v21.1, Version=21.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Web.ASPxGantt.v21.1, Version=21.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Web.ASPxTreeList.v21.1, Version=21.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Web.Resources.v21.1, Version=21.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Web.v21.1, Version=21.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpo.v21.1, Version=21.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraCharts.v21.1, Version=21.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGauges.v21.1.Core, Version=21.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGauges.v21.1.Presets, Version=21.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGauges.v21.1.Win, Version=21.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraMap.v21.1, Version=21.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraReports.v21.1, Version=21.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraTreeList.v21.1, Version=21.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="Google.Protobuf, Version=3.26.1.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Protobuf.3.26.1\lib\net45\Google.Protobuf.dll</HintPath>
+    </Reference>
+    <Reference Include="K4os.Compression.LZ4, Version=1.3.8.0, Culture=neutral, PublicKeyToken=2186fa9121ef231d, processorArchitecture=MSIL">
+      <HintPath>..\packages\K4os.Compression.LZ4.1.3.8\lib\netstandard2.0\K4os.Compression.LZ4.dll</HintPath>
+    </Reference>
+    <Reference Include="K4os.Compression.LZ4.Streams, Version=1.3.8.0, Culture=neutral, PublicKeyToken=2186fa9121ef231d, processorArchitecture=MSIL">
+      <HintPath>..\packages\K4os.Compression.LZ4.Streams.1.3.8\lib\netstandard2.0\K4os.Compression.LZ4.Streams.dll</HintPath>
+    </Reference>
+    <Reference Include="K4os.Hash.xxHash, Version=1.0.8.0, Culture=neutral, PublicKeyToken=32cd54395057cec3, processorArchitecture=MSIL">
+      <HintPath>..\packages\K4os.Hash.xxHash.1.0.8\lib\netstandard2.0\K4os.Hash.xxHash.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.EntityDataSource, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.EntityDataSource.6.0.0\lib\net40\Microsoft.AspNet.EntityDataSource.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=9.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.9.0.0\lib\netstandard2.0\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="MQTTnet, Version=3.0.16.0, Culture=neutral, PublicKeyToken=b69712f52770c0a7, processorArchitecture=MSIL">
+      <HintPath>..\packages\MQTTnet.3.0.16\lib\net461\MQTTnet.dll</HintPath>
+    </Reference>
+    <Reference Include="MQTTnet.Extensions.ManagedClient, Version=3.0.16.0, Culture=neutral, PublicKeyToken=b69712f52770c0a7, processorArchitecture=MSIL">
+      <HintPath>..\packages\MQTTnet.Extensions.ManagedClient.3.0.16\lib\net461\MQTTnet.Extensions.ManagedClient.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.8.0.1\lib\netstandard2.0\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Pipelines, Version=9.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Pipelines.9.0.0\lib\netstandard2.0\System.IO.Pipelines.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Loader, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.Loader.4.3.0\lib\netstandard1.5\System.Runtime.Loader.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Security.AccessControl, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.AccessControl.6.0.0\lib\net461\System.Security.AccessControl.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.ProtectedData, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.ProtectedData.9.0.2\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Permissions, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Permissions.8.0.0\lib\netstandard2.0\System.Security.Permissions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Principal.Windows, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Principal.Windows.5.0.0\lib\net461\System.Security.Principal.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Encoding.CodePages, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encoding.CodePages.8.0.0\lib\netstandard2.0\System.Text.Encoding.CodePages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Encodings.Web, Version=9.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encodings.Web.9.0.0\lib\netstandard2.0\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Json.9.0.0\lib\netstandard2.0\System.Text.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="AspNet.ScriptManager.bootstrap">
+      <HintPath>..\packages\AspNet.ScriptManager.bootstrap.3.3.7\lib\net45\AspNet.ScriptManager.bootstrap.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ScriptManager.MSAjax">
+      <HintPath>..\packages\Microsoft.AspNet.ScriptManager.MSAjax.5.0.0\lib\net45\Microsoft.ScriptManager.MSAjax.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ScriptManager.WebForms">
+      <HintPath>..\packages\Microsoft.AspNet.ScriptManager.WebForms.5.0.0\lib\net45\Microsoft.ScriptManager.WebForms.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Web.Optimization.WebForms">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.WebForms.1.1.3\lib\net45\Microsoft.AspNet.Web.Optimization.WebForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.FriendlyUrls">
+      <HintPath>..\packages\Microsoft.AspNet.FriendlyUrls.Core.1.0.2\lib\net45\Microsoft.AspNet.FriendlyUrls.dll</HintPath>
+    </Reference>
+    <Reference Include="ZstdSharp, Version=0.8.0.0, Culture=neutral, PublicKeyToken=8d151af33a4ad5cf, processorArchitecture=MSIL">
+      <HintPath>..\packages\ZstdSharp.Port.0.8.0\lib\netstandard2.0\ZstdSharp.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.4\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.4\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.4\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.2\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.2\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.2\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Providers">
+      <HintPath>..\packages\Microsoft.AspNet.Providers.Core.2.0.0\lib\net40\System.Web.Providers.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin">
+      <HintPath>..\packages\Microsoft.Owin.4.0.0\lib\net451\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.4.0.0\lib\net451\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security">
+      <HintPath>..\packages\Microsoft.Owin.Security.4.0.0\lib\net451\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies">
+      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.4.0.0\lib\net451\Microsoft.Owin.Security.Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.4.0.0\lib\net451\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google">
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.4.0.0\lib\net451\Microsoft.Owin.Security.Google.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Twitter">
+      <HintPath>..\packages\Microsoft.Owin.Security.Twitter.4.0.0\lib\net451\Microsoft.Owin.Security.Twitter.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount">
+      <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.4.0.0\lib\net451\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.4.0.0\lib\net451\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="About.aspx" />
+    <Content Include="Account\AddPhoneNumber.aspx" />
+    <Content Include="Account\Confirm.aspx" />
+    <Content Include="Account\Forgot.aspx" />
+    <Content Include="Account\Lockout.aspx" />
+    <Content Include="Account\Login.aspx" />
+    <Content Include="Account\Manage.aspx" />
+    <Content Include="Account\ManageLogins.aspx" />
+    <Content Include="Account\ManagePassword.aspx" />
+    <Content Include="Account\OpenAuthProviders.ascx" />
+    <Content Include="Account\Register.aspx" />
+    <Content Include="Account\RegisterExternalLogin.aspx" />
+    <Content Include="Account\ResetPassword.aspx" />
+    <Content Include="Account\ResetPasswordConfirmation.aspx" />
+    <Content Include="Account\TwoFactorAuthenticationSignIn.aspx" />
+    <Content Include="Account\VerifyPhoneNumber.aspx" />
+    <Content Include="Contact.aspx" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\dx-diagram.css" />
+    <Content Include="Content\dx-diagram.min.css" />
+    <Content Include="Content\dx-gantt.css" />
+    <Content Include="Content\dx-gantt.min.css" />
+    <Content Include="Content\dx.carmine.compact.css" />
+    <Content Include="Content\dx.carmine.css" />
+    <Content Include="Content\dx.common.css" />
+    <Content Include="Content\dx.contrast.compact.css" />
+    <Content Include="Content\dx.contrast.css" />
+    <Content Include="Content\dx.dark.compact.css" />
+    <Content Include="Content\dx.dark.css" />
+    <Content Include="Content\dx.darkmoon.compact.css" />
+    <Content Include="Content\dx.darkmoon.css" />
+    <Content Include="Content\dx.darkviolet.compact.css" />
+    <Content Include="Content\dx.darkviolet.css" />
+    <Content Include="Content\dx.greenmist.compact.css" />
+    <Content Include="Content\dx.greenmist.css" />
+    <Content Include="Content\dx.ios7.default.css" />
+    <Content Include="Content\dx.light.compact.css" />
+    <Content Include="Content\dx.light.css" />
+    <Content Include="Content\dx.material.blue.dark.compact.css" />
+    <Content Include="Content\dx.material.blue.dark.css" />
+    <Content Include="Content\dx.material.blue.light.compact.css" />
+    <Content Include="Content\dx.material.blue.light.css" />
+    <Content Include="Content\dx.material.lime.dark.compact.css" />
+    <Content Include="Content\dx.material.lime.dark.css" />
+    <Content Include="Content\dx.material.lime.light.compact.css" />
+    <Content Include="Content\dx.material.lime.light.css" />
+    <Content Include="Content\dx.material.orange.dark.compact.css" />
+    <Content Include="Content\dx.material.orange.dark.css" />
+    <Content Include="Content\dx.material.orange.light.compact.css" />
+    <Content Include="Content\dx.material.orange.light.css" />
+    <Content Include="Content\dx.material.purple.dark.compact.css" />
+    <Content Include="Content\dx.material.purple.dark.css" />
+    <Content Include="Content\dx.material.purple.light.compact.css" />
+    <Content Include="Content\dx.material.purple.light.css" />
+    <Content Include="Content\dx.material.teal.dark.compact.css" />
+    <Content Include="Content\dx.material.teal.dark.css" />
+    <Content Include="Content\dx.material.teal.light.compact.css" />
+    <Content Include="Content\dx.material.teal.light.css" />
+    <Content Include="Content\dx.softblue.compact.css" />
+    <Content Include="Content\dx.softblue.css" />
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\Images\LogoAux.png" />
+    <Content Include="Content\Images\LogoAuxLetters.png" />
+    <Content Include="Content\Images\LogoMain.png" />
+    <Content Include="Content\rx\css\loginAux.css" />
+    <Content Include="Content\rx\css\stylesrxmain.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Default.aspx" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="frmAgyliti\Cliente001\DevExtreme\cnRxApp\app01JS\cnRxAppApp01JS.aspx" />
+    <Content Include="frmAgyliti\GetLock\cnCadastros\cnGridCliente.aspx" />
+    <Content Include="frmAgyliti\GetLock\cnCadastros\cnGridCofre.aspx" />
+    <Content Include="frmAgyliti\GetLock\cnCadastros\cnGridCofreUser.aspx" />
+    <Content Include="frmAgyliti\GetLock\cnCadastros\cnGridLoja.aspx" />
+    <Content Include="frmAgyliti\GetLock\cnCadastros\cnGridMovimento.aspx" />
+    <Content Include="frmAgyliti\GetLock\cnCadastros\cnGridRede.aspx" />
+    <Content Include="frmAgyliti\GetLock\cnCofrePorCliente\cnCofrePorCliente.aspx" />
+    <Content Include="frmAgyliti\GetLock\cnCofrePorCliente\cnCofreUsuarioDepositosPorCliente.aspx" />
+    <Content Include="frmAgyliti\GetLock\cnCofrePorListaCofres\cnCofrePorListaCofres.aspx" />
+    <Content Include="frmAgyliti\GetLock\cnCofre\cnCofre.aspx" />
+    <Content Include="frmAgyliti\GetLock\cnCofre\cnCofreNivel.aspx" />
+    <Content Include="frmAgyliti\GetLock\cnCofre\cnCofreUsuarioDepositos.aspx" />
+    <Content Include="frmAgyliti\GetLock\cnConfig\cnGridGetStatusBitProfile.aspx" />
+    <Content Include="frmAgyliti\GetLock\cnConfig\cnGridUpdateFirmware.aspx" />
+    <Content Include="frmAgyliti\GetLock\cnGridMain\cnGridMain.aspx" />
+    <Content Include="frmAgyliti\GetLock\cnGridSemLoja\cnGridSemLoja.aspx" />
+    <Content Include="frmAgyliti\GetLock\cnMovimentos\cnGridColetas.aspx" />
+    <Content Include="frmAgyliti\GetLock\cnMovimentos\cnGridCortes.aspx" />
+    <Content Include="frmAgyliti\GetLock\cnMovimentos\cnGridTotalDepositos.aspx" />
+    <Content Include="frmAgyliti\GetLock\cnMovimentos\cnGridOperacoes.aspx" />
+    <Content Include="frmAgyliti\GetLock\cnMovimentos\cnGridDepositos.aspx" />
+    <Content Include="frmAgyliti\GetLock\cnMovimentos\cnGridSaldoCofreMovimentos.aspx" />
+    <Content Include="frmAgyliti\GetLock\cnMovimentos\cnGridSaldoCofre.aspx" />
+    <Content Include="frmAgyliti\GetLock\cnRelatorios\cnGridGetUserList.aspx" />
+    <Content Include="frmAgyliti\GetLock\cnRelatorios\cnGridGetInfo.aspx" />
+    <Content Include="frmAgyliti\GetLock\cnRelatorios\cnGridDevLock.aspx" />
+    <Content Include="frmAgyliti\GetLock\cnRelatorios\cnGridGetStatus.aspx" />
+    <Content Include="frmAgyliti\GetLock\cnRelatorios\cnGridApiLog.aspx" />
+    <Content Include="frmAgyliti\GetLock\cnRelatorios\cnGridCofreCadastro.aspx" />
+    <Content Include="frmAgyliti\GetLock\cnRelatorios\cnGridDepositosAuditoria.aspx" />
+    <Content Include="frmAgyliti\GetLock\cnRelatorios\cnGridDepositosUsuario.aspx" />
+    <Content Include="frmAgyliti\GetLock\cnUsuariosAdmin\cnUsuariosApiCofreDetalhe.aspx" />
+    <Content Include="frmAgyliti\GetLock\cnUsuariosAdmin\cnUsuariosCliente.aspx" />
+    <Content Include="frmAgyliti\GetLock\cnUsuariosAdmin\cnUsuariosAdmin.aspx" />
+    <Content Include="frmAgyliti\GetLock\cnUsuariosAdmin\cnUsuariosApiCofre.aspx" />
+    <Content Include="frmAgyliti\GetLock\cnUsuariosAdmin\cnUsuariosCofre.aspx" />
+    <Content Include="frmAgyliti\GetLock\cnUsuariosAdmin\cnUsuariosCofreDetalhe.aspx" />
+    <Content Include="frmAgyliti\GetLock\cnUsuarios\cnUsuarios.aspx" />
+    <Content Include="frmAgyliti\JaSaude\relSalasTempHR.aspx" />
+    <Content Include="Global.asax" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Account\Web.config" />
+    <Content Include="LoginAux.aspx" />
+    <Content Include="LoginRedirect.aspx" />
+    <Content Include="Root.Master" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="Login.Master" />
+    <Content Include="Main.master" />
+    <Content Include="rxAppModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>rxAppModel.edmx</DependentUpon>
+      <LastGenOutput>rxAppModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="rxAppModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>rxAppModel.edmx</DependentUpon>
+      <LastGenOutput>rxAppModel.cs</LastGenOutput>
+    </Content>
+    <Content Include="Scripts\angular-mocks.js" />
+    <Content Include="Scripts\angular-sanitize.js" />
+    <Content Include="Scripts\angular-sanitize.min.js" />
+    <Content Include="Scripts\angular.js" />
+    <Content Include="Scripts\angular.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\cldr.js" />
+    <Content Include="Scripts\cldr\event.js" />
+    <Content Include="Scripts\cldr\supplemental.js" />
+    <Content Include="Scripts\cldr\unresolved.js" />
+    <Content Include="Content\icons\dxiconsmaterial.woff2" />
+    <Content Include="Content\icons\dxiconsmaterial.woff" />
+    <Content Include="Content\icons\dxiconsmaterial.ttf" />
+    <Content Include="Content\icons\dxiconsios.woff2" />
+    <Content Include="Content\icons\dxiconsios.woff" />
+    <Content Include="Content\icons\dxiconsios.ttf" />
+    <Content Include="Content\icons\dxicons.woff2" />
+    <Content Include="Content\icons\dxicons.woff" />
+    <Content Include="Content\icons\dxicons.ttf" />
+    <Content Include="Content\fonts\Roboto-700.woff2" />
+    <Content Include="Content\fonts\Roboto-700.woff" />
+    <Content Include="Content\fonts\Roboto-700.ttf" />
+    <Content Include="Content\fonts\Roboto-500.woff2" />
+    <Content Include="Content\fonts\Roboto-500.woff" />
+    <Content Include="Content\fonts\Roboto-500.ttf" />
+    <Content Include="Content\fonts\Roboto-400.woff2" />
+    <Content Include="Content\fonts\Roboto-400.woff" />
+    <Content Include="Content\fonts\Roboto-400.ttf" />
+    <Content Include="Content\fonts\Roboto-300.woff2" />
+    <Content Include="Content\fonts\Roboto-300.woff" />
+    <Content Include="Content\fonts\Roboto-300.ttf" />
+    <Content Include="Scripts\angular.min.js.map" />
+    <Content Include="Scripts\angular-sanitize.min.js.map" />
+    <Content Include="frmAgyliti\GetLock\cnCadastros\Web.config" />
+    <Content Include="frmAgyliti\GetLock\cnGridMain\Web.config" />
+    <Content Include="frmAgyliti\GetLock\cnMovimentos\Web.config" />
+    <Content Include="frmAgyliti\GetLock\cnUsuarios\Web.config" />
+    <Content Include="frmAgyliti\GetLock\cnUsuariosAdmin\Web.config" />
+    <Content Include="frmAgyliti\GetLock\cnCofre\Web.config" />
+    <Content Include="frmAgyliti\GetLock\cnCofrePorCliente\Web.config" />
+    <Content Include="frmAgyliti\GetLock\cnGridSemLoja\Web.config" />
+    <Content Include="frmAgyliti\GetLock\cnRelatorios\Web.config" />
+    <Content Include="frmAgyliti\GetLock\cnConfig\Web.config" />
+    <Content Include="frmAgyliti\GetLock\cnCofrePorListaCofres\Web.config" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <EntityDeploy Include="rxAppModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>rxAppModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="rxAppModel.edmx.diagram">
+      <DependentUpon>rxAppModel.edmx</DependentUpon>
+    </Content>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\devextreme-localization\dx.messages.de.js" />
+    <Content Include="Scripts\devextreme-localization\dx.messages.en.js" />
+    <Content Include="Scripts\devextreme-localization\dx.messages.ja.js" />
+    <Content Include="Scripts\devextreme-localization\dx.messages.ru.js" />
+    <Content Include="Scripts\dx-diagram.js" />
+    <Content Include="Scripts\dx-diagram.min.js" />
+    <Content Include="Scripts\dx-gantt.js" />
+    <Content Include="Scripts\dx-gantt.min.js" />
+    <Content Include="Scripts\dx.all.debug.js" />
+    <Content Include="Scripts\dx.all.js" />
+    <Content Include="Scripts\dx.aspnet.mvc.js" />
+    <Content Include="Scripts\dx.viz-web.debug.js" />
+    <Content Include="Scripts\dx.viz-web.js" />
+    <Content Include="Scripts\dx.viz.debug.js" />
+    <Content Include="Scripts\dx.viz.js" />
+    <Content Include="Scripts\dx.web.debug.js" />
+    <Content Include="Scripts\dx.web.js" />
+    <Content Include="Scripts\globalize.js" />
+    <Content Include="Scripts\globalize\currency.js" />
+    <Content Include="Scripts\globalize\date.js" />
+    <Content Include="Scripts\globalize\message.js" />
+    <Content Include="Scripts\globalize\number.js" />
+    <Content Include="Scripts\globalize\plural.js" />
+    <Content Include="Scripts\globalize\relative-time.js" />
+    <Content Include="Scripts\globalize\unit.js" />
+    <Content Include="Scripts\jquery-3.4.1.js" />
+    <Content Include="Scripts\jquery-3.4.1.min.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
+    <Content Include="Scripts\jszip.js" />
+    <Content Include="Scripts\jszip.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\vectormap-data\africa.js" />
+    <Content Include="Scripts\vectormap-data\canada.js" />
+    <Content Include="Scripts\vectormap-data\eurasia.js" />
+    <Content Include="Scripts\vectormap-data\europe.js" />
+    <Content Include="Scripts\vectormap-data\usa.js" />
+    <Content Include="Scripts\vectormap-data\world.js" />
+    <Content Include="Scripts\vectormap-utils\dx.vectormaputils.debug.js" />
+    <Content Include="Scripts\vectormap-utils\dx.vectormaputils.js" />
+    <Content Include="Scripts\vectormap-utils\dx.vectormaputils.node.js" />
+    <Content Include="Scripts\WebForms\DetailsView.js" />
+    <Content Include="Scripts\WebForms\Focus.js" />
+    <Content Include="Scripts\WebForms\GridView.js" />
+    <Content Include="Scripts\WebForms\Menu.js" />
+    <Content Include="Scripts\WebForms\MenuStandards.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjax.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxApplicationServices.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxComponentModel.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxCore.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxGlobalization.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxHistory.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxNetwork.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxSerialization.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxTimer.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxWebForms.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxWebServices.js" />
+    <Content Include="Scripts\WebForms\SmartNav.js" />
+    <Content Include="Scripts\WebForms\TreeView.js" />
+    <Content Include="Scripts\WebForms\WebForms.js" />
+    <Content Include="Scripts\WebForms\WebParts.js" />
+    <Content Include="Scripts\WebForms\WebUIValidation.js" />
+    <Content Include="Site.Master" />
+    <Content Include="ViewSwitcher.ascx" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Bundle.config" />
+    <Content Include="Site.Mobile.Master" />
+    <Content Include="web.sitemap" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Account\AddPhoneNumber.aspx.cs">
+      <DependentUpon>AddPhoneNumber.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\AddPhoneNumber.aspx.designer.cs">
+      <DependentUpon>AddPhoneNumber.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\Confirm.aspx.cs">
+      <DependentUpon>Confirm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\Confirm.aspx.designer.cs">
+      <DependentUpon>Confirm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\Forgot.aspx.cs">
+      <DependentUpon>Forgot.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\Forgot.aspx.designer.cs">
+      <DependentUpon>Forgot.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\Lockout.aspx.cs">
+      <DependentUpon>Lockout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\Lockout.aspx.designer.cs">
+      <DependentUpon>Lockout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\Manage.aspx.cs">
+      <DependentUpon>Manage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\Manage.aspx.designer.cs">
+      <DependentUpon>Manage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\ManageLogins.aspx.cs">
+      <DependentUpon>ManageLogins.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\ManageLogins.aspx.designer.cs">
+      <DependentUpon>ManageLogins.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\ManagePassword.aspx.cs">
+      <DependentUpon>ManagePassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\ManagePassword.aspx.designer.cs">
+      <DependentUpon>ManagePassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\OpenAuthProviders.ascx.cs">
+      <DependentUpon>OpenAuthProviders.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\OpenAuthProviders.ascx.designer.cs">
+      <DependentUpon>OpenAuthProviders.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\Register.aspx.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\Register.aspx.designer.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\RegisterExternalLogin.aspx.cs">
+      <DependentUpon>RegisterExternalLogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\RegisterExternalLogin.aspx.designer.cs">
+      <DependentUpon>RegisterExternalLogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\ResetPassword.aspx.cs">
+      <DependentUpon>ResetPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\ResetPassword.aspx.designer.cs">
+      <DependentUpon>ResetPassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\ResetPasswordConfirmation.aspx.cs">
+      <DependentUpon>ResetPasswordConfirmation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\ResetPasswordConfirmation.aspx.designer.cs">
+      <DependentUpon>ResetPasswordConfirmation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\TwoFactorAuthenticationSignIn.aspx.cs">
+      <DependentUpon>TwoFactorAuthenticationSignIn.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\TwoFactorAuthenticationSignIn.aspx.designer.cs">
+      <DependentUpon>TwoFactorAuthenticationSignIn.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\VerifyPhoneNumber.aspx.cs">
+      <DependentUpon>VerifyPhoneNumber.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\VerifyPhoneNumber.aspx.designer.cs">
+      <DependentUpon>VerifyPhoneNumber.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AppUtils.cs" />
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="About.aspx.cs">
+      <DependentUpon>About.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="About.aspx.designer.cs">
+      <DependentUpon>About.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="cliente.cs">
+      <DependentUpon>rxAppModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="cofre.cs">
+      <DependentUpon>rxAppModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="cofre_user.cs">
+      <DependentUpon>rxAppModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Contact.aspx.cs">
+      <DependentUpon>Contact.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Contact.aspx.designer.cs">
+      <DependentUpon>Contact.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\OcorrenciasController.cs" />
+    <Compile Include="dashClasses\dashCnCofre.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="dashClasses\dashCnCofre.Designer.cs">
+      <DependentUpon>dashCnCofre.cs</DependentUpon>
+    </Compile>
+    <Compile Include="dashClasses\dashCnCofreNivel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="dashClasses\dashCnCofreNivel.Designer.cs">
+      <DependentUpon>dashCnCofreNivel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="dashClasses\dashCnCofrePorCliente.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="dashClasses\dashCnCofrePorCliente.Designer.cs">
+      <DependentUpon>dashCnCofrePorCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="dashClasses\dashCnCofreUsuarioDepositos.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="dashClasses\dashCnCofreUsuarioDepositos.Designer.cs">
+      <DependentUpon>dashCnCofreUsuarioDepositos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="dataObjClasses\dsCofre.cs" />
+    <Compile Include="dataObjClasses\dsJaSaude.cs" />
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Entities\ApplicationUserConfig.cs" />
+    <Compile Include="Domain\Entities\GetLockCliente.cs" />
+    <Compile Include="Domain\Entities\GetLockClienteConfig.cs" />
+    <Compile Include="Domain\Entities\GetLockCofreCadastroView.cs" />
+    <Compile Include="Domain\Entities\GetLockMessageAckGetInfoViewConfig.cs" />
+    <Compile Include="Domain\Entities\GetLockMessageAckDevLockViewConfig.cs" />
+    <Compile Include="Domain\Entities\GetLockMessageAckDevLockView.cs" />
+    <Compile Include="Domain\Entities\GetLockMessageAckGetInfoView.cs" />
+    <Compile Include="Domain\Entities\GetLockMessageAckGetStatusViewConfig.cs" />
+    <Compile Include="Domain\Entities\GetLockCofreCadastroViewConfig.cs" />
+    <Compile Include="Domain\Entities\GetLockCofreUser.cs" />
+    <Compile Include="Domain\Entities\GetLockCofreUserConfig.cs" />
+    <Compile Include="Domain\Entities\GetLockCofre.cs" />
+    <Compile Include="Domain\Entities\GetLockCofreConfig.cs" />
+    <Compile Include="Domain\Entities\Company.cs" />
+    <Compile Include="Domain\Entities\GetLockGetStatusBitProfile.cs" />
+    <Compile Include="Domain\Entities\GetLockGetStatusBitProfileConfig.cs" />
+    <Compile Include="Domain\Entities\GetLockMessage.cs" />
+    <Compile Include="Domain\Entities\GetLockMessageAckDevLock.cs" />
+    <Compile Include="Domain\Entities\GetLockMessageAckDevLockConfig.cs" />
+    <Compile Include="Domain\Entities\GetLockMessageAckGetInfo.cs" />
+    <Compile Include="Domain\Entities\GetLockMessageAckGetInfoConfig.cs" />
+    <Compile Include="Domain\Entities\GetLockMessageAckGetStatusView.cs" />
+    <Compile Include="Domain\Entities\GetLockMessageAckGetStatus.cs" />
+    <Compile Include="Domain\Entities\GetLockMessageAckGetStatusConfig.cs" />
+    <Compile Include="Domain\Entities\GetLockMessageAckUpdateFirmware.cs" />
+    <Compile Include="Domain\Entities\GetLockMessageAckUpdateFirmwareConfig.cs" />
+    <Compile Include="Domain\Entities\GetLockMessageAckUpdateFirmwareView.cs" />
+    <Compile Include="Domain\Entities\GetLockMessageAckUpdateFirmwareViewConfig.cs" />
+    <Compile Include="Domain\Entities\GetLockMessageAckUserAddEditRemove.cs" />
+    <Compile Include="Domain\Entities\GetLockMessageAckUserAddEditRemoveConfig.cs" />
+    <Compile Include="Domain\Entities\GetLockMessageAckUserListViewConfig.cs" />
+    <Compile Include="Domain\Entities\GetLockMessageAckUserListView.cs" />
+    <Compile Include="Domain\Entities\GetLockMessageAckUserList.cs" />
+    <Compile Include="Domain\Entities\GetLockMessageAckUserListConfig.cs" />
+    <Compile Include="Domain\Entities\GetLockMessageConfig.cs" />
+    <Compile Include="Domain\Entities\GetLockLoja.cs" />
+    <Compile Include="Domain\Entities\GetLockLojaConfig.cs" />
+    <Compile Include="Domain\Entities\GetLockLojaClienteRedeView.cs" />
+    <Compile Include="Domain\Entities\GetLockSaldoCofreView.cs" />
+    <Compile Include="Domain\Entities\GetLockMessageView.cs" />
+    <Compile Include="Domain\Entities\GetLockLojaClienteRedeViewConfig.cs" />
+    <Compile Include="Domain\Entities\GetLockMessageViewConfig.cs" />
+    <Compile Include="Domain\Entities\GetLockMovimento.cs" />
+    <Compile Include="Domain\Entities\GetLockMovimentoConfig.cs" />
+    <Compile Include="Domain\Entities\GetLockApiLog.cs" />
+    <Compile Include="Domain\Entities\GetLockApiLogConfig.cs" />
+    <Compile Include="Domain\Entities\GetLockRede.cs" />
+    <Compile Include="Domain\Entities\GetLockRedeConfig.cs" />
+    <Compile Include="Domain\Entities\GetLockSaldoCofreViewConfig.cs" />
+    <Compile Include="Domain\Entities\RsData.cs" />
+    <Compile Include="Domain\Entities\RsDataConfig.cs" />
+    <Compile Include="Domain\Entity.cs" />
+    <Compile Include="frmAgyliti\Cliente001\DevExtreme\cnRxApp\app01JS\cnRxAppApp01JS.aspx.cs">
+      <DependentUpon>cnRxAppApp01JS.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAgyliti\Cliente001\DevExtreme\cnRxApp\app01JS\cnRxAppApp01JS.aspx.designer.cs">
+      <DependentUpon>cnRxAppApp01JS.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmAgyliti\GetLock\cnCadastros\cnGridCliente.aspx.cs">
+      <DependentUpon>cnGridCliente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAgyliti\GetLock\cnCadastros\cnGridCliente.aspx.designer.cs">
+      <DependentUpon>cnGridCliente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmAgyliti\GetLock\cnCadastros\cnGridCofre.aspx.cs">
+      <DependentUpon>cnGridCofre.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAgyliti\GetLock\cnCadastros\cnGridCofre.aspx.designer.cs">
+      <DependentUpon>cnGridCofre.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmAgyliti\GetLock\cnCadastros\cnGridCofreUser.aspx.cs">
+      <DependentUpon>cnGridCofreUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAgyliti\GetLock\cnCadastros\cnGridCofreUser.aspx.designer.cs">
+      <DependentUpon>cnGridCofreUser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmAgyliti\GetLock\cnCadastros\cnGridLoja.aspx.cs">
+      <DependentUpon>cnGridLoja.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAgyliti\GetLock\cnCadastros\cnGridLoja.aspx.designer.cs">
+      <DependentUpon>cnGridLoja.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmAgyliti\GetLock\cnCadastros\cnGridMovimento.aspx.cs">
+      <DependentUpon>cnGridMovimento.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAgyliti\GetLock\cnCadastros\cnGridMovimento.aspx.designer.cs">
+      <DependentUpon>cnGridMovimento.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmAgyliti\GetLock\cnCadastros\cnGridRede.aspx.cs">
+      <DependentUpon>cnGridRede.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAgyliti\GetLock\cnCadastros\cnGridRede.aspx.designer.cs">
+      <DependentUpon>cnGridRede.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmAgyliti\GetLock\cnCofrePorCliente\cnCofrePorCliente.aspx.cs">
+      <DependentUpon>cnCofrePorCliente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAgyliti\GetLock\cnCofrePorCliente\cnCofrePorCliente.aspx.designer.cs">
+      <DependentUpon>cnCofrePorCliente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmAgyliti\GetLock\cnCofrePorCliente\cnCofreUsuarioDepositosPorCliente.aspx.cs">
+      <DependentUpon>cnCofreUsuarioDepositosPorCliente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAgyliti\GetLock\cnCofrePorCliente\cnCofreUsuarioDepositosPorCliente.aspx.designer.cs">
+      <DependentUpon>cnCofreUsuarioDepositosPorCliente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmAgyliti\GetLock\cnCofrePorListaCofres\cnCofrePorListaCofres.aspx.cs">
+      <DependentUpon>cnCofrePorListaCofres.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAgyliti\GetLock\cnCofrePorListaCofres\cnCofrePorListaCofres.aspx.designer.cs">
+      <DependentUpon>cnCofrePorListaCofres.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmAgyliti\GetLock\cnCofre\cnCofre.aspx.cs">
+      <DependentUpon>cnCofre.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAgyliti\GetLock\cnCofre\cnCofre.aspx.designer.cs">
+      <DependentUpon>cnCofre.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmAgyliti\GetLock\cnCofre\cnCofreNivel.aspx.cs">
+      <DependentUpon>cnCofreNivel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAgyliti\GetLock\cnCofre\cnCofreNivel.aspx.designer.cs">
+      <DependentUpon>cnCofreNivel.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmAgyliti\GetLock\cnCofre\cnCofreUsuarioDepositos.aspx.cs">
+      <DependentUpon>cnCofreUsuarioDepositos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAgyliti\GetLock\cnCofre\cnCofreUsuarioDepositos.aspx.designer.cs">
+      <DependentUpon>cnCofreUsuarioDepositos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmAgyliti\GetLock\cnConfig\cnGridGetStatusBitProfile.aspx.cs">
+      <DependentUpon>cnGridGetStatusBitProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAgyliti\GetLock\cnConfig\cnGridGetStatusBitProfile.aspx.designer.cs">
+      <DependentUpon>cnGridGetStatusBitProfile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmAgyliti\GetLock\cnConfig\cnGridUpdateFirmware.aspx.cs">
+      <DependentUpon>cnGridUpdateFirmware.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAgyliti\GetLock\cnConfig\cnGridUpdateFirmware.aspx.designer.cs">
+      <DependentUpon>cnGridUpdateFirmware.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmAgyliti\GetLock\cnGridMain\cnGridMain.aspx.cs">
+      <DependentUpon>cnGridMain.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAgyliti\GetLock\cnGridMain\cnGridMain.aspx.designer.cs">
+      <DependentUpon>cnGridMain.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmAgyliti\GetLock\cnGridSemLoja\cnGridSemLoja.aspx.cs">
+      <DependentUpon>cnGridSemLoja.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAgyliti\GetLock\cnGridSemLoja\cnGridSemLoja.aspx.designer.cs">
+      <DependentUpon>cnGridSemLoja.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmAgyliti\GetLock\cnMovimentos\cnGridColetas.aspx.cs">
+      <DependentUpon>cnGridColetas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAgyliti\GetLock\cnMovimentos\cnGridColetas.aspx.designer.cs">
+      <DependentUpon>cnGridColetas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmAgyliti\GetLock\cnMovimentos\cnGridCortes.aspx.cs">
+      <DependentUpon>cnGridCortes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAgyliti\GetLock\cnMovimentos\cnGridCortes.aspx.designer.cs">
+      <DependentUpon>cnGridCortes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmAgyliti\GetLock\cnMovimentos\cnGridTotalDepositos.aspx.cs">
+      <DependentUpon>cnGridTotalDepositos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAgyliti\GetLock\cnMovimentos\cnGridTotalDepositos.aspx.designer.cs">
+      <DependentUpon>cnGridTotalDepositos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmAgyliti\GetLock\cnMovimentos\cnGridOperacoes.aspx.cs">
+      <DependentUpon>cnGridOperacoes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAgyliti\GetLock\cnMovimentos\cnGridOperacoes.aspx.designer.cs">
+      <DependentUpon>cnGridOperacoes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmAgyliti\GetLock\cnMovimentos\cnGridDepositos.aspx.cs">
+      <DependentUpon>cnGridDepositos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAgyliti\GetLock\cnMovimentos\cnGridDepositos.aspx.designer.cs">
+      <DependentUpon>cnGridDepositos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmAgyliti\GetLock\cnMovimentos\cnGridSaldoCofreMovimentos.aspx.cs">
+      <DependentUpon>cnGridSaldoCofreMovimentos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAgyliti\GetLock\cnMovimentos\cnGridSaldoCofreMovimentos.aspx.designer.cs">
+      <DependentUpon>cnGridSaldoCofreMovimentos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmAgyliti\GetLock\cnMovimentos\cnGridSaldoCofre.aspx.cs">
+      <DependentUpon>cnGridSaldoCofre.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAgyliti\GetLock\cnMovimentos\cnGridSaldoCofre.aspx.designer.cs">
+      <DependentUpon>cnGridSaldoCofre.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmAgyliti\GetLock\cnRelatorios\cnGridGetUserList.aspx.cs">
+      <DependentUpon>cnGridGetUserList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAgyliti\GetLock\cnRelatorios\cnGridGetUserList.aspx.designer.cs">
+      <DependentUpon>cnGridGetUserList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmAgyliti\GetLock\cnRelatorios\cnGridGetInfo.aspx.cs">
+      <DependentUpon>cnGridGetInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAgyliti\GetLock\cnRelatorios\cnGridGetInfo.aspx.designer.cs">
+      <DependentUpon>cnGridGetInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmAgyliti\GetLock\cnRelatorios\cnGridDevLock.aspx.cs">
+      <DependentUpon>cnGridDevLock.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAgyliti\GetLock\cnRelatorios\cnGridDevLock.aspx.designer.cs">
+      <DependentUpon>cnGridDevLock.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmAgyliti\GetLock\cnRelatorios\cnGridGetStatus.aspx.cs">
+      <DependentUpon>cnGridGetStatus.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAgyliti\GetLock\cnRelatorios\cnGridGetStatus.aspx.designer.cs">
+      <DependentUpon>cnGridGetStatus.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmAgyliti\GetLock\cnRelatorios\cnGridApiLog.aspx.cs">
+      <DependentUpon>cnGridApiLog.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAgyliti\GetLock\cnRelatorios\cnGridApiLog.aspx.designer.cs">
+      <DependentUpon>cnGridApiLog.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmAgyliti\GetLock\cnRelatorios\cnGridCofreCadastro.aspx.cs">
+      <DependentUpon>cnGridCofreCadastro.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAgyliti\GetLock\cnRelatorios\cnGridCofreCadastro.aspx.designer.cs">
+      <DependentUpon>cnGridCofreCadastro.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmAgyliti\GetLock\cnRelatorios\cnGridDepositosAuditoria.aspx.cs">
+      <DependentUpon>cnGridDepositosAuditoria.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAgyliti\GetLock\cnRelatorios\cnGridDepositosAuditoria.aspx.designer.cs">
+      <DependentUpon>cnGridDepositosAuditoria.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmAgyliti\GetLock\cnRelatorios\cnGridDepositosUsuario.aspx.cs">
+      <DependentUpon>cnGridDepositosUsuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAgyliti\GetLock\cnRelatorios\cnGridDepositosUsuario.aspx.designer.cs">
+      <DependentUpon>cnGridDepositosUsuario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmAgyliti\GetLock\cnUsuariosAdmin\cnUsuariosApiCofreDetalhe.aspx.cs">
+      <DependentUpon>cnUsuariosApiCofreDetalhe.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAgyliti\GetLock\cnUsuariosAdmin\cnUsuariosApiCofreDetalhe.aspx.designer.cs">
+      <DependentUpon>cnUsuariosApiCofreDetalhe.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmAgyliti\GetLock\cnUsuariosAdmin\cnUsuariosCliente.aspx.cs">
+      <DependentUpon>cnUsuariosCliente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAgyliti\GetLock\cnUsuariosAdmin\cnUsuariosCliente.aspx.designer.cs">
+      <DependentUpon>cnUsuariosCliente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmAgyliti\GetLock\cnUsuariosAdmin\cnUsuariosAdmin.aspx.cs">
+      <DependentUpon>cnUsuariosAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAgyliti\GetLock\cnUsuariosAdmin\cnUsuariosAdmin.aspx.designer.cs">
+      <DependentUpon>cnUsuariosAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmAgyliti\GetLock\cnUsuariosAdmin\cnUsuariosApiCofre.aspx.cs">
+      <DependentUpon>cnUsuariosApiCofre.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAgyliti\GetLock\cnUsuariosAdmin\cnUsuariosApiCofre.aspx.designer.cs">
+      <DependentUpon>cnUsuariosApiCofre.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmAgyliti\GetLock\cnUsuariosAdmin\cnUsuariosCofre.aspx.cs">
+      <DependentUpon>cnUsuariosCofre.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAgyliti\GetLock\cnUsuariosAdmin\cnUsuariosCofre.aspx.designer.cs">
+      <DependentUpon>cnUsuariosCofre.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmAgyliti\GetLock\cnUsuariosAdmin\cnUsuariosCofreDetalhe.aspx.cs">
+      <DependentUpon>cnUsuariosCofreDetalhe.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAgyliti\GetLock\cnUsuariosAdmin\cnUsuariosCofreDetalhe.aspx.designer.cs">
+      <DependentUpon>cnUsuariosCofreDetalhe.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmAgyliti\GetLock\cnUsuarios\cnUsuarios.aspx.cs">
+      <DependentUpon>cnUsuarios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAgyliti\GetLock\cnUsuarios\cnUsuarios.aspx.designer.cs">
+      <DependentUpon>cnUsuarios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmAgyliti\JaSaude\relSalasTempHR.aspx.cs">
+      <DependentUpon>relSalasTempHR.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAgyliti\JaSaude\relSalasTempHR.aspx.designer.cs">
+      <DependentUpon>relSalasTempHR.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Login.Master.cs">
+      <DependentUpon>Login.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.Master.designer.cs">
+      <DependentUpon>Login.Master</DependentUpon>
+    </Compile>
+    <Compile Include="LoginAux.aspx.cs">
+      <DependentUpon>LoginAux.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LoginAux.aspx.designer.cs">
+      <DependentUpon>LoginAux.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LoginRedirect.aspx.cs">
+      <DependentUpon>LoginRedirect.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LoginRedirect.aspx.designer.cs">
+      <DependentUpon>LoginRedirect.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="loja.cs">
+      <DependentUpon>rxAppModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Main.master.cs">
+      <DependentUpon>Main.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Main.master.designer.cs">
+      <DependentUpon>Main.master</DependentUpon>
+    </Compile>
+    <Compile Include="message.cs">
+      <DependentUpon>rxAppModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="message_view.cs">
+      <DependentUpon>rxAppModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202211171126303_v000-InitialCreate.cs" />
+    <Compile Include="Migrations\202211171126303_v000-InitialCreate.Designer.cs">
+      <DependentUpon>202211171126303_v000-InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202212171839264_v001.cs" />
+    <Compile Include="Migrations\202212171839264_v001.Designer.cs">
+      <DependentUpon>202212171839264_v001.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202301082115567_v002.cs" />
+    <Compile Include="Migrations\202301082115567_v002.Designer.cs">
+      <DependentUpon>202301082115567_v002.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202301231806381_v0003.cs" />
+    <Compile Include="Migrations\202301231806381_v0003.Designer.cs">
+      <DependentUpon>202301231806381_v0003.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202301251154011_v004.cs" />
+    <Compile Include="Migrations\202301251154011_v004.Designer.cs">
+      <DependentUpon>202301251154011_v004.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202301251212359_v005.cs" />
+    <Compile Include="Migrations\202301251212359_v005.Designer.cs">
+      <DependentUpon>202301251212359_v005.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202301301250021_v006.cs" />
+    <Compile Include="Migrations\202301301250021_v006.Designer.cs">
+      <DependentUpon>202301301250021_v006.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202301301359245_v007.cs" />
+    <Compile Include="Migrations\202301301359245_v007.Designer.cs">
+      <DependentUpon>202301301359245_v007.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202301311209230_v008.cs" />
+    <Compile Include="Migrations\202301311209230_v008.Designer.cs">
+      <DependentUpon>202301311209230_v008.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202301312356288_v009.cs" />
+    <Compile Include="Migrations\202301312356288_v009.Designer.cs">
+      <DependentUpon>202301312356288_v009.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202302010003564_v010.cs" />
+    <Compile Include="Migrations\202302010003564_v010.Designer.cs">
+      <DependentUpon>202302010003564_v010.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202302010010189_v011.cs" />
+    <Compile Include="Migrations\202302010010189_v011.Designer.cs">
+      <DependentUpon>202302010010189_v011.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202302010018110_v012.cs" />
+    <Compile Include="Migrations\202302010018110_v012.Designer.cs">
+      <DependentUpon>202302010018110_v012.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202302010019177_v013.cs" />
+    <Compile Include="Migrations\202302010019177_v013.Designer.cs">
+      <DependentUpon>202302010019177_v013.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202302042310493_v014.cs" />
+    <Compile Include="Migrations\202302042310493_v014.Designer.cs">
+      <DependentUpon>202302042310493_v014.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202302042324143_v015.cs" />
+    <Compile Include="Migrations\202302042324143_v015.Designer.cs">
+      <DependentUpon>202302042324143_v015.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202302042325438_v016.cs" />
+    <Compile Include="Migrations\202302042325438_v016.Designer.cs">
+      <DependentUpon>202302042325438_v016.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202302081836495_v017.cs" />
+    <Compile Include="Migrations\202302081836495_v017.Designer.cs">
+      <DependentUpon>202302081836495_v017.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202302081852200_v018.cs" />
+    <Compile Include="Migrations\202302081852200_v018.Designer.cs">
+      <DependentUpon>202302081852200_v018.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202302110010589_v019.cs" />
+    <Compile Include="Migrations\202302110010589_v019.Designer.cs">
+      <DependentUpon>202302110010589_v019.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202302181301025_v020.cs" />
+    <Compile Include="Migrations\202302181301025_v020.Designer.cs">
+      <DependentUpon>202302181301025_v020.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202302181312152_v021.cs" />
+    <Compile Include="Migrations\202302181312152_v021.Designer.cs">
+      <DependentUpon>202302181312152_v021.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202302251222431_v022.cs" />
+    <Compile Include="Migrations\202302251222431_v022.Designer.cs">
+      <DependentUpon>202302251222431_v022.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202302251308199_v023.cs" />
+    <Compile Include="Migrations\202302251308199_v023.Designer.cs">
+      <DependentUpon>202302251308199_v023.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202303191419284_v024.cs" />
+    <Compile Include="Migrations\202303191419284_v024.Designer.cs">
+      <DependentUpon>202303191419284_v024.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202304221310440_v025.cs" />
+    <Compile Include="Migrations\202304221310440_v025.Designer.cs">
+      <DependentUpon>202304221310440_v025.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202304301317557_v026.cs" />
+    <Compile Include="Migrations\202304301317557_v026.Designer.cs">
+      <DependentUpon>202304301317557_v026.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202306031158524_v027.cs" />
+    <Compile Include="Migrations\202306031158524_v027.Designer.cs">
+      <DependentUpon>202306031158524_v027.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202306031257500_v028.cs" />
+    <Compile Include="Migrations\202306031257500_v028.Designer.cs">
+      <DependentUpon>202306031257500_v028.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202306241651231_v029.cs" />
+    <Compile Include="Migrations\202306241651231_v029.Designer.cs">
+      <DependentUpon>202306241651231_v029.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202306241704568_v030.cs" />
+    <Compile Include="Migrations\202306241704568_v030.Designer.cs">
+      <DependentUpon>202306241704568_v030.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202308132332534_v031.cs" />
+    <Compile Include="Migrations\202308132332534_v031.Designer.cs">
+      <DependentUpon>202308132332534_v031.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202308132338327_v032.cs" />
+    <Compile Include="Migrations\202308132338327_v032.Designer.cs">
+      <DependentUpon>202308132338327_v032.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202308142346228_v033.cs" />
+    <Compile Include="Migrations\202308142346228_v033.Designer.cs">
+      <DependentUpon>202308142346228_v033.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202308142353443_v034.cs" />
+    <Compile Include="Migrations\202308142353443_v034.Designer.cs">
+      <DependentUpon>202308142353443_v034.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202412302340142_v035.cs" />
+    <Compile Include="Migrations\202412302340142_v035.Designer.cs">
+      <DependentUpon>202412302340142_v035.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202501011921099_v036.cs" />
+    <Compile Include="Migrations\202501011921099_v036.Designer.cs">
+      <DependentUpon>202501011921099_v036.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\BasicAuthenticationAttribute.cs" />
+    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\UserValidate.cs" />
+    <Compile Include="movimento.cs">
+      <DependentUpon>rxAppModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="mqttClient\MqttClientHandler.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="rede.cs">
+      <DependentUpon>rxAppModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Root.Master.cs">
+      <DependentUpon>Root.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Root.Master.designer.cs">
+      <DependentUpon>Root.Master</DependentUpon>
+    </Compile>
+    <Compile Include="rxAppModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rxAppModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="rxAppModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rxAppModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="rxAppModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rxAppModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Site.Master.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Site.Master.designer.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Site.Mobile.Master.cs">
+      <DependentUpon>Site.Mobile.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Site.Mobile.Master.designer.cs">
+      <DependentUpon>Site.Mobile.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Startup.cs" />
+    <Compile Include="ViewSwitcher.ascx.cs">
+      <DependentUpon>ViewSwitcher.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewSwitcher.ascx.designer.cs">
+      <DependentUpon>ViewSwitcher.ascx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\Dashboards\" />
+    <Folder Include="frmAgyliti\Cliente001\Dashboard\" />
+    <Folder Include="frmAgyliti\Cliente001\DevExtreme\cnRxApp\app01JS\angularAppServices\" />
+    <Folder Include="frmAgyliti\Cliente001\DevExtreme\cnRxApp\app01JS\css\" />
+    <Folder Include="frmAgyliti\Cliente001\DevExtreme\cnRxApp\app01JS\js\" />
+    <Folder Include="frmAgyliti\Cliente001\DevExtreme\cnRxApp\app01JS\webapiControllers\" />
+    <Folder Include="frmAgyliti\Cliente001\Report\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.4.1.min.map" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="dashClasses\dashCnCofre.resx">
+      <DependentUpon>dashCnCofre.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dashClasses\dashCnCofreNivel.resx">
+      <DependentUpon>dashCnCofreNivel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dashClasses\dashCnCofrePorCliente.resx">
+      <DependentUpon>dashCnCofrePorCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dashClasses\dashCnCofreUsuarioDepositos.resx">
+      <DependentUpon>dashCnCofreUsuarioDepositos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202211171126303_v000-InitialCreate.resx">
+      <DependentUpon>202211171126303_v000-InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202212171839264_v001.resx">
+      <DependentUpon>202212171839264_v001.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202301082115567_v002.resx">
+      <DependentUpon>202301082115567_v002.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202301231806381_v0003.resx">
+      <DependentUpon>202301231806381_v0003.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202301251154011_v004.resx">
+      <DependentUpon>202301251154011_v004.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202301251212359_v005.resx">
+      <DependentUpon>202301251212359_v005.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202301301250021_v006.resx">
+      <DependentUpon>202301301250021_v006.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202301301359245_v007.resx">
+      <DependentUpon>202301301359245_v007.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202301311209230_v008.resx">
+      <DependentUpon>202301311209230_v008.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202301312356288_v009.resx">
+      <DependentUpon>202301312356288_v009.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202302010003564_v010.resx">
+      <DependentUpon>202302010003564_v010.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202302010010189_v011.resx">
+      <DependentUpon>202302010010189_v011.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202302010018110_v012.resx">
+      <DependentUpon>202302010018110_v012.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202302010019177_v013.resx">
+      <DependentUpon>202302010019177_v013.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202302042310493_v014.resx">
+      <DependentUpon>202302042310493_v014.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202302042324143_v015.resx">
+      <DependentUpon>202302042324143_v015.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202302042325438_v016.resx">
+      <DependentUpon>202302042325438_v016.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202302081836495_v017.resx">
+      <DependentUpon>202302081836495_v017.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202302081852200_v018.resx">
+      <DependentUpon>202302081852200_v018.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202302110010589_v019.resx">
+      <DependentUpon>202302110010589_v019.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202302181301025_v020.resx">
+      <DependentUpon>202302181301025_v020.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202302181312152_v021.resx">
+      <DependentUpon>202302181312152_v021.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202302251222431_v022.resx">
+      <DependentUpon>202302251222431_v022.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202302251308199_v023.resx">
+      <DependentUpon>202302251308199_v023.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202303191419284_v024.resx">
+      <DependentUpon>202303191419284_v024.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202304221310440_v025.resx">
+      <DependentUpon>202304221310440_v025.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202304301317557_v026.resx">
+      <DependentUpon>202304301317557_v026.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306031158524_v027.resx">
+      <DependentUpon>202306031158524_v027.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306031257500_v028.resx">
+      <DependentUpon>202306031257500_v028.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306241651231_v029.resx">
+      <DependentUpon>202306241651231_v029.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306241704568_v030.resx">
+      <DependentUpon>202306241704568_v030.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202308132332534_v031.resx">
+      <DependentUpon>202308132332534_v031.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202308132338327_v032.resx">
+      <DependentUpon>202308132338327_v032.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202308142346228_v033.resx">
+      <DependentUpon>202308142346228_v033.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202308142353443_v034.resx">
+      <DependentUpon>202308142353443_v034.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202412302340142_v035.resx">
+      <DependentUpon>202412302340142_v035.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202501011921099_v036.resx">
+      <DependentUpon>202501011921099_v036.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>55670</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:55670/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

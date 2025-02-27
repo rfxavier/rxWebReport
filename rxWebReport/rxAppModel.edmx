@@ -1,0 +1,747 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="getlockModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="cliente">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cod_cliente" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="nome" Type="nvarchar" MaxLength="50" />
+          <Property Name="cod_rede" Type="nvarchar" MaxLength="50" />
+          <Property Name="trackLastWriteTime" Type="datetime" />
+          <Property Name="trackCreationTime" Type="datetime" />
+          <Property Name="razao_social" Type="nvarchar" MaxLength="50" />
+          <Property Name="cnpj" Type="nvarchar" MaxLength="50" />
+          <Property Name="endereco" Type="nvarchar" MaxLength="60" />
+          <Property Name="complemento" Type="nvarchar" MaxLength="60" />
+          <Property Name="bairro" Type="nvarchar" MaxLength="50" />
+          <Property Name="cidade" Type="nvarchar" MaxLength="50" />
+          <Property Name="uf" Type="nvarchar" MaxLength="20" />
+          <Property Name="CEP" Type="nvarchar" MaxLength="10" />
+          <Property Name="latitude" Type="decimal" Precision="12" Scale="9" />
+          <Property Name="longitude" Type="decimal" Precision="12" Scale="9" />
+          <Property Name="pessoa_contato" Type="nvarchar" MaxLength="50" />
+          <Property Name="email" Type="nvarchar" MaxLength="100" />
+          <Property Name="telefone" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="cofre">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_cofre" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="nome" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="serie" Type="nvarchar" MaxLength="50" />
+          <Property Name="tipo" Type="nvarchar" MaxLength="50" />
+          <Property Name="marca" Type="nvarchar" MaxLength="50" />
+          <Property Name="modelo" Type="nvarchar" MaxLength="50" />
+          <Property Name="tamanho_malote" Type="nvarchar" MaxLength="50" />
+          <Property Name="trackLastWriteTime" Type="datetime" />
+          <Property Name="trackCreationTime" Type="datetime" />
+          <Property Name="cod_loja" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="cofre_user">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_cofre" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="data_user" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="nome" Type="nvarchar" MaxLength="50" />
+          <Property Name="trackLastWriteTime" Type="datetime" />
+          <Property Name="trackCreationTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="loja">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cod_loja" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="cod_cliente" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="nome" Type="nvarchar" MaxLength="50" />
+          <Property Name="trackLastWriteTime" Type="datetime" />
+          <Property Name="trackCreationTime" Type="datetime" />
+          <Property Name="razao_social" Type="nvarchar" MaxLength="50" />
+          <Property Name="cnpj" Type="nvarchar" MaxLength="50" />
+          <Property Name="endereco" Type="nvarchar" MaxLength="60" />
+          <Property Name="complemento" Type="nvarchar" MaxLength="60" />
+          <Property Name="bairro" Type="nvarchar" MaxLength="50" />
+          <Property Name="cidade" Type="nvarchar" MaxLength="50" />
+          <Property Name="uf" Type="nvarchar" MaxLength="20" />
+          <Property Name="CEP" Type="nvarchar" MaxLength="10" />
+          <Property Name="latitude" Type="decimal" Precision="12" Scale="9" />
+          <Property Name="longitude" Type="decimal" Precision="12" Scale="9" />
+          <Property Name="pessoa_contato" Type="nvarchar" MaxLength="50" />
+          <Property Name="email" Type="nvarchar" MaxLength="100" />
+          <Property Name="telefone" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="message">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="info_id" Type="nvarchar" MaxLength="50" />
+          <Property Name="info_ip" Type="nvarchar" MaxLength="50" />
+          <Property Name="info_mac" Type="nvarchar" MaxLength="50" />
+          <Property Name="info_json" Type="nvarchar" MaxLength="50" />
+          <Property Name="data_hash" Type="nvarchar" MaxLength="50" />
+          <Property Name="data_tmst_begin" Type="nvarchar" MaxLength="50" />
+          <Property Name="data_tmst_end" Type="nvarchar" MaxLength="50" />
+          <Property Name="data_user" Type="nvarchar" MaxLength="50" />
+          <Property Name="data_type" Type="nvarchar" MaxLength="50" />
+          <Property Name="data_currency_total" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="data_currency_bill_2" Type="bigint" />
+          <Property Name="data_currency_bill_5" Type="bigint" />
+          <Property Name="data_currency_bill_10" Type="bigint" />
+          <Property Name="data_currency_bill_20" Type="bigint" />
+          <Property Name="data_currency_bill_50" Type="bigint" />
+          <Property Name="data_currency_bill_100" Type="bigint" />
+          <Property Name="data_currency_bill_200" Type="bigint" />
+          <Property Name="data_currency_bill_rejected" Type="bigint" />
+          <Property Name="data_currency_envelope" Type="bigint" />
+          <Property Name="data_currency_envelope_total" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="id_cofre" Type="nvarchar" MaxLength="50" />
+          <Property Name="trackLastWriteTime" Type="datetime" />
+          <Property Name="trackCreationTime" Type="datetime" />
+          <Property Name="data_tmst_begin_datetime" Type="datetime" />
+          <Property Name="data_tmst_end_datetime" Type="datetime" />
+          <Property Name="cod_loja" Type="nvarchar" MaxLength="50" />
+          <Property Name="cod_cliente" Type="nvarchar" MaxLength="50" />
+          <Property Name="cod_rede" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="movimento">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="data_type" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="nome" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="tipo" Type="nvarchar" MaxLength="50" />
+          <Property Name="trackLastWriteTime" Type="datetime" />
+          <Property Name="trackCreationTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="rede">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cod_rede" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="nome" Type="nvarchar" MaxLength="50" />
+          <Property Name="trackLastWriteTime" Type="datetime" />
+          <Property Name="trackCreationTime" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'getlock.dbo.message_view' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="message_view">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id_cofre" Type="nvarchar" MaxLength="50" />
+          <Property Name="cofre_nome" Type="nvarchar" MaxLength="50" />
+          <Property Name="cofre_serie" Type="nvarchar" MaxLength="50" />
+          <Property Name="cofre_tipo" Type="nvarchar" MaxLength="50" />
+          <Property Name="cofre_marca" Type="nvarchar" MaxLength="50" />
+          <Property Name="cofre_modelo" Type="nvarchar" MaxLength="50" />
+          <Property Name="cofre_tamanho_malote" Type="nvarchar" MaxLength="50" />
+          <Property Name="id" Type="bigint" Nullable="false" />
+          <Property Name="info_id" Type="nvarchar" MaxLength="50" />
+          <Property Name="info_ip" Type="nvarchar" MaxLength="50" />
+          <Property Name="info_mac" Type="nvarchar" MaxLength="50" />
+          <Property Name="info_json" Type="nvarchar" MaxLength="50" />
+          <Property Name="data_hash" Type="nvarchar" MaxLength="50" />
+          <Property Name="data_tmst_begin" Type="nvarchar" MaxLength="50" />
+          <Property Name="data_tmst_end" Type="nvarchar" MaxLength="50" />
+          <Property Name="data_user" Type="nvarchar" MaxLength="50" />
+          <Property Name="user_nome" Type="nvarchar" MaxLength="50" />
+          <Property Name="data_type" Type="nvarchar" MaxLength="50" />
+          <Property Name="movimento_nome" Type="nvarchar" MaxLength="50" />
+          <Property Name="movimento_tipo" Type="nvarchar" MaxLength="50" />
+          <Property Name="data_currency_total" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="data_currency_bill_2" Type="bigint" />
+          <Property Name="data_currency_bill_5" Type="bigint" />
+          <Property Name="data_currency_bill_10" Type="bigint" />
+          <Property Name="data_currency_bill_20" Type="bigint" />
+          <Property Name="data_currency_bill_50" Type="bigint" />
+          <Property Name="data_currency_bill_100" Type="bigint" />
+          <Property Name="data_currency_bill_200" Type="bigint" />
+          <Property Name="data_currency_bill_rejected" Type="bigint" />
+          <Property Name="data_currency_envelope" Type="bigint" />
+          <Property Name="data_currency_envelope_total" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="cod_loja" Type="nvarchar" MaxLength="50" />
+          <Property Name="nome_loja" Type="nvarchar" MaxLength="50" />
+          <Property Name="razao_social_loja" Type="nvarchar" MaxLength="50" />
+          <Property Name="cnpj_loja" Type="nvarchar" MaxLength="50" />
+          <Property Name="endereco_loja" Type="nvarchar" MaxLength="60" />
+          <Property Name="complemento_loja" Type="nvarchar" MaxLength="60" />
+          <Property Name="bairro_loja" Type="nvarchar" MaxLength="50" />
+          <Property Name="cidade_loja" Type="nvarchar" MaxLength="50" />
+          <Property Name="uf_loja" Type="nvarchar" MaxLength="20" />
+          <Property Name="cep_loja" Type="nvarchar" MaxLength="10" />
+          <Property Name="latitude_loja" Type="decimal" Precision="12" Scale="9" />
+          <Property Name="longitude_loja" Type="decimal" Precision="12" Scale="9" />
+          <Property Name="pessoa_contato_loja" Type="nvarchar" MaxLength="50" />
+          <Property Name="email_loja" Type="nvarchar" MaxLength="100" />
+          <Property Name="telefone_loja" Type="nvarchar" MaxLength="20" />
+          <Property Name="cod_cliente" Type="nvarchar" MaxLength="50" />
+          <Property Name="nome_cliente" Type="nvarchar" MaxLength="50" />
+          <Property Name="razao_social_cliente" Type="nvarchar" MaxLength="50" />
+          <Property Name="cnpj_cliente" Type="nvarchar" MaxLength="50" />
+          <Property Name="endereco_cliente" Type="nvarchar" MaxLength="60" />
+          <Property Name="complemento_cliente" Type="nvarchar" MaxLength="60" />
+          <Property Name="bairro_cliente" Type="nvarchar" MaxLength="50" />
+          <Property Name="cidade_cliente" Type="nvarchar" MaxLength="50" />
+          <Property Name="uf_cliente" Type="nvarchar" MaxLength="20" />
+          <Property Name="cep_cliente" Type="nvarchar" MaxLength="10" />
+          <Property Name="latitude_cliente" Type="decimal" Precision="12" Scale="9" />
+          <Property Name="longitude_cliente" Type="decimal" Precision="12" Scale="9" />
+          <Property Name="pessoa_contato_cliente" Type="nvarchar" MaxLength="50" />
+          <Property Name="email_cliente" Type="nvarchar" MaxLength="100" />
+          <Property Name="telefone_cliente" Type="nvarchar" MaxLength="20" />
+          <Property Name="cod_rede" Type="nvarchar" MaxLength="50" />
+          <Property Name="nome_rede" Type="nvarchar" MaxLength="50" />
+          <Property Name="trackLastWriteTime" Type="datetime" />
+          <Property Name="trackCreationTime" Type="datetime" />
+          <Property Name="data_tmst_begin_datetime" Type="datetime" />
+          <Property Name="data_tmst_end_datetime" Type="datetime" />
+        </EntityType>
+        <EntityContainer Name="getlockModelStoreContainer">
+          <EntitySet Name="cliente" EntityType="Self.cliente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cofre" EntityType="Self.cofre" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cofre_user" EntityType="Self.cofre_user" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="loja" EntityType="Self.loja" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="message" EntityType="Self.message" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="movimento" EntityType="Self.movimento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="rede" EntityType="Self.rede" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="message_view" EntityType="Self.message_view" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [message_view].[id_cofre] AS [id_cofre], 
+    [message_view].[cofre_nome] AS [cofre_nome], 
+    [message_view].[cofre_serie] AS [cofre_serie], 
+    [message_view].[cofre_tipo] AS [cofre_tipo], 
+    [message_view].[cofre_marca] AS [cofre_marca], 
+    [message_view].[cofre_modelo] AS [cofre_modelo], 
+    [message_view].[cofre_tamanho_malote] AS [cofre_tamanho_malote], 
+    [message_view].[id] AS [id], 
+    [message_view].[info_id] AS [info_id], 
+    [message_view].[info_ip] AS [info_ip], 
+    [message_view].[info_mac] AS [info_mac], 
+    [message_view].[info_json] AS [info_json], 
+    [message_view].[data_hash] AS [data_hash], 
+    [message_view].[data_tmst_begin] AS [data_tmst_begin], 
+    [message_view].[data_tmst_end] AS [data_tmst_end], 
+    [message_view].[data_user] AS [data_user], 
+    [message_view].[user_nome] AS [user_nome], 
+    [message_view].[data_type] AS [data_type], 
+    [message_view].[movimento_nome] AS [movimento_nome], 
+    [message_view].[movimento_tipo] AS [movimento_tipo], 
+    [message_view].[data_currency_total] AS [data_currency_total], 
+    [message_view].[data_currency_bill_2] AS [data_currency_bill_2], 
+    [message_view].[data_currency_bill_5] AS [data_currency_bill_5], 
+    [message_view].[data_currency_bill_10] AS [data_currency_bill_10], 
+    [message_view].[data_currency_bill_20] AS [data_currency_bill_20], 
+    [message_view].[data_currency_bill_50] AS [data_currency_bill_50], 
+    [message_view].[data_currency_bill_100] AS [data_currency_bill_100], 
+    [message_view].[data_currency_bill_200] AS [data_currency_bill_200], 
+    [message_view].[data_currency_bill_rejected] AS [data_currency_bill_rejected], 
+    [message_view].[data_currency_envelope] AS [data_currency_envelope], 
+    [message_view].[data_currency_envelope_total] AS [data_currency_envelope_total], 
+    [message_view].[cod_loja] AS [cod_loja], 
+    [message_view].[nome_loja] AS [nome_loja], 
+    [message_view].[razao_social_loja] AS [razao_social_loja], 
+    [message_view].[cnpj_loja] AS [cnpj_loja], 
+    [message_view].[endereco_loja] AS [endereco_loja], 
+    [message_view].[complemento_loja] AS [complemento_loja], 
+    [message_view].[bairro_loja] AS [bairro_loja], 
+    [message_view].[cidade_loja] AS [cidade_loja], 
+    [message_view].[uf_loja] AS [uf_loja], 
+    [message_view].[cep_loja] AS [cep_loja], 
+    [message_view].[latitude_loja] AS [latitude_loja], 
+    [message_view].[longitude_loja] AS [longitude_loja], 
+    [message_view].[pessoa_contato_loja] AS [pessoa_contato_loja], 
+    [message_view].[email_loja] AS [email_loja], 
+    [message_view].[telefone_loja] AS [telefone_loja], 
+    [message_view].[cod_cliente] AS [cod_cliente], 
+    [message_view].[nome_cliente] AS [nome_cliente], 
+    [message_view].[razao_social_cliente] AS [razao_social_cliente], 
+    [message_view].[cnpj_cliente] AS [cnpj_cliente], 
+    [message_view].[endereco_cliente] AS [endereco_cliente], 
+    [message_view].[complemento_cliente] AS [complemento_cliente], 
+    [message_view].[bairro_cliente] AS [bairro_cliente], 
+    [message_view].[cidade_cliente] AS [cidade_cliente], 
+    [message_view].[uf_cliente] AS [uf_cliente], 
+    [message_view].[cep_cliente] AS [cep_cliente], 
+    [message_view].[latitude_cliente] AS [latitude_cliente], 
+    [message_view].[longitude_cliente] AS [longitude_cliente], 
+    [message_view].[pessoa_contato_cliente] AS [pessoa_contato_cliente], 
+    [message_view].[email_cliente] AS [email_cliente], 
+    [message_view].[telefone_cliente] AS [telefone_cliente], 
+    [message_view].[cod_rede] AS [cod_rede], 
+    [message_view].[nome_rede] AS [nome_rede], 
+    [message_view].[trackLastWriteTime] AS [trackLastWriteTime], 
+    [message_view].[trackCreationTime] AS [trackCreationTime], 
+    [message_view].[data_tmst_begin_datetime] AS [data_tmst_begin_datetime], 
+    [message_view].[data_tmst_end_datetime] AS [data_tmst_end_datetime]
+    FROM [dbo].[message_view] AS [message_view]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="getlockModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="getlockEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="cliente" EntityType="getlockModel.cliente" />
+          <EntitySet Name="cofre" EntityType="getlockModel.cofre" />
+          <EntitySet Name="cofre_user" EntityType="getlockModel.cofre_user" />
+          <EntitySet Name="loja" EntityType="getlockModel.loja" />
+          <EntitySet Name="message" EntityType="getlockModel.message" />
+          <EntitySet Name="movimento" EntityType="getlockModel.movimento" />
+          <EntitySet Name="rede" EntityType="getlockModel.rede" />
+          <EntitySet Name="message_view" EntityType="getlockModel.message_view" />
+        </EntityContainer>
+        <EntityType Name="cliente">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cod_cliente" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="nome" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cod_rede" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="trackLastWriteTime" Type="DateTime" Precision="3" />
+          <Property Name="trackCreationTime" Type="DateTime" Precision="3" />
+          <Property Name="razao_social" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cnpj" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="endereco" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="complemento" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="bairro" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cidade" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="uf" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="CEP" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="latitude" Type="Decimal" Precision="12" Scale="9" />
+          <Property Name="longitude" Type="Decimal" Precision="12" Scale="9" />
+          <Property Name="pessoa_contato" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="telefone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="cofre">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_cofre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="nome" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="serie" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="marca" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="modelo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="tamanho_malote" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="trackLastWriteTime" Type="DateTime" Precision="3" />
+          <Property Name="trackCreationTime" Type="DateTime" Precision="3" />
+          <Property Name="cod_loja" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="cofre_user">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_cofre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="data_user" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="nome" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="trackLastWriteTime" Type="DateTime" Precision="3" />
+          <Property Name="trackCreationTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="loja">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cod_loja" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cod_cliente" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="nome" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="trackLastWriteTime" Type="DateTime" Precision="3" />
+          <Property Name="trackCreationTime" Type="DateTime" Precision="3" />
+          <Property Name="razao_social" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cnpj" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="endereco" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="complemento" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="bairro" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cidade" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="uf" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="CEP" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="latitude" Type="Decimal" Precision="12" Scale="9" />
+          <Property Name="longitude" Type="Decimal" Precision="12" Scale="9" />
+          <Property Name="pessoa_contato" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="telefone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="message">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="info_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="info_ip" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="info_mac" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="info_json" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="data_hash" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="data_tmst_begin" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="data_tmst_end" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="data_user" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="data_type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="data_currency_total" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="data_currency_bill_2" Type="Int64" />
+          <Property Name="data_currency_bill_5" Type="Int64" />
+          <Property Name="data_currency_bill_10" Type="Int64" />
+          <Property Name="data_currency_bill_20" Type="Int64" />
+          <Property Name="data_currency_bill_50" Type="Int64" />
+          <Property Name="data_currency_bill_100" Type="Int64" />
+          <Property Name="data_currency_bill_200" Type="Int64" />
+          <Property Name="data_currency_bill_rejected" Type="Int64" />
+          <Property Name="data_currency_envelope" Type="Int64" />
+          <Property Name="data_currency_envelope_total" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="id_cofre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="trackLastWriteTime" Type="DateTime" Precision="3" />
+          <Property Name="trackCreationTime" Type="DateTime" Precision="3" />
+          <Property Name="data_tmst_begin_datetime" Type="DateTime" Precision="3" />
+          <Property Name="data_tmst_end_datetime" Type="DateTime" Precision="3" />
+          <Property Name="cod_loja" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cod_cliente" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cod_rede" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="movimento">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="data_type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="nome" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="trackLastWriteTime" Type="DateTime" Precision="3" />
+          <Property Name="trackCreationTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="rede">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cod_rede" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="nome" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="trackLastWriteTime" Type="DateTime" Precision="3" />
+          <Property Name="trackCreationTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="message_view">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id_cofre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cofre_nome" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cofre_serie" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cofre_tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cofre_marca" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cofre_modelo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cofre_tamanho_malote" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="id" Type="Int64" Nullable="false" />
+          <Property Name="info_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="info_ip" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="info_mac" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="info_json" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="data_hash" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="data_tmst_begin" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="data_tmst_end" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="data_user" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="user_nome" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="data_type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="movimento_nome" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="movimento_tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="data_currency_total" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="data_currency_bill_2" Type="Int64" />
+          <Property Name="data_currency_bill_5" Type="Int64" />
+          <Property Name="data_currency_bill_10" Type="Int64" />
+          <Property Name="data_currency_bill_20" Type="Int64" />
+          <Property Name="data_currency_bill_50" Type="Int64" />
+          <Property Name="data_currency_bill_100" Type="Int64" />
+          <Property Name="data_currency_bill_200" Type="Int64" />
+          <Property Name="data_currency_bill_rejected" Type="Int64" />
+          <Property Name="data_currency_envelope" Type="Int64" />
+          <Property Name="data_currency_envelope_total" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="cod_loja" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="nome_loja" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cod_cliente" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="nome_cliente" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cod_rede" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="nome_rede" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="trackLastWriteTime" Type="DateTime" Precision="3" />
+          <Property Name="trackCreationTime" Type="DateTime" Precision="3" />
+          <Property Name="data_tmst_begin_datetime" Type="DateTime" Precision="3" />
+          <Property Name="data_tmst_end_datetime" Type="DateTime" Precision="3" />
+          <Property Name="razao_social_loja" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cnpj_loja" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="endereco_loja" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="complemento_loja" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="bairro_loja" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cidade_loja" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="uf_loja" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="cep_loja" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="latitude_loja" Type="Decimal" Precision="12" Scale="9" />
+          <Property Name="longitude_loja" Type="Decimal" Precision="12" Scale="9" />
+          <Property Name="pessoa_contato_loja" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="email_loja" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="telefone_loja" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="razao_social_cliente" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cnpj_cliente" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="endereco_cliente" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="complemento_cliente" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="bairro_cliente" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cidade_cliente" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="uf_cliente" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="cep_cliente" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="latitude_cliente" Type="Decimal" Precision="12" Scale="9" />
+          <Property Name="longitude_cliente" Type="Decimal" Precision="12" Scale="9" />
+          <Property Name="pessoa_contato_cliente" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="email_cliente" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="telefone_cliente" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="getlockModelStoreContainer" CdmEntityContainer="getlockEntities">
+          <EntitySetMapping Name="cliente">
+            <EntityTypeMapping TypeName="getlockModel.cliente">
+              <MappingFragment StoreEntitySet="cliente">
+                <ScalarProperty Name="telefone" ColumnName="telefone" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="pessoa_contato" ColumnName="pessoa_contato" />
+                <ScalarProperty Name="longitude" ColumnName="longitude" />
+                <ScalarProperty Name="latitude" ColumnName="latitude" />
+                <ScalarProperty Name="CEP" ColumnName="CEP" />
+                <ScalarProperty Name="uf" ColumnName="uf" />
+                <ScalarProperty Name="cidade" ColumnName="cidade" />
+                <ScalarProperty Name="bairro" ColumnName="bairro" />
+                <ScalarProperty Name="complemento" ColumnName="complemento" />
+                <ScalarProperty Name="endereco" ColumnName="endereco" />
+                <ScalarProperty Name="cnpj" ColumnName="cnpj" />
+                <ScalarProperty Name="razao_social" ColumnName="razao_social" />
+                <ScalarProperty Name="trackCreationTime" ColumnName="trackCreationTime" />
+                <ScalarProperty Name="trackLastWriteTime" ColumnName="trackLastWriteTime" />
+                <ScalarProperty Name="cod_rede" ColumnName="cod_rede" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+                <ScalarProperty Name="cod_cliente" ColumnName="cod_cliente" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cofre">
+            <EntityTypeMapping TypeName="getlockModel.cofre">
+              <MappingFragment StoreEntitySet="cofre">
+                <ScalarProperty Name="cod_loja" ColumnName="cod_loja" />
+                <ScalarProperty Name="trackCreationTime" ColumnName="trackCreationTime" />
+                <ScalarProperty Name="trackLastWriteTime" ColumnName="trackLastWriteTime" />
+                <ScalarProperty Name="tamanho_malote" ColumnName="tamanho_malote" />
+                <ScalarProperty Name="modelo" ColumnName="modelo" />
+                <ScalarProperty Name="marca" ColumnName="marca" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="serie" ColumnName="serie" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+                <ScalarProperty Name="id_cofre" ColumnName="id_cofre" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cofre_user">
+            <EntityTypeMapping TypeName="getlockModel.cofre_user">
+              <MappingFragment StoreEntitySet="cofre_user">
+                <ScalarProperty Name="trackCreationTime" ColumnName="trackCreationTime" />
+                <ScalarProperty Name="trackLastWriteTime" ColumnName="trackLastWriteTime" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+                <ScalarProperty Name="data_user" ColumnName="data_user" />
+                <ScalarProperty Name="id_cofre" ColumnName="id_cofre" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="loja">
+            <EntityTypeMapping TypeName="getlockModel.loja">
+              <MappingFragment StoreEntitySet="loja">
+                <ScalarProperty Name="telefone" ColumnName="telefone" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="pessoa_contato" ColumnName="pessoa_contato" />
+                <ScalarProperty Name="longitude" ColumnName="longitude" />
+                <ScalarProperty Name="latitude" ColumnName="latitude" />
+                <ScalarProperty Name="CEP" ColumnName="CEP" />
+                <ScalarProperty Name="uf" ColumnName="uf" />
+                <ScalarProperty Name="cidade" ColumnName="cidade" />
+                <ScalarProperty Name="bairro" ColumnName="bairro" />
+                <ScalarProperty Name="complemento" ColumnName="complemento" />
+                <ScalarProperty Name="endereco" ColumnName="endereco" />
+                <ScalarProperty Name="cnpj" ColumnName="cnpj" />
+                <ScalarProperty Name="razao_social" ColumnName="razao_social" />
+                <ScalarProperty Name="trackCreationTime" ColumnName="trackCreationTime" />
+                <ScalarProperty Name="trackLastWriteTime" ColumnName="trackLastWriteTime" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+                <ScalarProperty Name="cod_cliente" ColumnName="cod_cliente" />
+                <ScalarProperty Name="cod_loja" ColumnName="cod_loja" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="message">
+            <EntityTypeMapping TypeName="getlockModel.message">
+              <MappingFragment StoreEntitySet="message">
+                <ScalarProperty Name="cod_rede" ColumnName="cod_rede" />
+                <ScalarProperty Name="cod_cliente" ColumnName="cod_cliente" />
+                <ScalarProperty Name="cod_loja" ColumnName="cod_loja" />
+                <ScalarProperty Name="data_tmst_end_datetime" ColumnName="data_tmst_end_datetime" />
+                <ScalarProperty Name="data_tmst_begin_datetime" ColumnName="data_tmst_begin_datetime" />
+                <ScalarProperty Name="trackCreationTime" ColumnName="trackCreationTime" />
+                <ScalarProperty Name="trackLastWriteTime" ColumnName="trackLastWriteTime" />
+                <ScalarProperty Name="id_cofre" ColumnName="id_cofre" />
+                <ScalarProperty Name="data_currency_envelope_total" ColumnName="data_currency_envelope_total" />
+                <ScalarProperty Name="data_currency_envelope" ColumnName="data_currency_envelope" />
+                <ScalarProperty Name="data_currency_bill_rejected" ColumnName="data_currency_bill_rejected" />
+                <ScalarProperty Name="data_currency_bill_200" ColumnName="data_currency_bill_200" />
+                <ScalarProperty Name="data_currency_bill_100" ColumnName="data_currency_bill_100" />
+                <ScalarProperty Name="data_currency_bill_50" ColumnName="data_currency_bill_50" />
+                <ScalarProperty Name="data_currency_bill_20" ColumnName="data_currency_bill_20" />
+                <ScalarProperty Name="data_currency_bill_10" ColumnName="data_currency_bill_10" />
+                <ScalarProperty Name="data_currency_bill_5" ColumnName="data_currency_bill_5" />
+                <ScalarProperty Name="data_currency_bill_2" ColumnName="data_currency_bill_2" />
+                <ScalarProperty Name="data_currency_total" ColumnName="data_currency_total" />
+                <ScalarProperty Name="data_type" ColumnName="data_type" />
+                <ScalarProperty Name="data_user" ColumnName="data_user" />
+                <ScalarProperty Name="data_tmst_end" ColumnName="data_tmst_end" />
+                <ScalarProperty Name="data_tmst_begin" ColumnName="data_tmst_begin" />
+                <ScalarProperty Name="data_hash" ColumnName="data_hash" />
+                <ScalarProperty Name="info_json" ColumnName="info_json" />
+                <ScalarProperty Name="info_mac" ColumnName="info_mac" />
+                <ScalarProperty Name="info_ip" ColumnName="info_ip" />
+                <ScalarProperty Name="info_id" ColumnName="info_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="movimento">
+            <EntityTypeMapping TypeName="getlockModel.movimento">
+              <MappingFragment StoreEntitySet="movimento">
+                <ScalarProperty Name="trackCreationTime" ColumnName="trackCreationTime" />
+                <ScalarProperty Name="trackLastWriteTime" ColumnName="trackLastWriteTime" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+                <ScalarProperty Name="data_type" ColumnName="data_type" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="rede">
+            <EntityTypeMapping TypeName="getlockModel.rede">
+              <MappingFragment StoreEntitySet="rede">
+                <ScalarProperty Name="trackCreationTime" ColumnName="trackCreationTime" />
+                <ScalarProperty Name="trackLastWriteTime" ColumnName="trackLastWriteTime" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+                <ScalarProperty Name="cod_rede" ColumnName="cod_rede" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="message_view">
+            <EntityTypeMapping TypeName="getlockModel.message_view">
+              <MappingFragment StoreEntitySet="message_view">
+                <ScalarProperty Name="telefone_cliente" ColumnName="telefone_cliente" />
+                <ScalarProperty Name="email_cliente" ColumnName="email_cliente" />
+                <ScalarProperty Name="pessoa_contato_cliente" ColumnName="pessoa_contato_cliente" />
+                <ScalarProperty Name="longitude_cliente" ColumnName="longitude_cliente" />
+                <ScalarProperty Name="latitude_cliente" ColumnName="latitude_cliente" />
+                <ScalarProperty Name="cep_cliente" ColumnName="cep_cliente" />
+                <ScalarProperty Name="uf_cliente" ColumnName="uf_cliente" />
+                <ScalarProperty Name="cidade_cliente" ColumnName="cidade_cliente" />
+                <ScalarProperty Name="bairro_cliente" ColumnName="bairro_cliente" />
+                <ScalarProperty Name="complemento_cliente" ColumnName="complemento_cliente" />
+                <ScalarProperty Name="endereco_cliente" ColumnName="endereco_cliente" />
+                <ScalarProperty Name="cnpj_cliente" ColumnName="cnpj_cliente" />
+                <ScalarProperty Name="razao_social_cliente" ColumnName="razao_social_cliente" />
+                <ScalarProperty Name="telefone_loja" ColumnName="telefone_loja" />
+                <ScalarProperty Name="email_loja" ColumnName="email_loja" />
+                <ScalarProperty Name="pessoa_contato_loja" ColumnName="pessoa_contato_loja" />
+                <ScalarProperty Name="longitude_loja" ColumnName="longitude_loja" />
+                <ScalarProperty Name="latitude_loja" ColumnName="latitude_loja" />
+                <ScalarProperty Name="cep_loja" ColumnName="cep_loja" />
+                <ScalarProperty Name="uf_loja" ColumnName="uf_loja" />
+                <ScalarProperty Name="cidade_loja" ColumnName="cidade_loja" />
+                <ScalarProperty Name="bairro_loja" ColumnName="bairro_loja" />
+                <ScalarProperty Name="complemento_loja" ColumnName="complemento_loja" />
+                <ScalarProperty Name="endereco_loja" ColumnName="endereco_loja" />
+                <ScalarProperty Name="cnpj_loja" ColumnName="cnpj_loja" />
+                <ScalarProperty Name="razao_social_loja" ColumnName="razao_social_loja" />
+                <ScalarProperty Name="data_tmst_end_datetime" ColumnName="data_tmst_end_datetime" />
+                <ScalarProperty Name="data_tmst_begin_datetime" ColumnName="data_tmst_begin_datetime" />
+                <ScalarProperty Name="trackCreationTime" ColumnName="trackCreationTime" />
+                <ScalarProperty Name="trackLastWriteTime" ColumnName="trackLastWriteTime" />
+                <ScalarProperty Name="nome_rede" ColumnName="nome_rede" />
+                <ScalarProperty Name="cod_rede" ColumnName="cod_rede" />
+                <ScalarProperty Name="nome_cliente" ColumnName="nome_cliente" />
+                <ScalarProperty Name="cod_cliente" ColumnName="cod_cliente" />
+                <ScalarProperty Name="nome_loja" ColumnName="nome_loja" />
+                <ScalarProperty Name="cod_loja" ColumnName="cod_loja" />
+                <ScalarProperty Name="data_currency_envelope_total" ColumnName="data_currency_envelope_total" />
+                <ScalarProperty Name="data_currency_envelope" ColumnName="data_currency_envelope" />
+                <ScalarProperty Name="data_currency_bill_rejected" ColumnName="data_currency_bill_rejected" />
+                <ScalarProperty Name="data_currency_bill_200" ColumnName="data_currency_bill_200" />
+                <ScalarProperty Name="data_currency_bill_100" ColumnName="data_currency_bill_100" />
+                <ScalarProperty Name="data_currency_bill_50" ColumnName="data_currency_bill_50" />
+                <ScalarProperty Name="data_currency_bill_20" ColumnName="data_currency_bill_20" />
+                <ScalarProperty Name="data_currency_bill_10" ColumnName="data_currency_bill_10" />
+                <ScalarProperty Name="data_currency_bill_5" ColumnName="data_currency_bill_5" />
+                <ScalarProperty Name="data_currency_bill_2" ColumnName="data_currency_bill_2" />
+                <ScalarProperty Name="data_currency_total" ColumnName="data_currency_total" />
+                <ScalarProperty Name="movimento_tipo" ColumnName="movimento_tipo" />
+                <ScalarProperty Name="movimento_nome" ColumnName="movimento_nome" />
+                <ScalarProperty Name="data_type" ColumnName="data_type" />
+                <ScalarProperty Name="user_nome" ColumnName="user_nome" />
+                <ScalarProperty Name="data_user" ColumnName="data_user" />
+                <ScalarProperty Name="data_tmst_end" ColumnName="data_tmst_end" />
+                <ScalarProperty Name="data_tmst_begin" ColumnName="data_tmst_begin" />
+                <ScalarProperty Name="data_hash" ColumnName="data_hash" />
+                <ScalarProperty Name="info_json" ColumnName="info_json" />
+                <ScalarProperty Name="info_mac" ColumnName="info_mac" />
+                <ScalarProperty Name="info_ip" ColumnName="info_ip" />
+                <ScalarProperty Name="info_id" ColumnName="info_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="cofre_tamanho_malote" ColumnName="cofre_tamanho_malote" />
+                <ScalarProperty Name="cofre_modelo" ColumnName="cofre_modelo" />
+                <ScalarProperty Name="cofre_marca" ColumnName="cofre_marca" />
+                <ScalarProperty Name="cofre_tipo" ColumnName="cofre_tipo" />
+                <ScalarProperty Name="cofre_serie" ColumnName="cofre_serie" />
+                <ScalarProperty Name="cofre_nome" ColumnName="cofre_nome" />
+                <ScalarProperty Name="id_cofre" ColumnName="id_cofre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

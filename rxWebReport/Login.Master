@@ -1,0 +1,49 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Login.master.cs" Inherits="rxWebReport.Login" %>
+
+<%@ Register TagPrefix="dx" Namespace="DevExpress.Web" Assembly="DevExpress.Web.v21.1, Version=21.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>Agyliti Ltda.</title>
+    <asp:PlaceHolder runat="server">
+
+    </asp:PlaceHolder>
+
+    <script type="text/javascript">
+
+        function redirectLoginPage() {
+            window.location = "LoginAux.aspx";
+        }
+
+    </script>
+    <style type="text/css">
+        .dxpnlControl.dxpnl-edge, .dxpnlControl.dxpnl-edge.dxpnl-bar {
+            background-color: white;
+        }
+
+        .dxpnlControl.dxpnl-edge, .dxpnlControl.dxpnl-bar {
+            padding: 0px;
+        }
+
+        .dxpnl-edge.l {
+            border-right-width: 0px;
+        }
+    </style>
+    <asp:ContentPlaceHolder ID="HeadContentPlaceHolderRoot" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <dx:ASPxPanel ID="MainPane" runat="server" CssClass="mainContentPane">
+            <PanelCollection>
+                <dx:PanelContent runat="server" SupportsDisabledAttribute="True">
+                    <asp:ContentPlaceHolder ID="MainContentPlaceHolderRoot" runat="server">
+                    </asp:ContentPlaceHolder>
+                </dx:PanelContent>
+            </PanelCollection>
+        </dx:ASPxPanel>
+    </form>
+</body>
+</html>

@@ -1,0 +1,116 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Root.master.cs" Inherits="rxWebReport.Root" %>
+
+<%@ Register Assembly="DevExpress.Web.v21.1, Version=21.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web" TagPrefix="dx" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>GetLock</title>
+
+    <asp:PlaceHolder runat="server">
+        <link href="<%= Page.ResolveUrl("~/Content/bootstrap.min.css")%>?v=<%= DateTime.Now.Ticks %>" rel="stylesheet" />
+        <link href="<%= Page.ResolveUrl("~/Content/font-awesome.min.css")%>?v=<%= DateTime.Now.Ticks %>" rel="stylesheet" />
+        <link href="<%= Page.ResolveUrl("~/Content/rx/css/stylesrxmain.css")%>?v=<%= DateTime.Now.Ticks %>" rel="stylesheet" />
+    </asp:PlaceHolder>
+
+    <script type="text/javascript">
+        function ResolveUrl(url) {
+            if (url.indexOf("~/") == 0) {
+                url = baseUrl + url.substring(2);
+            }
+            return url;
+        }
+
+        function redirectLoginPage() {
+            window.location = "LoginAux.aspx";
+        }
+    </script>
+
+    <style type="text/css">
+        /*RX-same configuration as bootstrap body tag*/
+        /*RX-it was overriding font*/
+        .dxpnlControl {
+            font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+            font-size: 14px;
+            line-height: 1.42857143;
+            color: #333;
+            background-color: #fff;
+        }
+    </style>
+
+    <asp:ContentPlaceHolder ID="headContentPlaceHolderRoot" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <dx:ASPxPanel ID="HeaderPane" runat="server" FixedPosition="WindowTop" ClientInstanceName="headerPane" Collapsible="True" BackColor="White">
+            <Styles>
+                <Panel BackColor="White">
+                    <Paddings Padding="0px" />
+                </Panel>
+            </Styles>
+            <SettingsAdaptivity CollapseAtWindowInnerWidth="750" />
+            <SettingsCollapsing>
+                <ExpandButton GlyphType="ArrowBottom" />
+            </SettingsCollapsing>
+            <ExpandBarTemplate>
+                <div class="container-fluid">
+                    <img src="<%= Page.ResolveUrl("~/Content/Images/LogoMain.png")%>" />
+                </div>
+            </ExpandBarTemplate>
+            <PanelCollection>
+                <dx:PanelContent runat="server" SupportsDisabledAttribute="True">
+                    <div class="container-fluid">
+                        <div class="row" id="toprow4T">
+                            <div class="col-xs-4">
+                                <img src="<%= Page.ResolveUrl("~/Content/Images/LogoMain.png")%>" />
+                            </div>
+                            <div class="col-xs-8 text-right">
+                                <div class="col-xs-6" style="padding-top: 14px;"><h5></h5></div>
+                                <%--<dx:ASPxHyperLink runat="server" ID="hlLogo" NavigateUrl="~/Default.aspx" ImageUrl="~/Content/Images/LogoAux.png">
+                                </dx:ASPxHyperLink>--%>
+                                <asp:LoginView runat="server" ViewStateMode="Disabled" ID="LoginView1">
+                                    <LoggedInTemplate>
+                                        <div class="logged-in-template">
+                                            <span style="font-size: 12px;">USUÁRIO</span>
+                                            <a runat="server" href="~/Account/ManagePassword.aspx" title="Configuração de sua conta"><%: Context.User.Identity.GetUserName()  %></a>
+                                            <span style="font-size: 18px;">|</span>
+                                            <dx:ASPxHyperLink ID="ASPxHyperLink1" runat="server" Text="Sair" CssClass="button" NavigateUrl="~/LoginRedirect.aspx?logout=S">
+                                            </dx:ASPxHyperLink>
+                                        </div>
+
+                                    </LoggedInTemplate>
+                                    <AnonymousTemplate>
+                                        <div class="logged-in-template">
+                                            <a href="<%= Page.ResolveUrl("~/LoginAux.aspx")%>" class="btn btn-default">Login</a>
+                                        </div>
+                                        </AnonymousTemplate>
+                                </asp:LoginView>
+                            </div>
+                            <div class="col-xs-12" style="border-top: black; border-width: thin">
+                                <dx:ASPxMenu ID="ASPxMenu1" runat="server" ItemAutoWidth="true" DataSourceID="ASPxSiteMapDataSource1" OnItemDataBound="ASPxMenu1_ItemDataBound">
+                                    <ItemStyle BackColor="#2A4E70">
+                                        <HoverStyle BackColor ="#2A4E70"></HoverStyle>
+                                    </ItemStyle>
+                                    <SubMenuStyle GutterWidth="0px" BackColor="#DEDFDA" />
+                                </dx:ASPxMenu>
+                                <dx:ASPxSiteMapDataSource runat="server" ID="ASPxSiteMapDataSource1"  SiteMapFileName="~/web.sitemap" EnableRoles="True" />
+                            </div>
+                        </div>
+                    </div>
+                </dx:PanelContent>
+            </PanelCollection>
+        </dx:ASPxPanel>
+
+        <dx:ASPxPanel ID="MainPane" runat="server">
+            <PanelCollection>
+                <dx:PanelContent runat="server" SupportsDisabledAttribute="True">
+                    <asp:ContentPlaceHolder ID="MainContentPlaceHolderRoot" runat="server">
+                    </asp:ContentPlaceHolder>
+                </dx:PanelContent>
+            </PanelCollection>
+        </dx:ASPxPanel>
+    </form>
+</body>
+</html>
