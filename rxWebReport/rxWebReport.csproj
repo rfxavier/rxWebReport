@@ -69,6 +69,7 @@
     <Reference Include="DevExpress.PivotGrid.v21.1.Core, Version=21.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Printing.v21.1.Core, Version=21.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.RichEdit.v21.1.Core, Version=21.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.RichEdit.v21.1.Export, Version=21.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Sparkline.v21.1.Core, Version=21.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Data.Desktop.v21.1, Version=21.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Utils.v21.1, Version=21.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -1271,6 +1272,12 @@
     <Compile Include="rede.cs">
       <DependentUpon>rxAppModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="reportClasses\repSalasTempHR.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="reportClasses\repSalasTempHR.Designer.cs">
+      <DependentUpon>repSalasTempHR.cs</DependentUpon>
+    </Compile>
     <Compile Include="Root.Master.cs">
       <DependentUpon>Root.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1459,6 +1466,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202501011921099_v036.resx">
       <DependentUpon>202501011921099_v036.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="reportClasses\repSalasTempHR.resx">
+      <DependentUpon>repSalasTempHR.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
