@@ -145,18 +145,39 @@ namespace rxWebReport.dataObjClasses
             using (var conn = new MySqlConnection(connectionString))
             {
                 conn.Open();
-                string query = $@"
-                                SELECT h.name AS Hostname, 
-                                       i.name AS Item, 
-                                       h2.value AS Value, 
-                                       DATE_FORMAT(FROM_UNIXTIME(h2.clock), '%Y-%m-%d %H:%i:%s') AS SensorDate
-                                FROM hosts h
-                                INNER JOIN items i ON i.hostid = h.hostid
-                                INNER JOIN history h2 ON h2.itemid = i.itemid
-                                WHERE h.name LIKE 'TTU%' 
-                                AND i.name LIKE '{itemNameFilter}' 
-                                AND DATE_FORMAT(FROM_UNIXTIME(h2.clock), '%Y-%m-%d %H:%i:%s') 
-                                BETWEEN '{InitialDate}' AND '{FinalDate}'";
+
+                string query = "";
+
+                if (ItemPrefix.EndsWith("BIPE", StringComparison.OrdinalIgnoreCase))
+                {
+                    query = $@"
+                            SELECT h.name AS Hostname, 
+                                    i.name AS Item, 
+                                    h2.value AS Value, 
+                                    DATE_FORMAT(FROM_UNIXTIME(h2.clock), '%Y-%m-%d %H:%i:%s') AS SensorDate
+                            FROM hosts h
+                            INNER JOIN items i ON i.hostid = h.hostid
+                            INNER JOIN history h2 ON h2.itemid = i.itemid
+                            WHERE h.name LIKE 'JASAUDE - FieldLogger%' 
+                            AND i.name LIKE '{itemNameFilter}' 
+                            AND DATE_FORMAT(FROM_UNIXTIME(h2.clock), '%Y-%m-%d %H:%i:%s') 
+                            BETWEEN '{InitialDate}' AND '{FinalDate}'";
+                }
+                else
+                {
+                    query = $@"
+                            SELECT h.name AS Hostname, 
+                                    i.name AS Item, 
+                                    h2.value AS Value, 
+                                    DATE_FORMAT(FROM_UNIXTIME(h2.clock), '%Y-%m-%d %H:%i:%s') AS SensorDate
+                            FROM hosts h
+                            INNER JOIN items i ON i.hostid = h.hostid
+                            INNER JOIN history h2 ON h2.itemid = i.itemid
+                            WHERE h.name LIKE 'TTU%' 
+                            AND i.name LIKE '{itemNameFilter}' 
+                            AND DATE_FORMAT(FROM_UNIXTIME(h2.clock), '%Y-%m-%d %H:%i:%s') 
+                            BETWEEN '{InitialDate}' AND '{FinalDate}'";
+                }
 
                 using (var cmd = new MySqlCommand(query, conn))
                 {
@@ -164,30 +185,51 @@ namespace rxWebReport.dataObjClasses
                     {
                         while (reader.Read())
                         {
-                            string itemName = reader.GetString("Item");
-                            DateTime sensorDate = reader.GetDateTime("SensorDate");
-                            string itemBase = itemName.EndsWith("Temperatura") ? itemName.Substring(0, itemName.Length - "Temperatura".Length) :
-                                              itemName.EndsWith("Humidade") ? itemName.Substring(0, itemName.Length - "Humidade".Length) : itemName;
-
-                            if (!intermediateData.ContainsKey((itemBase, sensorDate)))
+                            if (ItemPrefix.EndsWith("BIPE", StringComparison.OrdinalIgnoreCase))
                             {
+                                string itemName = reader.GetString("Item");
+                                DateTime sensorDate = reader.GetDateTime("SensorDate");
+                                string itemBase = itemName.Substring(0, itemName.Length - "BIPE".Length);
+
                                 intermediateData[(itemBase, sensorDate)] = new dadosSensorPivoted
                                 {
                                     Hostname = reader.GetString("Hostname"),
                                     Item = itemBase,
                                     SensorDate = sensorDate
                                 };
-                            }
 
-                            var pivotedData = intermediateData[(itemBase, sensorDate)];
+                                var pivotedData = intermediateData[(itemBase, sensorDate)];
 
-                            if (itemName.EndsWith("Temperatura"))
-                            {
                                 pivotedData.ValueTemperature = reader.GetDecimal("Value");
+                                pivotedData.ValueHumidity = 0;
                             }
-                            else if (itemName.EndsWith("Humidade"))
+                            else
                             {
-                                pivotedData.ValueHumidity = reader.GetDecimal("Value");
+                                string itemName = reader.GetString("Item");
+                                DateTime sensorDate = reader.GetDateTime("SensorDate");
+                                string itemBase = itemName.EndsWith("Temperatura") ? itemName.Substring(0, itemName.Length - "Temperatura".Length) :
+                                                  itemName.EndsWith("Humidade") ? itemName.Substring(0, itemName.Length - "Humidade".Length) : itemName;
+
+                                if (!intermediateData.ContainsKey((itemBase, sensorDate)))
+                                {
+                                    intermediateData[(itemBase, sensorDate)] = new dadosSensorPivoted
+                                    {
+                                        Hostname = reader.GetString("Hostname"),
+                                        Item = itemBase,
+                                        SensorDate = sensorDate
+                                    };
+                                }
+
+                                var pivotedData = intermediateData[(itemBase, sensorDate)];
+
+                                if (itemName.EndsWith("Temperatura"))
+                                {
+                                    pivotedData.ValueTemperature = reader.GetDecimal("Value");
+                                }
+                                else if (itemName.EndsWith("Humidade"))
+                                {
+                                    pivotedData.ValueHumidity = reader.GetDecimal("Value");
+                                }
                             }
                         }
                     }

@@ -1,4 +1,5 @@
-﻿using DevExpress.XtraPrinting;
+﻿using DevExpress.XtraCharts;
+using DevExpress.XtraPrinting;
 using rxWebReport.reportClasses;
 using System;
 using System.IO;
@@ -65,8 +66,18 @@ namespace rxWebReport.frmAgyliti.JaSaude
                 var chart = (DevExpress.XtraReports.UI.XRChart)objReport.FindControl("chart2", true);
                 if (chart != null)
                 {
-                    chart.Series[0].Name = item + " ºC";
-                    chart.Series[1].Name = item + " %HR";
+                    if (item.EndsWith("BIPE", StringComparison.OrdinalIgnoreCase))
+                    {
+                        chart.Series[0].Name = item + " Dif. Pressão";
+                        chart.Series[1].Visible = false;
+
+                        ((DevExpress.XtraCharts.XYDiagram)chart.Diagram).SecondaryAxesY[0].Visibility = DevExpress.Utils.DefaultBoolean.False;
+                    }
+                    else
+                    {
+                        chart.Series[0].Name = item + " ºC";
+                        chart.Series[1].Name = item + " %HR";
+                    }
                 }
 
                 objReport.CreateDocument(); // Generate the report document
