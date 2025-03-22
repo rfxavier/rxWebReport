@@ -59,12 +59,14 @@ namespace rxWebReport.reportClasses
             this.tableCell2 = new DevExpress.XtraReports.UI.XRTableCell();
             this.tableCell3 = new DevExpress.XtraReports.UI.XRTableCell();
             this.tableCell4 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.label4 = new DevExpress.XtraReports.UI.XRLabel();
             this.pictureBox1 = new DevExpress.XtraReports.UI.XRPictureBox();
             this.label7 = new DevExpress.XtraReports.UI.XRLabel();
             this.label2 = new DevExpress.XtraReports.UI.XRLabel();
             this.label8 = new DevExpress.XtraReports.UI.XRLabel();
             this.label6 = new DevExpress.XtraReports.UI.XRLabel();
             this.chart2 = new DevExpress.XtraReports.UI.XRChart();
+            this.label5 = new DevExpress.XtraReports.UI.XRLabel();
             this.label3 = new DevExpress.XtraReports.UI.XRLabel();
             this.label1 = new DevExpress.XtraReports.UI.XRLabel();
             this.label22 = new DevExpress.XtraReports.UI.XRLabel();
@@ -122,6 +124,7 @@ namespace rxWebReport.reportClasses
             // ReportHeader
             // 
             this.ReportHeader.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.label4,
             this.pictureBox1,
             this.label7,
             this.label2,
@@ -135,6 +138,7 @@ namespace rxWebReport.reportClasses
             // PageHeader
             // 
             this.PageHeader.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.label5,
             this.label3,
             this.label1,
             this.label22,
@@ -227,6 +231,17 @@ namespace rxWebReport.reportClasses
             this.tableCell4.TextFormatString = "{0:#0.0}";
             this.tableCell4.Weight = 162.499999832321D;
             // 
+            // label4
+            // 
+            this.label4.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Description]")});
+            this.label4.LocationFloat = new DevExpress.Utils.PointFloat(633.3333F, 43.70832F);
+            this.label4.Multiline = true;
+            this.label4.Name = "label4";
+            this.label4.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.label4.SizeF = new System.Drawing.SizeF(256.6667F, 23F);
+            this.label4.Text = "label4";
+            // 
             // pictureBox1
             // 
             this.pictureBox1.ImageSource = new DevExpress.XtraPrinting.Drawing.ImageSource("img", resources.GetString("pictureBox1.ImageSource"));
@@ -237,11 +252,11 @@ namespace rxWebReport.reportClasses
             // 
             // label7
             // 
-            this.label7.LocationFloat = new DevExpress.Utils.PointFloat(621.875F, 43.70832F);
+            this.label7.LocationFloat = new DevExpress.Utils.PointFloat(633.3334F, 6.708324F);
             this.label7.Multiline = true;
             this.label7.Name = "label7";
             this.label7.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.label7.SizeF = new System.Drawing.SizeF(153.125F, 22.99999F);
+            this.label7.SizeF = new System.Drawing.SizeF(141.6666F, 22.99999F);
             this.label7.StylePriority.UseTextAlignment = false;
             this.label7.Text = "Criado:";
             this.label7.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
@@ -250,7 +265,7 @@ namespace rxWebReport.reportClasses
             // 
             this.label2.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "Now()")});
-            this.label2.LocationFloat = new DevExpress.Utils.PointFloat(775F, 43.70832F);
+            this.label2.LocationFloat = new DevExpress.Utils.PointFloat(775F, 6.708324F);
             this.label2.Multiline = true;
             this.label2.Name = "label2";
             this.label2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -346,6 +361,17 @@ namespace rxWebReport.reportClasses
         series1,
         series2};
             this.chart2.SizeF = new System.Drawing.SizeF(880F, 557.25F);
+            // 
+            // label5
+            // 
+            this.label5.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Description]")});
+            this.label5.LocationFloat = new DevExpress.Utils.PointFloat(111.4583F, 9.999974F);
+            this.label5.Multiline = true;
+            this.label5.Name = "label5";
+            this.label5.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.label5.SizeF = new System.Drawing.SizeF(419.1667F, 19.79167F);
+            this.label5.Text = "label4";
             // 
             // label3
             // 
@@ -665,6 +691,7 @@ namespace rxWebReport.reportClasses
         private DevExpress.XtraReports.UI.XRTableCell tableCell4;
         private DevExpress.XtraReports.UI.BottomMarginBand BottomMargin;
         private DevExpress.XtraReports.UI.ReportHeaderBand ReportHeader;
+        private DevExpress.XtraReports.UI.XRLabel label4;
         private DevExpress.XtraReports.UI.XRPictureBox pictureBox1;
         private DevExpress.XtraReports.UI.XRLabel label7;
         private DevExpress.XtraReports.UI.XRLabel label2;
@@ -673,6 +700,7 @@ namespace rxWebReport.reportClasses
         private DevExpress.XtraReports.UI.XRChart chart2;
         private DevExpress.DataAccess.ObjectBinding.ObjectDataSource objectDataSource3;
         private DevExpress.XtraReports.UI.PageHeaderBand PageHeader;
+        private DevExpress.XtraReports.UI.XRLabel label5;
         private DevExpress.XtraReports.UI.XRLabel label3;
         private DevExpress.XtraReports.UI.XRLabel label1;
         private DevExpress.XtraReports.UI.XRLabel label22;

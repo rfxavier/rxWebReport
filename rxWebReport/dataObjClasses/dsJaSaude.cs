@@ -16,6 +16,7 @@ namespace rxWebReport.dataObjClasses
             public string Item { get; set; }
             public string MeasurementType { get; set; }
             public decimal Value { get; set; }
+            public string Description { get; set; }
             public DateTime SensorDate { get; set; }
         }
 
@@ -23,6 +24,7 @@ namespace rxWebReport.dataObjClasses
         {
             public string Hostname { get; set; }
             public string Item { get; set; }
+            public string Description { get; set; }
             public decimal ValueTemperature { get; set; }
             public decimal ValueHumidity { get; set; }
             public DateTime SensorDate { get; set; }
@@ -154,6 +156,7 @@ namespace rxWebReport.dataObjClasses
                             SELECT h.name AS Hostname, 
                                     i.name AS Item, 
                                     h2.value AS Value, 
+                                    i.description,
                                     DATE_FORMAT(FROM_UNIXTIME(h2.clock), '%Y-%m-%d %H:%i:%s') AS SensorDate
                             FROM hosts h
                             INNER JOIN items i ON i.hostid = h.hostid
@@ -169,6 +172,7 @@ namespace rxWebReport.dataObjClasses
                             SELECT h.name AS Hostname, 
                                     i.name AS Item, 
                                     h2.value AS Value, 
+                                    i.description,
                                     DATE_FORMAT(FROM_UNIXTIME(h2.clock), '%Y-%m-%d %H:%i:%s') AS SensorDate
                             FROM hosts h
                             INNER JOIN items i ON i.hostid = h.hostid
@@ -190,12 +194,14 @@ namespace rxWebReport.dataObjClasses
                                 string itemName = reader.GetString("Item");
                                 DateTime sensorDate = reader.GetDateTime("SensorDate");
                                 string itemBase = itemName.Substring(0, itemName.Length - "BIPE".Length);
+                                string descriptionBase = reader.GetString("Description");
 
                                 intermediateData[(itemBase, sensorDate)] = new dadosSensorPivoted
                                 {
                                     Hostname = reader.GetString("Hostname"),
                                     Item = itemBase,
-                                    SensorDate = sensorDate
+                                    SensorDate = sensorDate,
+                                    Description = descriptionBase
                                 };
 
                                 var pivotedData = intermediateData[(itemBase, sensorDate)];
@@ -209,6 +215,8 @@ namespace rxWebReport.dataObjClasses
                                 DateTime sensorDate = reader.GetDateTime("SensorDate");
                                 string itemBase = itemName.EndsWith("Temperatura") ? itemName.Substring(0, itemName.Length - "Temperatura".Length) :
                                                   itemName.EndsWith("Humidade") ? itemName.Substring(0, itemName.Length - "Humidade".Length) : itemName;
+                                string descriptionBase = reader.GetString("Description");
+
 
                                 if (!intermediateData.ContainsKey((itemBase, sensorDate)))
                                 {
@@ -216,7 +224,8 @@ namespace rxWebReport.dataObjClasses
                                     {
                                         Hostname = reader.GetString("Hostname"),
                                         Item = itemBase,
-                                        SensorDate = sensorDate
+                                        SensorDate = sensorDate,
+                                        Description = descriptionBase
                                     };
                                 }
 
