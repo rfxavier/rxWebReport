@@ -209,10 +209,14 @@ namespace rxWebReport.reportClasses
             // tableCell3
             // 
             this.tableCell3.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[ValueTemperature]")});
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[ValueTemperature]"),
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "ForeColor", "Iif(EndsWith(?parRepItemPrefix, \'BIPE\'), \'Black\',  Iif([ValueTemperature] < 15, \'" +
+                    "Red\', Iif([ValueTemperature] > 30, \'Red\', \'Black\')))\n")});
+            this.tableCell3.ForeColor = System.Drawing.Color.Black;
             this.tableCell3.Multiline = true;
             this.tableCell3.Name = "tableCell3";
             this.tableCell3.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.tableCell3.StylePriority.UseForeColor = false;
             this.tableCell3.Text = "label5";
             this.tableCell3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
             this.tableCell3.TextFormatString = "{0:#0.0}";
@@ -222,10 +226,13 @@ namespace rxWebReport.reportClasses
             // 
             this.tableCell4.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[ValueHumidity]"),
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Visible", " Not EndsWith(?parRepItemPrefix, \'BIPE\')\n")});
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Visible", " Not EndsWith(?parRepItemPrefix, \'BIPE\')\n"),
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "ForeColor", "Iif(EndsWith(?parRepItemPrefix, \'BIPE\'), \'Black\',  Iif([ValueHumidity] > 65, \'Red" +
+                    "\', \'Black\'))\n\n")});
             this.tableCell4.Multiline = true;
             this.tableCell4.Name = "tableCell4";
             this.tableCell4.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.tableCell4.StylePriority.UseForeColor = false;
             this.tableCell4.Text = "label4";
             this.tableCell4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
             this.tableCell4.TextFormatString = "{0:#0.0}";
@@ -323,9 +330,6 @@ namespace rxWebReport.reportClasses
             constantLine2});
             xyDiagram1.AxisY.VisibleInPanesSerializable = "-1";
             xyDiagram1.AxisY.WholeRange.AlwaysShowZeroLevel = false;
-            xyDiagram1.AxisY.WholeRange.Auto = false;
-            xyDiagram1.AxisY.WholeRange.MaxValueSerializable = "32";
-            xyDiagram1.AxisY.WholeRange.MinValueSerializable = "2";
             xyDiagram1.DefaultPane.EnableAxisXScrolling = DevExpress.Utils.DefaultBoolean.False;
             xyDiagram1.DefaultPane.EnableAxisXZooming = DevExpress.Utils.DefaultBoolean.False;
             xyDiagram1.DefaultPane.EnableAxisYScrolling = DevExpress.Utils.DefaultBoolean.False;
@@ -375,6 +379,8 @@ namespace rxWebReport.reportClasses
             // 
             // label3
             // 
+            this.label3.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Visible", "Not EndsWith(?parRepItemPrefix, \'BIPE\')\n")});
             this.label3.LocationFloat = new DevExpress.Utils.PointFloat(541.667F, 60.50002F);
             this.label3.Multiline = true;
             this.label3.Name = "label3";
@@ -535,6 +541,8 @@ namespace rxWebReport.reportClasses
             // 
             // label13
             // 
+            this.label13.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Visible", " Not EndsWith(?parRepItemPrefix, \'BIPE\')")});
             this.label13.LocationFloat = new DevExpress.Utils.PointFloat(0F, 60.49999F);
             this.label13.Multiline = true;
             this.label13.Name = "label13";

@@ -72,6 +72,7 @@ namespace rxWebReport.frmAgyliti.JaSaude
                         chart.Series[1].Visible = false;
 
                         ((DevExpress.XtraCharts.XYDiagram)chart.Diagram).SecondaryAxesY[0].Visibility = DevExpress.Utils.DefaultBoolean.False;
+                        ((DevExpress.XtraCharts.XYDiagram)chart.Diagram).SecondaryAxesY[0].Label.TextPattern = "{V:P2}";
                     }
                     else
                     {
@@ -96,6 +97,7 @@ namespace rxWebReport.frmAgyliti.JaSaude
             {
                 using (MemoryStream ms = new MemoryStream())
                 {
+                    masterReport.ExportOptions.Pdf.ShowPrintDialogOnOpen = false;
                     masterReport.ExportToPdf(ms, new PdfExportOptions() { ShowPrintDialogOnOpen = true });
                     WriteDocumentToResponse(ms.ToArray(), "pdf", true, "JaSaudeSalasTempHR.pdf");
                 }
