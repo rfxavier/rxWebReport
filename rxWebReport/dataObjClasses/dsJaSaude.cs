@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Linq;
 
 namespace rxWebReport.dataObjClasses
 {
@@ -28,6 +29,14 @@ namespace rxWebReport.dataObjClasses
             public decimal ValueTemperature { get; set; }
             public decimal ValueHumidity { get; set; }
             public DateTime SensorDate { get; set; }
+            public bool HasAcceptanceCriteria { get; set; }
+            public decimal ValueAcceptanceCriteria { get; set; }
+        }
+
+        public class dadosPressaoCriterioAceitacao
+        {
+            public string Item { get; set; }
+            public decimal Value { get; set; }
         }
 
         public static List<dadosSensor> GetData(string InitialDate, string FinalDate)
@@ -248,9 +257,47 @@ namespace rxWebReport.dataObjClasses
             // Collect the final list from the dictionary
             results.AddRange(intermediateData.Values);
 
+            var criterios = new List<dadosPressaoCriterioAceitacao>
+            {
+                new dadosPressaoCriterioAceitacao { Item = "TDP-01", Value = 10 },
+                new dadosPressaoCriterioAceitacao { Item = "TDP-02", Value = 10 },
+                new dadosPressaoCriterioAceitacao { Item = "TDP-03", Value = 10 },
+                new dadosPressaoCriterioAceitacao { Item = "TDP-04", Value = 15 },
+                new dadosPressaoCriterioAceitacao { Item = "TDP-05", Value = 15 },
+                new dadosPressaoCriterioAceitacao { Item = "TDP-06", Value = 15 },
+                new dadosPressaoCriterioAceitacao { Item = "TDP-07", Value = 15 },
+                new dadosPressaoCriterioAceitacao { Item = "TDP-08", Value = 15 },
+                new dadosPressaoCriterioAceitacao { Item = "TDP-09", Value = 10 },
+                new dadosPressaoCriterioAceitacao { Item = "TDP-10", Value = 15 },
+                new dadosPressaoCriterioAceitacao { Item = "TDP-11", Value = 10 },
+                new dadosPressaoCriterioAceitacao { Item = "TDP-12", Value = 10 },
+                new dadosPressaoCriterioAceitacao { Item = "TDP-13", Value = 10 },
+                new dadosPressaoCriterioAceitacao { Item = "TDP-14", Value = 15 },
+                new dadosPressaoCriterioAceitacao { Item = "TDP-15", Value = 10 },
+                new dadosPressaoCriterioAceitacao { Item = "TDP-16", Value = 15 },
+                new dadosPressaoCriterioAceitacao { Item = "TDP-17", Value = 10 },
+                new dadosPressaoCriterioAceitacao { Item = "TDP-18", Value = 10 }
+            };
+
+            // Create a dictionary for fast lookup: Item -> Value
+            var criteriosDict = criterios.ToDictionary(c => c.Item, c => c.Value);
+
+            // Process each result and update properties based on dictionary match
+            foreach (var result in results)
+            {
+                if (criteriosDict.TryGetValue(result.Item, out decimal criterioValue))
+                {
+                    result.HasAcceptanceCriteria = true;
+                    result.ValueAcceptanceCriteria = criterioValue;
+                }
+                else
+                {
+                    result.HasAcceptanceCriteria = false;
+                    result.ValueAcceptanceCriteria = 0;
+                }
+            }
+
             return results;
         }
-
-
     }
 }

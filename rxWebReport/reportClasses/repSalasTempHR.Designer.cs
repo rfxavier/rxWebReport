@@ -66,9 +66,9 @@ namespace rxWebReport.reportClasses
             this.label8 = new DevExpress.XtraReports.UI.XRLabel();
             this.label6 = new DevExpress.XtraReports.UI.XRLabel();
             this.chart2 = new DevExpress.XtraReports.UI.XRChart();
+            this.label23 = new DevExpress.XtraReports.UI.XRLabel();
             this.label5 = new DevExpress.XtraReports.UI.XRLabel();
             this.label3 = new DevExpress.XtraReports.UI.XRLabel();
-            this.label1 = new DevExpress.XtraReports.UI.XRLabel();
             this.label22 = new DevExpress.XtraReports.UI.XRLabel();
             this.label20 = new DevExpress.XtraReports.UI.XRLabel();
             this.label21 = new DevExpress.XtraReports.UI.XRLabel();
@@ -90,6 +90,8 @@ namespace rxWebReport.reportClasses
             this.evenStyle = new DevExpress.XtraReports.UI.XRControlStyle();
             this.calcLocalidadeTemp = new DevExpress.XtraReports.UI.CalculatedField();
             this.calcLocalidadeHR = new DevExpress.XtraReports.UI.CalculatedField();
+            this.calcPressaoValueColor = new DevExpress.XtraReports.UI.CalculatedField();
+            this.calcLimiteInferior = new DevExpress.XtraReports.UI.CalculatedField();
             this.parRepItemPrefix = new DevExpress.XtraReports.Parameters.Parameter();
             this.parRepInitialDate = new DevExpress.XtraReports.Parameters.Parameter();
             this.parRepFinalDate = new DevExpress.XtraReports.Parameters.Parameter();
@@ -138,9 +140,9 @@ namespace rxWebReport.reportClasses
             // PageHeader
             // 
             this.PageHeader.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.label23,
             this.label5,
             this.label3,
-            this.label1,
             this.label22,
             this.label20,
             this.label21,
@@ -210,8 +212,8 @@ namespace rxWebReport.reportClasses
             // 
             this.tableCell3.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[ValueTemperature]"),
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "ForeColor", "Iif(EndsWith(?parRepItemPrefix, \'BIPE\'), \'Black\',  Iif([ValueTemperature] < 15, \'" +
-                    "Red\', Iif([ValueTemperature] > 30, \'Red\', \'Black\')))\n")});
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "ForeColor", "Iif(EndsWith(?parRepItemPrefix, \'BIPE\'), [calcPressaoValueColor],  Iif([ValueTemp" +
+                    "erature] < 15, \'Red\', Iif([ValueTemperature] > 30, \'Red\', \'Black\')))\n")});
             this.tableCell3.ForeColor = System.Drawing.Color.Black;
             this.tableCell3.Multiline = true;
             this.tableCell3.Name = "tableCell3";
@@ -366,6 +368,20 @@ namespace rxWebReport.reportClasses
         series2};
             this.chart2.SizeF = new System.Drawing.SizeF(880F, 557.25F);
             // 
+            // label23
+            // 
+            this.label23.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[calcLimiteInferior]")});
+            this.label23.LocationFloat = new DevExpress.Utils.PointFloat(541.6667F, 40.70835F);
+            this.label23.Multiline = true;
+            this.label23.Name = "label23";
+            this.label23.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.label23.SizeF = new System.Drawing.SizeF(150.0001F, 19.79167F);
+            this.label23.StylePriority.UseTextAlignment = false;
+            this.label23.Text = "label23";
+            this.label23.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
+            this.label23.TextFormatString = "{0:#.0}";
+            // 
             // label5
             // 
             this.label5.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
@@ -387,19 +403,8 @@ namespace rxWebReport.reportClasses
             this.label3.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.label3.SizeF = new System.Drawing.SizeF(149.9998F, 19.79167F);
             this.label3.StylePriority.UseTextAlignment = false;
-            this.label3.Text = "30,0";
+            this.label3.Text = "30.0";
             this.label3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
-            // 
-            // label1
-            // 
-            this.label1.LocationFloat = new DevExpress.Utils.PointFloat(541.6668F, 40.70835F);
-            this.label1.Multiline = true;
-            this.label1.Name = "label1";
-            this.label1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.label1.SizeF = new System.Drawing.SizeF(149.9998F, 19.79167F);
-            this.label1.StylePriority.UseTextAlignment = false;
-            this.label1.Text = "5,0";
-            this.label1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
             // 
             // label22
             // 
@@ -630,10 +635,21 @@ namespace rxWebReport.reportClasses
             this.calcLocalidadeHR.Expression = "Concat(?parRepItemPrefix, \' HR\')\n";
             this.calcLocalidadeHR.Name = "calcLocalidadeHR";
             // 
+            // calcPressaoValueColor
+            // 
+            this.calcPressaoValueColor.Expression = "Iif([HasAcceptanceCriteria], Iif([ValueTemperature] > [ValueAcceptanceCriteria], " +
+    "\'Black\', \'Red\'), \'Black\')";
+            this.calcPressaoValueColor.Name = "calcPressaoValueColor";
+            // 
+            // calcLimiteInferior
+            // 
+            this.calcLimiteInferior.Expression = "Iif(EndsWith(?parRepItemPrefix, \'BIPE\'), [ValueAcceptanceCriteria], 5)\n";
+            this.calcLimiteInferior.Name = "calcLimiteInferior";
+            // 
             // parRepItemPrefix
             // 
             this.parRepItemPrefix.Name = "parRepItemPrefix";
-            this.parRepItemPrefix.ValueInfo = "TDP-01BIPE";
+            this.parRepItemPrefix.ValueInfo = "TTU-01APQ";
             this.parRepItemPrefix.Visible = false;
             // 
             // parRepInitialDate
@@ -658,7 +674,9 @@ namespace rxWebReport.reportClasses
             this.PageHeader});
             this.CalculatedFields.AddRange(new DevExpress.XtraReports.UI.CalculatedField[] {
             this.calcLocalidadeTemp,
-            this.calcLocalidadeHR});
+            this.calcLocalidadeHR,
+            this.calcPressaoValueColor,
+            this.calcLimiteInferior});
             this.ComponentStorage.AddRange(new System.ComponentModel.IComponent[] {
             this.objectDataSource3});
             this.DataSource = this.objectDataSource3;
@@ -708,9 +726,9 @@ namespace rxWebReport.reportClasses
         private DevExpress.XtraReports.UI.XRChart chart2;
         private DevExpress.DataAccess.ObjectBinding.ObjectDataSource objectDataSource3;
         private DevExpress.XtraReports.UI.PageHeaderBand PageHeader;
+        private DevExpress.XtraReports.UI.XRLabel label23;
         private DevExpress.XtraReports.UI.XRLabel label5;
         private DevExpress.XtraReports.UI.XRLabel label3;
-        private DevExpress.XtraReports.UI.XRLabel label1;
         private DevExpress.XtraReports.UI.XRLabel label22;
         private DevExpress.XtraReports.UI.XRLabel label20;
         private DevExpress.XtraReports.UI.XRLabel label21;
@@ -731,6 +749,8 @@ namespace rxWebReport.reportClasses
         private DevExpress.XtraReports.UI.XRControlStyle evenStyle;
         private DevExpress.XtraReports.UI.CalculatedField calcLocalidadeTemp;
         private DevExpress.XtraReports.UI.CalculatedField calcLocalidadeHR;
+        private DevExpress.XtraReports.UI.CalculatedField calcPressaoValueColor;
+        private DevExpress.XtraReports.UI.CalculatedField calcLimiteInferior;
         private DevExpress.XtraReports.Parameters.Parameter parRepItemPrefix;
         private DevExpress.XtraReports.Parameters.Parameter parRepInitialDate;
         private DevExpress.XtraReports.Parameters.Parameter parRepFinalDate;

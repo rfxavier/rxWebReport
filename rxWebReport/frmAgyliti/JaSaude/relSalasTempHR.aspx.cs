@@ -73,6 +73,8 @@ namespace rxWebReport.frmAgyliti.JaSaude
 
                         ((DevExpress.XtraCharts.XYDiagram)chart.Diagram).SecondaryAxesY[0].Visibility = DevExpress.Utils.DefaultBoolean.False;
                         ((DevExpress.XtraCharts.XYDiagram)chart.Diagram).SecondaryAxesY[0].Label.TextPattern = "{V:P2}";
+                        ((DevExpress.XtraCharts.XYDiagram)chart.Diagram).AxisY.ConstantLines[0].Visible = false;
+                        ((DevExpress.XtraCharts.XYDiagram)chart.Diagram).AxisY.ConstantLines[1].Visible = false;
                     }
                     else
                     {
