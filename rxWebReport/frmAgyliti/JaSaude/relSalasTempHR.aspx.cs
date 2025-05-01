@@ -97,8 +97,7 @@ namespace rxWebReport.frmAgyliti.JaSaude
             {
                 using (MemoryStream ms = new MemoryStream())
                 {
-                    masterReport.ExportOptions.Pdf.ShowPrintDialogOnOpen = false;
-                    masterReport.ExportToPdf(ms, new PdfExportOptions() { ShowPrintDialogOnOpen = true });
+                    masterReport.ExportToPdf(ms, new PdfExportOptions() { ShowPrintDialogOnOpen = false });
                     WriteDocumentToResponse(ms.ToArray(), "pdf", true, "JaSaudeSalasTempHR.pdf");
                 }
             }
