@@ -3,6 +3,7 @@ using DevExpress.XtraPrinting;
 using rxWebReport.reportClasses;
 using System;
 using System.IO;
+using static rxWebReport.dataObjClasses.dsJaSaude;
 
 namespace rxWebReport.frmAgyliti.JaSaude
 {
@@ -48,7 +49,7 @@ namespace rxWebReport.frmAgyliti.JaSaude
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            string itemQuery = Request.QueryString["item"] ?? "TTU-01APQ"; // Default value if not provided
+            string itemQuery = Request.QueryString["item"] ?? "TTU-02BIPE-Humidade"; // Default value if not provided
             string dataInicial = Request.QueryString["dataInicial"] ?? "2025-02-21"; // Default value
             string dataFinal = Request.QueryString["dataFinal"] ?? "2025-02-22"; // Default value
 
@@ -69,17 +70,23 @@ namespace rxWebReport.frmAgyliti.JaSaude
                     if (item.EndsWith("BIPE", StringComparison.OrdinalIgnoreCase))
                     {
                         chart.Series[0].Name = item + " Dif. Pressão";
-                        chart.Series[1].Visible = false;
 
-                        ((DevExpress.XtraCharts.XYDiagram)chart.Diagram).SecondaryAxesY[0].Visibility = DevExpress.Utils.DefaultBoolean.False;
-                        ((DevExpress.XtraCharts.XYDiagram)chart.Diagram).SecondaryAxesY[0].Label.TextPattern = "{V:P2}";
-                        ((DevExpress.XtraCharts.XYDiagram)chart.Diagram).AxisY.ConstantLines[0].Visible = false;
-                        ((DevExpress.XtraCharts.XYDiagram)chart.Diagram).AxisY.ConstantLines[1].Visible = false;
+                        ((XYDiagram)chart.Diagram).AxisY.ConstantLines[0].Visible = true;
+
+                        var (_, acceptanceValue) = SensorHelper.GetAcceptanceCriteria(item);
+                        ((XYDiagram)chart.Diagram).AxisY.ConstantLines[0].AxisValue = acceptanceValue;
+
+                        ((XYDiagram)chart.Diagram).AxisY.ConstantLines[1].Visible = false;
                     }
                     else
                     {
-                        chart.Series[0].Name = item + " ºC";
-                        chart.Series[1].Name = item + " %HR";
+                        if (item.EndsWith("Temperatura", StringComparison.OrdinalIgnoreCase))
+                        {
+                            chart.Series[0].Name = item + " ºC";
+                        } else if (item.EndsWith("Humidade", StringComparison.OrdinalIgnoreCase))
+                        {
+                            chart.Series[0].Name = item + " %HR";
+                        }
                     }
                 }
 

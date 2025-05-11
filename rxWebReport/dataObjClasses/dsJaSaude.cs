@@ -19,6 +19,8 @@ namespace rxWebReport.dataObjClasses
             public decimal Value { get; set; }
             public string Description { get; set; }
             public DateTime SensorDate { get; set; }
+            public bool HasAcceptanceCriteria { get; set; }
+            public decimal ValueAcceptanceCriteria { get; set; }
         }
 
         public class dadosSensorPivoted
@@ -84,7 +86,41 @@ namespace rxWebReport.dataObjClasses
             using (var conn = new MySqlConnection(connectionString))
             {
                 conn.Open();
-                string query = $@"select h.name as Hostname, i.name Item, h2.value Value, DATE_FORMAT(FROM_UNIXTIME(h2.clock), '%Y-%m-%d %H:%i:%s') as SensorDate from hosts h inner join items i on i.hostid = h.hostid inner join history h2 on h2.itemid = i.itemid where h.name like 'TTU%' and i.name LIKE '{itemNameFilter}' and DATE_FORMAT(FROM_UNIXTIME(h2.clock), '%Y-%m-%d %H:%i:%s') between '{InitialDate}' AND '{FinalDate}'";
+
+                string query = "";
+
+                if (ItemPrefix.EndsWith("BIPE", StringComparison.OrdinalIgnoreCase))
+                {
+                    query = $@"
+                            SELECT h.name AS Hostname, 
+                                    i.name AS Item, 
+                                    h2.value AS Value, 
+                                    i.description,
+                                    DATE_FORMAT(FROM_UNIXTIME(h2.clock), '%Y-%m-%d %H:%i:%s') AS SensorDate
+                            FROM hosts h
+                            INNER JOIN items i ON i.hostid = h.hostid
+                            INNER JOIN history h2 ON h2.itemid = i.itemid
+                            WHERE h.name = 'JASAUDE - FieldLogger' 
+                            AND i.name LIKE '{itemNameFilter}' 
+                            AND DATE_FORMAT(FROM_UNIXTIME(h2.clock), '%Y-%m-%d %H:%i:%s') 
+                            BETWEEN '{InitialDate}' AND '{FinalDate}'";
+                }
+                else
+                {
+                    query = $@"
+                            SELECT h.name AS Hostname, 
+                                    i.name AS Item, 
+                                    h2.value AS Value, 
+                                    i.description,
+                                    DATE_FORMAT(FROM_UNIXTIME(h2.clock), '%Y-%m-%d %H:%i:%s') AS SensorDate
+                            FROM hosts h
+                            INNER JOIN items i ON i.hostid = h.hostid
+                            INNER JOIN history h2 ON h2.itemid = i.itemid
+                            WHERE h.name LIKE 'TTU%' 
+                            AND i.name LIKE '{itemNameFilter}' 
+                            AND DATE_FORMAT(FROM_UNIXTIME(h2.clock), '%Y-%m-%d %H:%i:%s') 
+                            BETWEEN '{InitialDate}' AND '{FinalDate}'";
+                }
 
                 using (var cmd = new MySqlCommand(query, conn))
                 {
@@ -94,7 +130,8 @@ namespace rxWebReport.dataObjClasses
                         {
                             string itemName = reader.GetString("Item");
                             string measurementType = itemName.EndsWith("Temperatura") ? "Temperatura" :
-                                                     itemName.EndsWith("Humidade") ? "Humidade" : "";
+                                                     itemName.EndsWith("Humidade") ? "Humidade" : 
+                                                     itemName.EndsWith("BIPE") ? "Pressão" : "";
 
                             results.Add(new dadosSensor
                             {
@@ -106,6 +143,53 @@ namespace rxWebReport.dataObjClasses
                             });
                         }
                     }
+                }
+            }
+
+            var criterios = new List<dadosPressaoCriterioAceitacao>
+            {
+                new dadosPressaoCriterioAceitacao { Item = "TDP-01", Value = 10 },
+                new dadosPressaoCriterioAceitacao { Item = "TDP-02", Value = 10 },
+                new dadosPressaoCriterioAceitacao { Item = "TDP-03", Value = 10 },
+                new dadosPressaoCriterioAceitacao { Item = "TDP-04", Value = 15 },
+                new dadosPressaoCriterioAceitacao { Item = "TDP-05", Value = 15 },
+                new dadosPressaoCriterioAceitacao { Item = "TDP-06", Value = 15 },
+                new dadosPressaoCriterioAceitacao { Item = "TDP-07", Value = 15 },
+                new dadosPressaoCriterioAceitacao { Item = "TDP-08", Value = 15 },
+                new dadosPressaoCriterioAceitacao { Item = "TDP-09", Value = 10 },
+                new dadosPressaoCriterioAceitacao { Item = "TDP-10", Value = 15 },
+                new dadosPressaoCriterioAceitacao { Item = "TDP-11", Value = 10 },
+                new dadosPressaoCriterioAceitacao { Item = "TDP-12", Value = 10 },
+                new dadosPressaoCriterioAceitacao { Item = "TDP-13", Value = 10 },
+                new dadosPressaoCriterioAceitacao { Item = "TDP-14", Value = 15 },
+                new dadosPressaoCriterioAceitacao { Item = "TDP-15", Value = 10 },
+                new dadosPressaoCriterioAceitacao { Item = "TDP-16", Value = 15 },
+                new dadosPressaoCriterioAceitacao { Item = "TDP-17", Value = 10 },
+                new dadosPressaoCriterioAceitacao { Item = "TDP-18", Value = 10 }
+            };
+
+            // Create a dictionary for fast lookup: Item -> Value
+            var criteriosDict = criterios.ToDictionary(c => c.Item, c => c.Value);
+
+            // Process each result and update properties based on dictionary match
+            foreach (var result in results)
+            {
+                var itemBase = result.Item;
+
+                if (ItemPrefix.EndsWith("BIPE", StringComparison.OrdinalIgnoreCase))
+                {
+                    itemBase = result.Item.Substring(0, result.Item.Length - "BIPE".Length);
+                }
+
+                if (criteriosDict.TryGetValue(itemBase, out decimal criterioValue))
+                {
+                    result.HasAcceptanceCriteria = true;
+                    result.ValueAcceptanceCriteria = criterioValue;
+                }
+                else
+                {
+                    result.HasAcceptanceCriteria = false;
+                    result.ValueAcceptanceCriteria = 0;
                 }
             }
 
@@ -257,47 +341,44 @@ namespace rxWebReport.dataObjClasses
             // Collect the final list from the dictionary
             results.AddRange(intermediateData.Values);
 
-            var criterios = new List<dadosPressaoCriterioAceitacao>
-            {
-                new dadosPressaoCriterioAceitacao { Item = "TDP-01", Value = 10 },
-                new dadosPressaoCriterioAceitacao { Item = "TDP-02", Value = 10 },
-                new dadosPressaoCriterioAceitacao { Item = "TDP-03", Value = 10 },
-                new dadosPressaoCriterioAceitacao { Item = "TDP-04", Value = 15 },
-                new dadosPressaoCriterioAceitacao { Item = "TDP-05", Value = 15 },
-                new dadosPressaoCriterioAceitacao { Item = "TDP-06", Value = 15 },
-                new dadosPressaoCriterioAceitacao { Item = "TDP-07", Value = 15 },
-                new dadosPressaoCriterioAceitacao { Item = "TDP-08", Value = 15 },
-                new dadosPressaoCriterioAceitacao { Item = "TDP-09", Value = 10 },
-                new dadosPressaoCriterioAceitacao { Item = "TDP-10", Value = 15 },
-                new dadosPressaoCriterioAceitacao { Item = "TDP-11", Value = 10 },
-                new dadosPressaoCriterioAceitacao { Item = "TDP-12", Value = 10 },
-                new dadosPressaoCriterioAceitacao { Item = "TDP-13", Value = 10 },
-                new dadosPressaoCriterioAceitacao { Item = "TDP-14", Value = 15 },
-                new dadosPressaoCriterioAceitacao { Item = "TDP-15", Value = 10 },
-                new dadosPressaoCriterioAceitacao { Item = "TDP-16", Value = 15 },
-                new dadosPressaoCriterioAceitacao { Item = "TDP-17", Value = 10 },
-                new dadosPressaoCriterioAceitacao { Item = "TDP-18", Value = 10 }
-            };
-
-            // Create a dictionary for fast lookup: Item -> Value
-            var criteriosDict = criterios.ToDictionary(c => c.Item, c => c.Value);
-
             // Process each result and update properties based on dictionary match
             foreach (var result in results)
             {
-                if (criteriosDict.TryGetValue(result.Item, out decimal criterioValue))
-                {
-                    result.HasAcceptanceCriteria = true;
-                    result.ValueAcceptanceCriteria = criterioValue;
-                }
-                else
-                {
-                    result.HasAcceptanceCriteria = false;
-                    result.ValueAcceptanceCriteria = 0;
-                }
+                var (hasCriteria, criterioValue) = SensorHelper.GetAcceptanceCriteria(result.Item);
+                result.HasAcceptanceCriteria = hasCriteria;
+                result.ValueAcceptanceCriteria = criterioValue;
             }
 
             return results;
+        }
+
+        public static class SensorHelper
+        {
+            private static readonly Dictionary<string, decimal> criteriosDict = new Dictionary<string, decimal>
+            {
+                { "TDP-01", 10 }, { "TDP-02", 10 }, { "TDP-03", 10 }, { "TDP-04", 15 },
+                { "TDP-05", 15 }, { "TDP-06", 15 }, { "TDP-07", 15 }, { "TDP-08", 15 },
+                { "TDP-09", 10 }, { "TDP-10", 15 }, { "TDP-11", 10 }, { "TDP-12", 10 },
+                { "TDP-13", 10 }, { "TDP-14", 15 }, { "TDP-15", 10 }, { "TDP-16", 15 },
+                { "TDP-17", 10 }, { "TDP-18", 10 }
+            };
+
+            public static (bool hasCriteria, decimal value) GetAcceptanceCriteria(string itemFullName)
+            {
+                string itemBase = itemFullName;
+
+                if (itemFullName.EndsWith("BIPE", StringComparison.OrdinalIgnoreCase))
+                {
+                    itemBase = itemFullName.Substring(0, itemFullName.Length - "BIPE".Length);
+                }
+
+                if (criteriosDict.TryGetValue(itemBase, out var criterioValue))
+                {
+                    return (true, criterioValue);
+                }
+
+                return (false, 0);
+            }
         }
     }
 }
