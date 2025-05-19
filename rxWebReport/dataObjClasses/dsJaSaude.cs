@@ -104,7 +104,7 @@ namespace rxWebReport.dataObjClasses
                                     i.name AS Item, 
                                     h2.value AS Value, 
                                     i.description,
-                                    DATE_FORMAT(FROM_UNIXTIME(h2.clock), '%Y-%m-%d %H:%i:%s') AS SensorDate
+                                    DATE_FORMAT(FROM_UNIXTIME(h2.clock), '%Y-%m-%d %H:00:00') AS SensorDate
                             FROM hosts h
                             INNER JOIN items i ON i.hostid = h.hostid
                             INNER JOIN history h2 ON h2.itemid = i.itemid

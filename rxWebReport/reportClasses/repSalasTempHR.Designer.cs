@@ -196,7 +196,7 @@ namespace rxWebReport.reportClasses
             this.tableCell2.StylePriority.UseTextAlignment = false;
             this.tableCell2.Text = "label3";
             this.tableCell2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
-            this.tableCell2.TextFormatString = "{0:HH:00}";
+            this.tableCell2.TextFormatString = "{0:HH:mm}";
             this.tableCell2.Weight = 301.458251953125D;
             // 
             // tableCell3
@@ -596,7 +596,7 @@ namespace rxWebReport.reportClasses
             // parRepItemPrefix
             // 
             this.parRepItemPrefix.Name = "parRepItemPrefix";
-            this.parRepItemPrefix.ValueInfo = "TTU-02BIPE-Temperatura";
+            this.parRepItemPrefix.ValueInfo = "TDP-01BIPE";
             this.parRepItemPrefix.Visible = false;
             // 
             // parRepInitialDate
