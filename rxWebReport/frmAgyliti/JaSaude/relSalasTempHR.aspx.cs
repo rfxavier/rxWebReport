@@ -83,9 +83,18 @@ namespace rxWebReport.frmAgyliti.JaSaude
                         if (item.EndsWith("Temperatura", StringComparison.OrdinalIgnoreCase))
                         {
                             chart.Series[0].Name = item + " ºC";
-                        } else if (item.EndsWith("Humidade", StringComparison.OrdinalIgnoreCase))
+                            ((XYDiagram)chart.Diagram).AxisY.ConstantLines[0].Visible = true;
+                            ((XYDiagram)chart.Diagram).AxisY.ConstantLines[0].AxisValue = 15;
+                            ((XYDiagram)chart.Diagram).AxisY.ConstantLines[1].Visible = true;
+                            ((XYDiagram)chart.Diagram).AxisY.ConstantLines[1].AxisValue = 30;
+
+                        }
+                        else if (item.EndsWith("Humidade", StringComparison.OrdinalIgnoreCase))
                         {
                             chart.Series[0].Name = item + " %HR";
+                            ((XYDiagram)chart.Diagram).AxisY.ConstantLines[0].Visible = false;
+                            ((XYDiagram)chart.Diagram).AxisY.ConstantLines[1].Visible = true;
+                            ((XYDiagram)chart.Diagram).AxisY.ConstantLines[1].AxisValue = 65;
                         }
                     }
                 }

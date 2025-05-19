@@ -41,6 +41,14 @@ namespace rxWebReport.dataObjClasses
             public decimal Value { get; set; }
         }
 
+        public class dadosTriggers
+        {
+            public int Value { get; set; }
+            public int Acknowledged { get; set; }
+            public DateTime Time { get; set; }
+            public string Description { get; set; }
+        }
+
         public static List<dadosSensor> GetData(string InitialDate, string FinalDate)
         {
             var results = new List<dadosSensor>();
@@ -379,6 +387,55 @@ namespace rxWebReport.dataObjClasses
 
                 return (false, 0);
             }
+        }
+
+        public static List<dadosTriggers> GetDataTriggers(string ItemPrefix, string InitialDate, string FinalDate)
+        {
+            var results = new List<dadosTriggers>();
+
+            // Determine the item name filter based on ValueType
+            string itemNameFilter = $@"{ItemPrefix}%";
+
+            using (var conn = new MySqlConnection(connectionString))
+            {
+                conn.Open();
+
+                string query = $@"
+                                 SELECT
+                                  CONVERT_TZ(FROM_UNIXTIME(e.clock), '+00:00', '-03:00') AS tm,
+                                  e.value,
+                                  e.acknowledged,
+                                  t.description
+                                FROM events e
+                                  INNER JOIN triggers t
+                                    ON e.objectid = t.triggerid
+                                  INNER JOIN trigger_tag tt
+                                    ON t.triggerid = tt.triggerid
+                                WHERE e.source = 0
+                                AND e.object = 0
+                                AND CONVERT_TZ(FROM_UNIXTIME(e.clock), '+00:00', '-03:00') BETWEEN '{InitialDate}' AND '{FinalDate}'
+                                and t.description like '{itemNameFilter}%'
+                                order by e.clock";
+
+                using (var cmd = new MySqlCommand(query, conn))
+                {
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            results.Add(new dadosTriggers
+                            {
+                                Value = reader.GetInt32("value"),
+                                Acknowledged = reader.GetInt32("acknowledged"),
+                                Time = reader.GetDateTime("tm"),
+                                Description = reader.GetString("description")
+                            });
+                        }
+                    }
+                }
+            }
+
+            return results;
         }
     }
 }

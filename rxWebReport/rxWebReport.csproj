@@ -1272,6 +1272,12 @@
     <Compile Include="rede.cs">
       <DependentUpon>rxAppModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="reportClasses\repSalasTempHR-Triggers.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="reportClasses\repSalasTempHR-Triggers.Designer.cs">
+      <DependentUpon>repSalasTempHR-Triggers.cs</DependentUpon>
+    </Compile>
     <Compile Include="reportClasses\repSalasTempHR.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -1468,6 +1474,9 @@
       <DependentUpon>202501011921099_v036.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="reportClasses\repSalasTempHR-Triggers.resx">
+      <DependentUpon>repSalasTempHR-Triggers.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="reportClasses\repSalasTempHR.resx">
       <DependentUpon>repSalasTempHR.cs</DependentUpon>
     </EmbeddedResource>
