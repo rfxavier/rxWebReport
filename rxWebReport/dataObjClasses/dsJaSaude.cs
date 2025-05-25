@@ -402,7 +402,7 @@ namespace rxWebReport.dataObjClasses
 
                 string query = $@"
                                  SELECT
-                                  CONVERT_TZ(FROM_UNIXTIME(e.clock), '+00:00', '-03:00') AS tm,
+                                  CONVERT_TZ(FROM_UNIXTIME(e.clock), '+00:00', '+00:00') AS tm,
                                   e.value,
                                   e.acknowledged,
                                   t.description
@@ -413,7 +413,7 @@ namespace rxWebReport.dataObjClasses
                                     ON t.triggerid = tt.triggerid
                                 WHERE e.source = 0
                                 AND e.object = 0
-                                AND CONVERT_TZ(FROM_UNIXTIME(e.clock), '+00:00', '-03:00') BETWEEN '{InitialDate}' AND '{FinalDate}'
+                                AND CONVERT_TZ(FROM_UNIXTIME(e.clock), '+00:00', '+00:00') BETWEEN '{InitialDate}' AND '{FinalDate}'
                                 and t.description like '{itemNameFilter}%'
                                 order by e.clock";
 
