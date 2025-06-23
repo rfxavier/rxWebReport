@@ -578,7 +578,7 @@ namespace rxWebReport.reportClasses
             // 
             // calcHumidityValueColor
             // 
-            this.calcHumidityValueColor.Expression = "Iif([Value] > 65, \'Red\', \'Black\')\n";
+            this.calcHumidityValueColor.Expression = "Iif([Value] > 65, \'Black\', \'Black\')\n";
             this.calcHumidityValueColor.Name = "calcHumidityValueColor";
             // 
             // calculatedField1
