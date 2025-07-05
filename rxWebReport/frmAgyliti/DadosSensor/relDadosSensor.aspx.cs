@@ -51,8 +51,37 @@ namespace rxWebReport.frmAgyliti.DadosSensor
             string grupo = Request.QueryString["grupo"] ?? "IoT | JA Saude Animal"; // Default value if not provided
             string host = Request.QueryString["host"] ?? "JASAUDE - FieldLogger"; // Default value if not provided
             string itemQuery = Request.QueryString["item"] ?? "TDP-01BIPE"; // Default value if not provided
-            string dataInicial = Request.QueryString["dataInicial"] ?? "2025-06-21"; // Default value
-            string dataFinal = Request.QueryString["dataFinal"] ?? "2025-06-22"; // Default value
+            string rawDataInicial = Request.QueryString["dataInicial"];
+            string dataInicial;
+
+            if (!string.IsNullOrWhiteSpace(rawDataInicial) &&
+                DateTime.TryParseExact(rawDataInicial, "yyyy-MM-dd",
+                    System.Globalization.CultureInfo.InvariantCulture,
+                    System.Globalization.DateTimeStyles.None,
+                    out DateTime parsedDataInicial))
+            {
+                dataInicial = rawDataInicial + " 00:00:00";
+            }
+            else
+            {
+                dataInicial = rawDataInicial ?? "2025-02-22 00:00:00";
+            }
+
+            string rawDataFinal = Request.QueryString["dataFinal"];
+            string dataFinal;
+
+            if (!string.IsNullOrWhiteSpace(rawDataFinal) &&
+                DateTime.TryParseExact(rawDataFinal, "yyyy-MM-dd",
+                    System.Globalization.CultureInfo.InvariantCulture,
+                    System.Globalization.DateTimeStyles.None,
+                    out DateTime parsedDataFinal))
+            {
+                dataFinal = rawDataFinal + " 23:59:59";
+            }
+            else
+            {
+                dataFinal = rawDataFinal ?? "2025-02-22 23:59:59"; // Default value
+            }
 
             string[] items = itemQuery.Split(','); // Split items into an array
 

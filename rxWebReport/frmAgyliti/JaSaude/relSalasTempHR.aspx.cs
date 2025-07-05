@@ -50,8 +50,37 @@ namespace rxWebReport.frmAgyliti.JaSaude
         protected void Page_Load(object sender, EventArgs e)
         {
             string itemQuery = Request.QueryString["item"] ?? "TTU-02BIPE-Humidade"; // Default value if not provided
-            string dataInicial = Request.QueryString["dataInicial"] ?? "2025-02-21"; // Default value
-            string dataFinal = Request.QueryString["dataFinal"] ?? "2025-02-22"; // Default value
+            string rawDataInicial = Request.QueryString["dataInicial"];
+            string dataInicial;
+
+            if (!string.IsNullOrWhiteSpace(rawDataInicial) &&
+                DateTime.TryParseExact(rawDataInicial, "yyyy-MM-dd",
+                    System.Globalization.CultureInfo.InvariantCulture,
+                    System.Globalization.DateTimeStyles.None,
+                    out DateTime parsedDataInicial))
+            {
+                dataInicial = rawDataInicial + " 00:00:00";
+            }
+            else
+            {
+                dataInicial = rawDataInicial ?? "2025-02-22 00:00:00";
+            }
+
+            string rawDataFinal = Request.QueryString["dataFinal"];
+            string dataFinal;
+
+            if (!string.IsNullOrWhiteSpace(rawDataFinal) &&
+                DateTime.TryParseExact(rawDataFinal, "yyyy-MM-dd",
+                    System.Globalization.CultureInfo.InvariantCulture,
+                    System.Globalization.DateTimeStyles.None,
+                    out DateTime parsedDataFinal))
+            {
+                dataFinal = rawDataFinal + " 23:59:59";
+            }
+            else
+            {
+                dataFinal = rawDataFinal ?? "2025-02-22 23:59:59"; // Default value
+            }
 
             string[] items = itemQuery.Split(','); // Split items into an array
 
