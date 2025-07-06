@@ -366,6 +366,7 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="frmAgyliti\Bacio\relDadosSensor.aspx" />
     <Content Include="frmAgyliti\Cliente001\DevExtreme\cnRxApp\app01JS\cnRxAppApp01JS.aspx" />
     <Content Include="frmAgyliti\DadosSensor\relDadosSensor.aspx" />
     <Content Include="frmAgyliti\GetLock\cnCadastros\cnGridCliente.aspx" />
@@ -789,6 +790,13 @@
     <Compile Include="Domain\Entities\RsData.cs" />
     <Compile Include="Domain\Entities\RsDataConfig.cs" />
     <Compile Include="Domain\Entity.cs" />
+    <Compile Include="frmAgyliti\Bacio\relDadosSensor.aspx.cs">
+      <DependentUpon>relDadosSensor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAgyliti\Bacio\relDadosSensor.aspx.designer.cs">
+      <DependentUpon>relDadosSensor.aspx</DependentUpon>
+    </Compile>
     <Compile Include="frmAgyliti\Cliente001\DevExtreme\cnRxApp\app01JS\cnRxAppApp01JS.aspx.cs">
       <DependentUpon>cnRxAppApp01JS.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1281,6 +1289,12 @@
     <Compile Include="rede.cs">
       <DependentUpon>rxAppModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="reportClasses\repDadosSensor-Subreport-Triggers.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="reportClasses\repDadosSensor-Subreport-Triggers.Designer.cs">
+      <DependentUpon>repDadosSensor-Subreport-Triggers.cs</DependentUpon>
+    </Compile>
     <Compile Include="reportClasses\repDadosSensor.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -1489,6 +1503,9 @@
       <DependentUpon>202501011921099_v036.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="reportClasses\repDadosSensor-Subreport-Triggers.resx">
+      <DependentUpon>repDadosSensor-Subreport-Triggers.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="reportClasses\repDadosSensor.resx">
       <DependentUpon>repDadosSensor.cs</DependentUpon>
     </EmbeddedResource>

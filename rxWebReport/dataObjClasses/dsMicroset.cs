@@ -26,6 +26,8 @@ namespace rxWebReport.dataObjClasses
             public int Acknowledged { get; set; }
             public DateTime Time { get; set; }
             public string Description { get; set; }
+            public string Trigger_tag { get; set; }
+            public string Trigger_value { get; set; }
         }
 
         public static List<dadosSensor> GetData(string GroupName, string HostName, string Item, string InitialDate, string FinalDate)
@@ -81,23 +83,23 @@ namespace rxWebReport.dataObjClasses
             return results;
         }
 
-        public static List<dadosTriggers> GetDataTriggers(string ItemPrefix, string InitialDate, string FinalDate)
+        public static List<dadosTriggers> GetDataTriggers(string TriggerTag, string InitialDate, string FinalDate)
         {
             var results = new List<dadosTriggers>();
 
-            // Determine the item name filter based on ValueType
-            string itemNameFilter = $@"{ItemPrefix}%";
-
-            using (var conn = new MySqlConnection(connectionString))
+            if (TriggerTag != "")
             {
-                conn.Open();
 
-                string query = $@"
+                using (var conn = new MySqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    string query = $@"
                                  SELECT
                                   CONVERT_TZ(FROM_UNIXTIME(e.clock), '+00:00', '+00:00') AS tm,
                                   e.value,
                                   e.acknowledged,
-                                  t.description
+                                  t.description, tt.tag trigger_tag, tt.value trigger_value
                                 FROM events e
                                   INNER JOIN triggers t
                                     ON e.objectid = t.triggerid
@@ -106,25 +108,29 @@ namespace rxWebReport.dataObjClasses
                                 WHERE e.source = 0
                                 AND e.object = 0
                                 AND CONVERT_TZ(FROM_UNIXTIME(e.clock), '+00:00', '+00:00') BETWEEN '{InitialDate}' AND '{FinalDate}'
-                                and t.description like '{itemNameFilter}%'
+                                and tt.tag = '{TriggerTag}'
                                 order by e.clock";
 
-                using (var cmd = new MySqlCommand(query, conn))
-                {
-                    using (var reader = cmd.ExecuteReader())
+                    using (var cmd = new MySqlCommand(query, conn))
                     {
-                        while (reader.Read())
+                        using (var reader = cmd.ExecuteReader())
                         {
-                            results.Add(new dadosTriggers
+                            while (reader.Read())
                             {
-                                Value = reader.GetInt32("value"),
-                                Acknowledged = reader.GetInt32("acknowledged"),
-                                Time = reader.GetDateTime("tm"),
-                                Description = reader.GetString("description")
-                            });
+                                results.Add(new dadosTriggers
+                                {
+                                    Value = reader.GetInt32("value"),
+                                    Acknowledged = reader.GetInt32("acknowledged"),
+                                    Time = reader.GetDateTime("tm"),
+                                    Description = reader.GetString("description"),
+                                    Trigger_tag = reader.GetString("trigger_tag"),
+                                    Trigger_value = reader.GetString("trigger_value")
+                                });
+                            }
                         }
                     }
                 }
+
             }
 
             return results;
