@@ -46,9 +46,7 @@ namespace rxWebReport.reportClasses
             this.tableCell3 = new DevExpress.XtraReports.UI.XRTableCell();
             this.tableCell2 = new DevExpress.XtraReports.UI.XRTableCell();
             this.tableCell5 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.tableCell4 = new DevExpress.XtraReports.UI.XRTableCell();
             this.label5 = new DevExpress.XtraReports.UI.XRLabel();
-            this.label4 = new DevExpress.XtraReports.UI.XRLabel();
             this.pbOk = new DevExpress.XtraReports.UI.XRPictureBox();
             this.pbAlerta = new DevExpress.XtraReports.UI.XRPictureBox();
             this.label2 = new DevExpress.XtraReports.UI.XRLabel();
@@ -98,7 +96,6 @@ namespace rxWebReport.reportClasses
             // 
             this.Detail.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.label5,
-            this.label4,
             this.pbOk,
             this.pbAlerta,
             this.label2,
@@ -122,7 +119,7 @@ namespace rxWebReport.reportClasses
             this.table1.Name = "table1";
             this.table1.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.tableRow1});
-            this.table1.SizeF = new System.Drawing.SizeF(805F, 28F);
+            this.table1.SizeF = new System.Drawing.SizeF(768.8707F, 28F);
             // 
             // tableRow1
             // 
@@ -130,8 +127,7 @@ namespace rxWebReport.reportClasses
             this.tableCell1,
             this.tableCell3,
             this.tableCell2,
-            this.tableCell5,
-            this.tableCell4});
+            this.tableCell5});
             this.tableRow1.Name = "tableRow1";
             this.tableRow1.Weight = 1D;
             // 
@@ -166,45 +162,23 @@ namespace rxWebReport.reportClasses
             this.tableCell5.Multiline = true;
             this.tableCell5.Name = "tableCell5";
             this.tableCell5.StyleName = "DetailCaption1";
-            this.tableCell5.Text = "Localidade";
-            this.tableCell5.Weight = 0.274407782379315D;
-            // 
-            // tableCell4
-            // 
-            this.tableCell4.Name = "tableCell4";
-            this.tableCell4.StyleName = "DetailCaption1";
-            this.tableCell4.Text = "Evento";
-            this.tableCell4.Weight = 0.465840012160935D;
+            this.tableCell5.Text = "Descrição";
+            this.tableCell5.Weight = 0.6846642282866251D;
             // 
             // label5
             // 
             this.label5.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[calcLocalidade]")});
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Description]")});
             this.label5.Font = new System.Drawing.Font("Arial", 8.25F);
-            this.label5.LocationFloat = new DevExpress.Utils.PointFloat(323.839F, 2.000014F);
+            this.label5.LocationFloat = new DevExpress.Utils.PointFloat(323.8389F, 1.999982F);
             this.label5.Multiline = true;
             this.label5.Name = "label5";
             this.label5.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.label5.SizeF = new System.Drawing.SizeF(178.3651F, 25F);
+            this.label5.SizeF = new System.Drawing.SizeF(445.0317F, 25F);
             this.label5.StylePriority.UseFont = false;
             this.label5.StylePriority.UseTextAlignment = false;
             this.label5.Text = "label5";
             this.label5.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            // 
-            // label4
-            // 
-            this.label4.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[calcEvento]")});
-            this.label4.Font = new System.Drawing.Font("Arial", 8.25F);
-            this.label4.LocationFloat = new DevExpress.Utils.PointFloat(502.204F, 1.999982F);
-            this.label4.Multiline = true;
-            this.label4.Name = "label4";
-            this.label4.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.label4.SizeF = new System.Drawing.SizeF(302.7961F, 25F);
-            this.label4.StylePriority.UseFont = false;
-            this.label4.StylePriority.UseTextAlignment = false;
-            this.label4.Text = "label4";
-            this.label4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
             // 
             // pbOk
             // 
@@ -425,10 +399,8 @@ namespace rxWebReport.reportClasses
         private DevExpress.XtraReports.UI.XRTableCell tableCell3;
         private DevExpress.XtraReports.UI.XRTableCell tableCell2;
         private DevExpress.XtraReports.UI.XRTableCell tableCell5;
-        private DevExpress.XtraReports.UI.XRTableCell tableCell4;
         private DevExpress.XtraReports.UI.DetailBand Detail;
         private DevExpress.XtraReports.UI.XRLabel label5;
-        private DevExpress.XtraReports.UI.XRLabel label4;
         private DevExpress.XtraReports.UI.XRPictureBox pbOk;
         private DevExpress.XtraReports.UI.XRPictureBox pbAlerta;
         private DevExpress.XtraReports.UI.XRLabel label2;

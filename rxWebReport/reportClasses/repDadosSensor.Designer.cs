@@ -133,7 +133,7 @@ namespace rxWebReport.reportClasses
             this.label18,
             this.label19,
             this.table1});
-            this.PageHeader.HeightF = 161.625F;
+            this.PageHeader.HeightF = 169F;
             this.PageHeader.Name = "PageHeader";
             // 
             // ReportHeader
@@ -155,7 +155,7 @@ namespace rxWebReport.reportClasses
             this.label5.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Value]")});
             this.label5.Font = new System.Drawing.Font("Arial", 8.25F);
-            this.label5.LocationFloat = new DevExpress.Utils.PointFloat(155.1268F, 0F);
+            this.label5.LocationFloat = new DevExpress.Utils.PointFloat(270.8385F, 0F);
             this.label5.Multiline = true;
             this.label5.Name = "label5";
             this.label5.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -169,7 +169,7 @@ namespace rxWebReport.reportClasses
             this.label4.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[SensorDate]")});
             this.label4.Font = new System.Drawing.Font("Arial", 8.25F);
-            this.label4.LocationFloat = new DevExpress.Utils.PointFloat(333.4919F, 0F);
+            this.label4.LocationFloat = new DevExpress.Utils.PointFloat(449.2036F, 0F);
             this.label4.Multiline = true;
             this.label4.Name = "label4";
             this.label4.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -188,7 +188,7 @@ namespace rxWebReport.reportClasses
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Item]")});
             this.label3.Font = new System.Drawing.Font("Arial", 8.25F);
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.LocationFloat = new DevExpress.Utils.PointFloat(0F, 0F);
+            this.label3.LocationFloat = new DevExpress.Utils.PointFloat(115.7117F, 0F);
             this.label3.Name = "label3";
             this.label3.Padding = new DevExpress.XtraPrinting.PaddingInfo(6, 6, 0, 0, 100F);
             this.label3.SizeF = new System.Drawing.SizeF(155.1268F, 25F);
@@ -206,7 +206,7 @@ namespace rxWebReport.reportClasses
             // 
             this.label11.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "?parRepLimiteSuperior")});
-            this.label11.LocationFloat = new DevExpress.Utils.PointFloat(486.2882F, 41.75002F);
+            this.label11.LocationFloat = new DevExpress.Utils.PointFloat(601.9994F, 49.12497F);
             this.label11.Multiline = true;
             this.label11.Name = "label11";
             this.label11.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -219,7 +219,7 @@ namespace rxWebReport.reportClasses
             // 
             this.label10.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "?parRepLimiteInferior")});
-            this.label10.LocationFloat = new DevExpress.Utils.PointFloat(486.2877F, 21.95835F);
+            this.label10.LocationFloat = new DevExpress.Utils.PointFloat(601.9989F, 29.33331F);
             this.label10.Multiline = true;
             this.label10.Name = "label10";
             this.label10.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -232,7 +232,7 @@ namespace rxWebReport.reportClasses
             // 
             this.label9.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "?parRepMedida")});
-            this.label9.LocationFloat = new DevExpress.Utils.PointFloat(486.2879F, 0F);
+            this.label9.LocationFloat = new DevExpress.Utils.PointFloat(601.9991F, 7.374954F);
             this.label9.Multiline = true;
             this.label9.Name = "label9";
             this.label9.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -243,7 +243,7 @@ namespace rxWebReport.reportClasses
             // 
             // label1
             // 
-            this.label1.LocationFloat = new DevExpress.Utils.PointFloat(0F, 41.75001F);
+            this.label1.LocationFloat = new DevExpress.Utils.PointFloat(115.7112F, 49.12496F);
             this.label1.Multiline = true;
             this.label1.Name = "label1";
             this.label1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -252,7 +252,7 @@ namespace rxWebReport.reportClasses
             // 
             // label12
             // 
-            this.label12.LocationFloat = new DevExpress.Utils.PointFloat(0F, 21.95834F);
+            this.label12.LocationFloat = new DevExpress.Utils.PointFloat(115.7112F, 29.3333F);
             this.label12.Multiline = true;
             this.label12.Name = "label12";
             this.label12.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -261,7 +261,7 @@ namespace rxWebReport.reportClasses
             // 
             // label14
             // 
-            this.label14.LocationFloat = new DevExpress.Utils.PointFloat(0F, 69.25003F);
+            this.label14.LocationFloat = new DevExpress.Utils.PointFloat(115.7112F, 76.62498F);
             this.label14.Multiline = true;
             this.label14.Name = "label14";
             this.label14.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -270,7 +270,7 @@ namespace rxWebReport.reportClasses
             // 
             // label15
             // 
-            this.label15.LocationFloat = new DevExpress.Utils.PointFloat(0F, 89.04164F);
+            this.label15.LocationFloat = new DevExpress.Utils.PointFloat(115.7112F, 96.4166F);
             this.label15.Multiline = true;
             this.label15.Name = "label15";
             this.label15.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -279,7 +279,7 @@ namespace rxWebReport.reportClasses
             // 
             // label16
             // 
-            this.label16.LocationFloat = new DevExpress.Utils.PointFloat(0F, 108.8334F);
+            this.label16.LocationFloat = new DevExpress.Utils.PointFloat(115.7112F, 116.2083F);
             this.label16.Multiline = true;
             this.label16.Name = "label16";
             this.label16.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -290,7 +290,7 @@ namespace rxWebReport.reportClasses
             // 
             this.label17.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "sumAvg([Value])")});
-            this.label17.LocationFloat = new DevExpress.Utils.PointFloat(486.2879F, 69.24997F);
+            this.label17.LocationFloat = new DevExpress.Utils.PointFloat(601.9991F, 76.62492F);
             this.label17.Multiline = true;
             this.label17.Name = "label17";
             this.label17.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -305,7 +305,7 @@ namespace rxWebReport.reportClasses
             // 
             this.label18.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "sumMin([Value])")});
-            this.label18.LocationFloat = new DevExpress.Utils.PointFloat(486.2881F, 89.04157F);
+            this.label18.LocationFloat = new DevExpress.Utils.PointFloat(601.9993F, 96.41653F);
             this.label18.Multiline = true;
             this.label18.Name = "label18";
             this.label18.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -320,7 +320,7 @@ namespace rxWebReport.reportClasses
             // 
             this.label19.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "sumMax([Value])")});
-            this.label19.LocationFloat = new DevExpress.Utils.PointFloat(486.2879F, 108.8334F);
+            this.label19.LocationFloat = new DevExpress.Utils.PointFloat(601.9991F, 116.2083F);
             this.label19.Multiline = true;
             this.label19.Name = "label19";
             this.label19.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -333,7 +333,7 @@ namespace rxWebReport.reportClasses
             // 
             // table1
             // 
-            this.table1.LocationFloat = new DevExpress.Utils.PointFloat(0F, 133.625F);
+            this.table1.LocationFloat = new DevExpress.Utils.PointFloat(115.7112F, 141F);
             this.table1.Name = "table1";
             this.table1.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.tableRow1});
