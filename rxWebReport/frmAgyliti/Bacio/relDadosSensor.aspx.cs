@@ -2,6 +2,7 @@
 using DevExpress.XtraPrinting;
 using rxWebReport.reportClasses;
 using System;
+using System.Drawing;
 using System.IO;
 
 namespace rxWebReport.frmAgyliti.Bacio
@@ -90,6 +91,29 @@ namespace rxWebReport.frmAgyliti.Bacio
 
             string[] items = itemQuery.Split(','); // Split items into an array
 
+            string logoFilename = Request.QueryString["logo"] ?? "LogoAux.png"; // default logo if not provided
+
+            string logosFolder = Server.MapPath("~/Content/Images/");
+            string logoPath = Path.Combine(logosFolder, logoFilename);
+
+            logoFilename = Path.GetFileName(logoFilename); // Removes any path parts
+
+            Image logoImage = null;
+
+            if (File.Exists(logoPath))
+            {
+                logoImage = Image.FromFile(logoPath);
+            }
+            else
+            {
+                // Optionally, load a fallback image
+                string fallbackPath = Path.Combine(logosFolder, "LogoAux.png");
+                if (File.Exists(fallbackPath))
+                {
+                    logoImage = Image.FromFile(fallbackPath);
+                }
+            }
+
             repDadosSensor masterReport = null;
 
             foreach (var item in items)
@@ -113,6 +137,15 @@ namespace rxWebReport.frmAgyliti.Bacio
                     ((XYDiagram)chart.Diagram).AxisY.ConstantLines[0].AxisValue = limiteInferior;
                     ((XYDiagram)chart.Diagram).AxisY.ConstantLines[1].Visible = true;
                     ((XYDiagram)chart.Diagram).AxisY.ConstantLines[1].AxisValue = limiteSuperior;
+                }
+
+                if (logoImage != null)
+                {
+                    var pictureBox = (DevExpress.XtraReports.UI.XRPictureBox)objReport.FindControl("PictureBox1", true);
+                    if (pictureBox != null)
+                    {
+                        pictureBox.Image = logoImage;
+                    }
                 }
 
                 objReport.CreateDocument(); // Generate the report document

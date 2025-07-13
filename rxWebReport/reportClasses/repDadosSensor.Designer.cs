@@ -68,6 +68,7 @@ namespace rxWebReport.reportClasses
             this.tableCell3 = new DevExpress.XtraReports.UI.XRTableCell();
             this.tableCell5 = new DevExpress.XtraReports.UI.XRTableCell();
             this.tableCell4 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.pictureBox1 = new DevExpress.XtraReports.UI.XRPictureBox();
             this.pageBreak2 = new DevExpress.XtraReports.UI.XRPageBreak();
             this.subreport1 = new DevExpress.XtraReports.UI.XRSubreport();
             this.pageBreak1 = new DevExpress.XtraReports.UI.XRPageBreak();
@@ -139,6 +140,7 @@ namespace rxWebReport.reportClasses
             // ReportHeader
             // 
             this.ReportHeader.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.pictureBox1,
             this.pageBreak2,
             this.subreport1,
             this.pageBreak1,
@@ -147,7 +149,7 @@ namespace rxWebReport.reportClasses
             this.label8,
             this.label2,
             this.chart2});
-            this.ReportHeader.HeightF = 692.7501F;
+            this.ReportHeader.HeightF = 704.3334F;
             this.ReportHeader.Name = "ReportHeader";
             // 
             // label5
@@ -374,14 +376,22 @@ namespace rxWebReport.reportClasses
             this.tableCell4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.tableCell4.Weight = 0.465840012160935D;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.ImageSource = new DevExpress.XtraPrinting.Drawing.ImageSource("img", resources.GetString("pictureBox1.ImageSource"));
+            this.pictureBox1.LocationFloat = new DevExpress.Utils.PointFloat(10.00001F, 0F);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.SizeF = new System.Drawing.SizeF(82.29166F, 66.70834F);
+            this.pictureBox1.Sizing = DevExpress.XtraPrinting.ImageSizeMode.ZoomImage;
+            // 
             // pageBreak2
             // 
-            this.pageBreak2.LocationFloat = new DevExpress.Utils.PointFloat(0F, 622F);
+            this.pageBreak2.LocationFloat = new DevExpress.Utils.PointFloat(0F, 630F);
             this.pageBreak2.Name = "pageBreak2";
             // 
             // subreport1
             // 
-            this.subreport1.LocationFloat = new DevExpress.Utils.PointFloat(0F, 628.25F);
+            this.subreport1.LocationFloat = new DevExpress.Utils.PointFloat(0F, 636.25F);
             this.subreport1.Name = "subreport1";
             this.subreport1.ParameterBindings.Add(new DevExpress.XtraReports.UI.ParameterBinding("parRepTriggerTag", this.parRepTriggerTag));
             this.subreport1.ParameterBindings.Add(new DevExpress.XtraReports.UI.ParameterBinding("parRepInitialDate", this.parRepInitialDate));
@@ -392,7 +402,7 @@ namespace rxWebReport.reportClasses
             // 
             // pageBreak1
             // 
-            this.pageBreak1.LocationFloat = new DevExpress.Utils.PointFloat(0F, 686.5833F);
+            this.pageBreak1.LocationFloat = new DevExpress.Utils.PointFloat(0F, 696.5833F);
             this.pageBreak1.Name = "pageBreak1";
             // 
             // label7
@@ -480,7 +490,7 @@ namespace rxWebReport.reportClasses
             this.chart2.Legend.AlignmentHorizontal = DevExpress.XtraCharts.LegendAlignmentHorizontal.Left;
             this.chart2.Legend.AlignmentVertical = DevExpress.XtraCharts.LegendAlignmentVertical.TopOutside;
             this.chart2.Legend.Direction = DevExpress.XtraCharts.LegendDirection.LeftToRight;
-            this.chart2.LocationFloat = new DevExpress.Utils.PointFloat(0F, 60.00002F);
+            this.chart2.LocationFloat = new DevExpress.Utils.PointFloat(0F, 69.00002F);
             this.chart2.Name = "chart2";
             series1.ArgumentDataMember = "SensorDate";
             series1.LabelsVisibility = DevExpress.Utils.DefaultBoolean.False;
@@ -697,6 +707,7 @@ namespace rxWebReport.reportClasses
         private DevExpress.XtraReports.UI.XRTableCell tableCell5;
         private DevExpress.XtraReports.UI.XRTableCell tableCell4;
         private DevExpress.XtraReports.UI.ReportHeaderBand ReportHeader;
+        private DevExpress.XtraReports.UI.XRPictureBox pictureBox1;
         private DevExpress.XtraReports.UI.XRPageBreak pageBreak2;
         private DevExpress.XtraReports.UI.XRSubreport subreport1;
         private DevExpress.XtraReports.Parameters.Parameter parRepTriggerTag;
