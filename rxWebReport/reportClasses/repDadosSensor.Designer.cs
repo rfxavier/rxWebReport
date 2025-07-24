@@ -68,6 +68,7 @@ namespace rxWebReport.reportClasses
             this.tableCell3 = new DevExpress.XtraReports.UI.XRTableCell();
             this.tableCell5 = new DevExpress.XtraReports.UI.XRTableCell();
             this.tableCell4 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.label13 = new DevExpress.XtraReports.UI.XRLabel();
             this.pictureBox1 = new DevExpress.XtraReports.UI.XRPictureBox();
             this.pageBreak2 = new DevExpress.XtraReports.UI.XRPageBreak();
             this.subreport1 = new DevExpress.XtraReports.UI.XRSubreport();
@@ -118,6 +119,7 @@ namespace rxWebReport.reportClasses
             this.label3});
             this.Detail.HeightF = 27.00001F;
             this.Detail.Name = "Detail";
+            this.Detail.OddStyleName = "DetailData3_Odd";
             // 
             // PageHeader
             // 
@@ -140,6 +142,7 @@ namespace rxWebReport.reportClasses
             // ReportHeader
             // 
             this.ReportHeader.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.label13,
             this.pictureBox1,
             this.pageBreak2,
             this.subreport1,
@@ -376,6 +379,19 @@ namespace rxWebReport.reportClasses
             this.tableCell4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.tableCell4.Weight = 0.465840012160935D;
             // 
+            // label13
+            // 
+            this.label13.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "?parRepHostname")});
+            this.label13.LocationFloat = new DevExpress.Utils.PointFloat(652.0833F, 37.00002F);
+            this.label13.Multiline = true;
+            this.label13.Name = "label13";
+            this.label13.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.label13.SizeF = new System.Drawing.SizeF(247.9167F, 23F);
+            this.label13.StylePriority.UseTextAlignment = false;
+            this.label13.Text = "label13";
+            this.label13.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
+            // 
             // pictureBox1
             // 
             this.pictureBox1.ImageSource = new DevExpress.XtraPrinting.Drawing.ImageSource("img", resources.GetString("pictureBox1.ImageSource"));
@@ -397,6 +413,7 @@ namespace rxWebReport.reportClasses
             this.subreport1.ParameterBindings.Add(new DevExpress.XtraReports.UI.ParameterBinding("parRepInitialDate", this.parRepInitialDate));
             this.subreport1.ParameterBindings.Add(new DevExpress.XtraReports.UI.ParameterBinding("parRepFinalDate", this.parRepFinalDate));
             this.subreport1.ParameterBindings.Add(new DevExpress.XtraReports.UI.ParameterBinding("parRepItemPrefix", this.parRepItem));
+            this.subreport1.ParameterBindings.Add(new DevExpress.XtraReports.UI.ParameterBinding("parRepHostName", this.parRepHostname));
             this.subreport1.ReportSource = new rxWebReport.reportClasses.repDadosSensor_Subreport_Triggers();
             this.subreport1.SizeF = new System.Drawing.SizeF(880.0001F, 58.33331F);
             // 
@@ -707,6 +724,7 @@ namespace rxWebReport.reportClasses
         private DevExpress.XtraReports.UI.XRTableCell tableCell5;
         private DevExpress.XtraReports.UI.XRTableCell tableCell4;
         private DevExpress.XtraReports.UI.ReportHeaderBand ReportHeader;
+        private DevExpress.XtraReports.UI.XRLabel label13;
         private DevExpress.XtraReports.UI.XRPictureBox pictureBox1;
         private DevExpress.XtraReports.UI.XRPageBreak pageBreak2;
         private DevExpress.XtraReports.UI.XRSubreport subreport1;
@@ -714,6 +732,7 @@ namespace rxWebReport.reportClasses
         private DevExpress.XtraReports.Parameters.Parameter parRepInitialDate;
         private DevExpress.XtraReports.Parameters.Parameter parRepFinalDate;
         private DevExpress.XtraReports.Parameters.Parameter parRepItem;
+        private DevExpress.XtraReports.Parameters.Parameter parRepHostname;
         private DevExpress.XtraReports.UI.XRPageBreak pageBreak1;
         private DevExpress.XtraReports.UI.XRLabel label7;
         private DevExpress.XtraReports.UI.XRLabel label6;
@@ -727,7 +746,6 @@ namespace rxWebReport.reportClasses
         private DevExpress.XtraReports.UI.XRControlStyle DetailData3_Odd;
         private DevExpress.XtraReports.UI.XRControlStyle PageInfo;
         private DevExpress.XtraReports.Parameters.Parameter parRepGroupname;
-        private DevExpress.XtraReports.Parameters.Parameter parRepHostname;
         private DevExpress.XtraReports.Parameters.Parameter parRepMedida;
         private DevExpress.XtraReports.Parameters.Parameter parRepLimiteInferior;
         private DevExpress.XtraReports.Parameters.Parameter parRepLimiteSuperior;

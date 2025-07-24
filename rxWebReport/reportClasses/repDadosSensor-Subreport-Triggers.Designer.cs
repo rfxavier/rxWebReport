@@ -59,10 +59,12 @@ namespace rxWebReport.reportClasses
             this.PageInfo = new DevExpress.XtraReports.UI.XRControlStyle();
             this.calcEvento = new DevExpress.XtraReports.UI.CalculatedField();
             this.calcLocalidade = new DevExpress.XtraReports.UI.CalculatedField();
+            this.calcDescription = new DevExpress.XtraReports.UI.CalculatedField();
             this.parRepInitialDate = new DevExpress.XtraReports.Parameters.Parameter();
             this.parRepFinalDate = new DevExpress.XtraReports.Parameters.Parameter();
             this.parRepTriggerTag = new DevExpress.XtraReports.Parameters.Parameter();
             this.parRepItemPrefix = new DevExpress.XtraReports.Parameters.Parameter();
+            this.parRepHostName = new DevExpress.XtraReports.Parameters.Parameter();
             ((System.ComponentModel.ISupportInitialize)(this.table1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
@@ -168,7 +170,7 @@ namespace rxWebReport.reportClasses
             // label5
             // 
             this.label5.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Description]")});
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[calcDescription]")});
             this.label5.Font = new System.Drawing.Font("Arial", 8.25F);
             this.label5.LocationFloat = new DevExpress.Utils.PointFloat(323.8389F, 1.999982F);
             this.label5.Multiline = true;
@@ -328,6 +330,11 @@ namespace rxWebReport.reportClasses
             this.calcLocalidade.Expression = "Substring([Description], 0, Len(?parRepItemPrefix))\n";
             this.calcLocalidade.Name = "calcLocalidade";
             // 
+            // calcDescription
+            // 
+            this.calcDescription.Expression = "Replace([Description], \'{HOST.NAME}\', ?parRepHostName)";
+            this.calcDescription.Name = "calcDescription";
+            // 
             // parRepInitialDate
             // 
             this.parRepInitialDate.Name = "parRepInitialDate";
@@ -352,6 +359,12 @@ namespace rxWebReport.reportClasses
             this.parRepItemPrefix.ValueInfo = "TDP-05BIPE";
             this.parRepItemPrefix.Visible = false;
             // 
+            // parRepHostName
+            // 
+            this.parRepHostName.Name = "parRepHostName";
+            this.parRepHostName.ValueInfo = "BOPE";
+            this.parRepHostName.Visible = false;
+            // 
             // repDadosSensor_Subreport_Triggers
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -362,7 +375,8 @@ namespace rxWebReport.reportClasses
             this.Detail});
             this.CalculatedFields.AddRange(new DevExpress.XtraReports.UI.CalculatedField[] {
             this.calcEvento,
-            this.calcLocalidade});
+            this.calcLocalidade,
+            this.calcDescription});
             this.ComponentStorage.AddRange(new System.ComponentModel.IComponent[] {
             this.objectDataSource1});
             this.DataSource = this.objectDataSource1;
@@ -372,7 +386,8 @@ namespace rxWebReport.reportClasses
             this.parRepInitialDate,
             this.parRepFinalDate,
             this.parRepTriggerTag,
-            this.parRepItemPrefix});
+            this.parRepItemPrefix,
+            this.parRepHostName});
             this.StyleSheet.AddRange(new DevExpress.XtraReports.UI.XRControlStyle[] {
             this.Title,
             this.DetailCaption1,
@@ -413,9 +428,11 @@ namespace rxWebReport.reportClasses
         private DevExpress.XtraReports.UI.XRControlStyle PageInfo;
         private DevExpress.XtraReports.UI.CalculatedField calcEvento;
         private DevExpress.XtraReports.UI.CalculatedField calcLocalidade;
+        private DevExpress.XtraReports.UI.CalculatedField calcDescription;
         private DevExpress.XtraReports.Parameters.Parameter parRepInitialDate;
         private DevExpress.XtraReports.Parameters.Parameter parRepFinalDate;
         private DevExpress.XtraReports.Parameters.Parameter parRepTriggerTag;
         private DevExpress.XtraReports.Parameters.Parameter parRepItemPrefix;
+        private DevExpress.XtraReports.Parameters.Parameter parRepHostName;
     }
 }
