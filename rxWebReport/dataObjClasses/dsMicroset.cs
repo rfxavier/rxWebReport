@@ -30,6 +30,16 @@ namespace rxWebReport.dataObjClasses
             public string Trigger_value { get; set; }
         }
 
+        public class dadosJustificativas
+        {
+            public string Distribuidor { get; set; }
+            public string Sensor { get; set; }
+            public DateTime DataEvento { get; set; }
+            public string Mensagem { get; set; }
+            public DateTime DataMensagem { get; set; }
+            public string Query { get; set; }
+        }
+
         public static List<dadosSensor> GetData(string GroupName, string HostName, string Item, string InitialDate, string FinalDate)
         {
             var results = new List<dadosSensor>();
@@ -135,6 +145,76 @@ namespace rxWebReport.dataObjClasses
 
             return results;
         }
-    }
 
+        public static List<dadosJustificativas> GetDataJustificativas(string HostName, string InitialDate, string FinalDate)
+        {
+            var results = new List<dadosJustificativas>();
+
+            if (HostName != "")
+            {
+
+                using (var conn = new MySqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    string query = $@"
+                                    SELECT
+                                      h.name as 'Distribuidor',
+                                      e.name as 'Sensor',
+                                      DATE_FORMAT(FROM_UNIXTIME(e.clock), '%Y-%m-%d %H:%i:%s') as 'DataEvento',
+                                      max(a.message) as 'Mensagem',
+                                      DATE_FORMAT(FROM_UNIXTIME(a.clock), '%Y-%m-%d %H:%i:%s') as 'DataMensagem' 
+                                    FROM hosts h 
+                                      inner join items i on i.hostid = h.hostid
+                                      inner join functions f on f.itemid = i.itemid
+                                      inner join triggers t on t.triggerid = f.triggerid 
+                                      inner join events e on e.objectid = t.triggerid
+                                      inner join acknowledges a on a.eventid = e.eventid
+                                    WHERE h.name in ('{HostName}') and DATE_FORMAT(FROM_UNIXTIME(e.clock), '%Y-%m-%d %H:%i:%s') between '{InitialDate}' AND '{FinalDate}' and a.userid = 23
+                                    -- WHERE (h.name in ('{HostName}') or 0=0) and DATE_FORMAT(FROM_UNIXTIME(e.clock), '%Y-%m-%d %H:%i:%s') between '{InitialDate}' AND '{FinalDate}' and ((a.userid = 23) or 0=0)
+                                    GROUP BY
+                                      h.name,
+                                      e.name,
+                                      a.message,
+                                      e.clock,
+                                      a.clock
+                                     ORDER BY 
+                                     e.clock,
+                                     a.clock";
+
+                    using (var cmd = new MySqlCommand(query, conn))
+                    {
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                results.Add(new dadosJustificativas
+                                {
+                                    Distribuidor = reader.GetString("Distribuidor"),
+                                    Sensor = reader.GetString("Sensor"),
+                                    DataEvento = reader.GetDateTime("DataEvento"),
+                                    Mensagem = reader.GetString("Mensagem"),
+                                    DataMensagem = reader.GetDateTime("DataMensagem"),
+                                    Query = query
+                                });
+                            }
+                        }
+                    }
+
+                    //results.Add(new dadosJustificativas
+                    //{
+                    //    Distribuidor = "",
+                    //    Sensor = "",
+                    //    DataEvento = DateTime.Now,
+                    //    Mensagem = "",
+                    //    DataMensagem = DateTime.Now,
+                    //    Query = query
+                    //});
+                }
+
+            }
+
+            return results;
+        }
+    }
 }
