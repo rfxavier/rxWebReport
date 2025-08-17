@@ -205,7 +205,7 @@ namespace rxWebReport.reportClasses
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Value]"),
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "ForeColor", "Iif(EndsWith(?parRepItemPrefix, \'BIPE\'), [calcPressaoValueColor], Iif([Measuremen" +
                     "tType] = \'Temperatura\', [calcTempValueColor], Iif([MeasurementType] = \'Humidade\'" +
-                    ", [calcHumidityValueColor], \'\')))\n")});
+                    ", [calcHumidityValueColor], \'Black\')))\n")});
             this.tableCell3.ForeColor = System.Drawing.Color.Black;
             this.tableCell3.Multiline = true;
             this.tableCell3.Name = "tableCell3";
@@ -596,19 +596,19 @@ namespace rxWebReport.reportClasses
             // parRepItemPrefix
             // 
             this.parRepItemPrefix.Name = "parRepItemPrefix";
-            this.parRepItemPrefix.ValueInfo = "TDP-01BIPE";
+            this.parRepItemPrefix.ValueInfo = "REG-01APQ-Umidade";
             this.parRepItemPrefix.Visible = false;
             // 
             // parRepInitialDate
             // 
             this.parRepInitialDate.Name = "parRepInitialDate";
-            this.parRepInitialDate.ValueInfo = "2025-05-12";
+            this.parRepInitialDate.ValueInfo = "2025-08-08";
             this.parRepInitialDate.Visible = false;
             // 
             // parRepFinalDate
             // 
             this.parRepFinalDate.Name = "parRepFinalDate";
-            this.parRepFinalDate.ValueInfo = "2025-05-13";
+            this.parRepFinalDate.ValueInfo = "2025-08-09";
             this.parRepFinalDate.Visible = false;
             // 
             // repSalasTempHR
