@@ -162,7 +162,9 @@ namespace rxWebReport.reportClasses
             // label5
             // 
             this.label5.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Value]")});
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Value]"),
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "ForeColor", "Iif([Value] < ?parRepLimiteInferior, \'Red\', Iif([Value] > ?parRepLimiteSuperior, " +
+                    "\'Red\', \'Black\'))\n")});
             this.label5.Font = new System.Drawing.Font("Arial", 8.25F);
             this.label5.LocationFloat = new DevExpress.Utils.PointFloat(270.8385F, 0F);
             this.label5.Multiline = true;
@@ -170,6 +172,7 @@ namespace rxWebReport.reportClasses
             this.label5.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.label5.SizeF = new System.Drawing.SizeF(178.3651F, 25F);
             this.label5.StylePriority.UseFont = false;
+            this.label5.StylePriority.UseForeColor = false;
             this.label5.StylePriority.UseTextAlignment = false;
             this.label5.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
             // 
