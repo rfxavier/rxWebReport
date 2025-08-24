@@ -118,7 +118,7 @@ namespace rxWebReport.frmAgyliti.JaSaude
                             ((XYDiagram)chart.Diagram).AxisY.ConstantLines[1].AxisValue = 30;
 
                         }
-                        else if (item.EndsWith("Humidade", StringComparison.OrdinalIgnoreCase))
+                        else if (item.EndsWith("Umidade", StringComparison.OrdinalIgnoreCase))
                         {
                             chart.Series[0].Name = item + " %HR";
                             ((XYDiagram)chart.Diagram).AxisY.ConstantLines[0].Visible = false;
