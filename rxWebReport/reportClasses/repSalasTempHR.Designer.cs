@@ -578,7 +578,7 @@ namespace rxWebReport.reportClasses
             // 
             // calcHumidityValueColor
             // 
-            this.calcHumidityValueColor.Expression = "Iif([Value] > 65, \'Black\', \'Black\')\n";
+            this.calcHumidityValueColor.Expression = "Iif([Value] > 65, \'Red\', \'Black\')\n";
             this.calcHumidityValueColor.Name = "calcHumidityValueColor";
             // 
             // calculatedField1
@@ -596,19 +596,19 @@ namespace rxWebReport.reportClasses
             // parRepItemPrefix
             // 
             this.parRepItemPrefix.Name = "parRepItemPrefix";
-            this.parRepItemPrefix.ValueInfo = "REG-01APQ-Umidade";
+            this.parRepItemPrefix.ValueInfo = "TTU-02BIPE-Humidade";
             this.parRepItemPrefix.Visible = false;
             // 
             // parRepInitialDate
             // 
             this.parRepInitialDate.Name = "parRepInitialDate";
-            this.parRepInitialDate.ValueInfo = "2025-08-08";
+            this.parRepInitialDate.ValueInfo = "2025-08-28";
             this.parRepInitialDate.Visible = false;
             // 
             // parRepFinalDate
             // 
             this.parRepFinalDate.Name = "parRepFinalDate";
-            this.parRepFinalDate.ValueInfo = "2025-08-09";
+            this.parRepFinalDate.ValueInfo = "2025-08-29";
             this.parRepFinalDate.Visible = false;
             // 
             // repSalasTempHR
