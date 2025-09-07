@@ -88,6 +88,7 @@ namespace rxWebReport.reportClasses
             this.calcHumidityValueColor = new DevExpress.XtraReports.UI.CalculatedField();
             this.calculatedField1 = new DevExpress.XtraReports.UI.CalculatedField();
             this.calcLimiteSuperior = new DevExpress.XtraReports.UI.CalculatedField();
+            this.calcLimitesVisibility = new DevExpress.XtraReports.UI.CalculatedField();
             this.parRepItemPrefix = new DevExpress.XtraReports.Parameters.Parameter();
             this.parRepInitialDate = new DevExpress.XtraReports.Parameters.Parameter();
             this.parRepFinalDate = new DevExpress.XtraReports.Parameters.Parameter();
@@ -357,7 +358,7 @@ namespace rxWebReport.reportClasses
             // 
             this.label23.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[calcLimiteInferior]"),
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Visible", " Not [MeasurementType] = \'Humidade\'")});
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Visible", "Not [calcLimitesVisibility]")});
             this.label23.LocationFloat = new DevExpress.Utils.PointFloat(703.1249F, 40.70835F);
             this.label23.Multiline = true;
             this.label23.Name = "label23";
@@ -382,8 +383,8 @@ namespace rxWebReport.reportClasses
             // label3
             // 
             this.label3.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Visible", "Not EndsWith(?parRepItemPrefix, \'BIPE\')\n"),
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[calcLimiteSuperior]")});
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[calcLimiteSuperior]"),
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Visible", "(Not EndsWith(?parRepItemPrefix, \'BIPE\')) And (Not [calcLimitesVisibility])\n")});
             this.label3.LocationFloat = new DevExpress.Utils.PointFloat(703.1252F, 60.50002F);
             this.label3.Multiline = true;
             this.label3.Name = "label3";
@@ -593,10 +594,16 @@ namespace rxWebReport.reportClasses
             this.calcLimiteSuperior.Expression = "Iif([MeasurementType] = \'Temperatura\', 30, 65)\n";
             this.calcLimiteSuperior.Name = "calcLimiteSuperior";
             // 
+            // calcLimitesVisibility
+            // 
+            this.calcLimitesVisibility.Expression = "?parRepItemPrefix = \'TTU-01APQ-Umidade\' or ?parRepItemPrefix = \'REG-01APQ-Umidade" +
+    "\'\n\n";
+            this.calcLimitesVisibility.Name = "calcLimitesVisibility";
+            // 
             // parRepItemPrefix
             // 
             this.parRepItemPrefix.Name = "parRepItemPrefix";
-            this.parRepItemPrefix.ValueInfo = "TTU-02BIPE-Humidade";
+            this.parRepItemPrefix.ValueInfo = "REG-01APQ-Umidade";
             this.parRepItemPrefix.Visible = false;
             // 
             // parRepInitialDate
@@ -627,7 +634,8 @@ namespace rxWebReport.reportClasses
             this.calcTempValueColor,
             this.calcHumidityValueColor,
             this.calculatedField1,
-            this.calcLimiteSuperior});
+            this.calcLimiteSuperior,
+            this.calcLimitesVisibility});
             this.ComponentStorage.AddRange(new System.ComponentModel.IComponent[] {
             this.objectDataSource3});
             this.DataSource = this.objectDataSource3;
@@ -704,5 +712,6 @@ namespace rxWebReport.reportClasses
         private DevExpress.XtraReports.UI.CalculatedField calcHumidityValueColor;
         private DevExpress.XtraReports.UI.CalculatedField calculatedField1;
         private DevExpress.XtraReports.UI.CalculatedField calcLimiteSuperior;
+        private DevExpress.XtraReports.UI.CalculatedField calcLimitesVisibility;
     }
 }
