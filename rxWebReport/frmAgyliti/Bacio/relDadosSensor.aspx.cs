@@ -52,6 +52,7 @@ namespace rxWebReport.frmAgyliti.Bacio
             string grupo = Request.QueryString["grupo"] ?? "IoT | JA Saude Animal"; // Default value if not provided
             string host = Request.QueryString["host"] ?? "JASAUDE - FieldLogger"; // Default value if not provided
             string itemQuery = Request.QueryString["item"] ?? "TDP-01BIPE"; // Default value if not provided
+            string formatoQuery = Request.QueryString["formato"] ?? "PDF"; // Default value if not provided
             string rawDataInicial = Request.QueryString["dataInicial"];
             string dataInicial;
 
@@ -164,11 +165,17 @@ namespace rxWebReport.frmAgyliti.Bacio
             {
                 using (MemoryStream ms = new MemoryStream())
                 {
-                    masterReport.ExportToPdf(ms, new PdfExportOptions() { ShowPrintDialogOnOpen = false });
-                    WriteDocumentToResponse(ms.ToArray(), "pdf", true, "DadosSensor.pdf");
+                    if (formatoQuery == "PDF")
+                    {
+                        masterReport.ExportToPdf(ms, new PdfExportOptions() { ShowPrintDialogOnOpen = false });
+                        WriteDocumentToResponse(ms.ToArray(), "pdf", true, "DadosSensor.pdf");
+                    } else if (formatoQuery == "CSV") 
+                    {
+                        masterReport.ExportToXlsx(ms, new XlsxExportOptions() { ExportMode = XlsxExportMode.SingleFilePageByPage });
+                        WriteDocumentToResponse(ms.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", false, "DadosSensor.xlsx");
+                    }
                 }
             }
-
         }
     }
 }

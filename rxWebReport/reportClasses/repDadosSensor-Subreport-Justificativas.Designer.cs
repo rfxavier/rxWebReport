@@ -36,8 +36,9 @@ namespace rxWebReport.reportClasses
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
             this.ReportHeader = new DevExpress.XtraReports.UI.ReportHeaderBand();
-            this.label1 = new DevExpress.XtraReports.UI.XRLabel();
             this.GroupHeader1 = new DevExpress.XtraReports.UI.GroupHeaderBand();
+            this.Detail = new DevExpress.XtraReports.UI.DetailBand();
+            this.label1 = new DevExpress.XtraReports.UI.XRLabel();
             this.table1 = new DevExpress.XtraReports.UI.XRTable();
             this.tableRow1 = new DevExpress.XtraReports.UI.XRTableRow();
             this.tableCell1 = new DevExpress.XtraReports.UI.XRTableCell();
@@ -45,7 +46,6 @@ namespace rxWebReport.reportClasses
             this.tableCell3 = new DevExpress.XtraReports.UI.XRTableCell();
             this.tableCell4 = new DevExpress.XtraReports.UI.XRTableCell();
             this.tableCell5 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.Detail = new DevExpress.XtraReports.UI.DetailBand();
             this.table2 = new DevExpress.XtraReports.UI.XRTable();
             this.tableRow2 = new DevExpress.XtraReports.UI.XRTableRow();
             this.tableCell6 = new DevExpress.XtraReports.UI.XRTableCell();
@@ -74,7 +74,7 @@ namespace rxWebReport.reportClasses
             // 
             // BottomMargin
             // 
-            this.BottomMargin.HeightF = 4.986318F;
+            this.BottomMargin.HeightF = 13F;
             this.BottomMargin.Name = "BottomMargin";
             // 
             // ReportHeader
@@ -84,16 +84,6 @@ namespace rxWebReport.reportClasses
             this.ReportHeader.HeightF = 24.19433F;
             this.ReportHeader.Name = "ReportHeader";
             // 
-            // label1
-            // 
-            this.label1.Font = new System.Drawing.Font("Arial", 12F);
-            this.label1.LocationFloat = new DevExpress.Utils.PointFloat(0F, 0F);
-            this.label1.Name = "label1";
-            this.label1.SizeF = new System.Drawing.SizeF(850.4395F, 24.19433F);
-            this.label1.StyleName = "Title";
-            this.label1.StylePriority.UseFont = false;
-            this.label1.Text = "Justificativas";
-            // 
             // GroupHeader1
             // 
             this.GroupHeader1.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
@@ -101,6 +91,24 @@ namespace rxWebReport.reportClasses
             this.GroupHeader1.GroupUnion = DevExpress.XtraReports.UI.GroupUnion.WithFirstDetail;
             this.GroupHeader1.HeightF = 28F;
             this.GroupHeader1.Name = "GroupHeader1";
+            this.GroupHeader1.RepeatEveryPage = true;
+            // 
+            // Detail
+            // 
+            this.Detail.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.table2});
+            this.Detail.HeightF = 25F;
+            this.Detail.Name = "Detail";
+            // 
+            // label1
+            // 
+            this.label1.Font = new System.Drawing.Font("Arial", 12F);
+            this.label1.LocationFloat = new DevExpress.Utils.PointFloat(0F, 0F);
+            this.label1.Name = "label1";
+            this.label1.SizeF = new System.Drawing.SizeF(1018.333F, 24.19433F);
+            this.label1.StyleName = "Title";
+            this.label1.StylePriority.UseFont = false;
+            this.label1.Text = "Justificativas";
             // 
             // table1
             // 
@@ -108,7 +116,7 @@ namespace rxWebReport.reportClasses
             this.table1.Name = "table1";
             this.table1.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.tableRow1});
-            this.table1.SizeF = new System.Drawing.SizeF(853.5905F, 28F);
+            this.table1.SizeF = new System.Drawing.SizeF(1018.333F, 28F);
             // 
             // tableRow1
             // 
@@ -128,42 +136,35 @@ namespace rxWebReport.reportClasses
             this.tableCell1.StyleName = "DetailCaption1";
             this.tableCell1.StylePriority.UseBorders = false;
             this.tableCell1.Text = "Distribuidor";
-            this.tableCell1.Weight = 0.20423149695763221D;
+            this.tableCell1.Weight = 0.17911853076559497D;
             // 
             // tableCell2
             // 
             this.tableCell2.Name = "tableCell2";
             this.tableCell2.StyleName = "DetailCaption1";
             this.tableCell2.Text = "Sensor";
-            this.tableCell2.Weight = 0.33846151725648155D;
+            this.tableCell2.Weight = 0.28823599256531507D;
             // 
             // tableCell3
             // 
             this.tableCell3.Name = "tableCell3";
             this.tableCell3.StyleName = "DetailCaption1";
             this.tableCell3.Text = "Data Evento";
-            this.tableCell3.Weight = 0.19692306568552329D;
+            this.tableCell3.Weight = 0.15859321169610863D;
             // 
             // tableCell4
             // 
             this.tableCell4.Name = "tableCell4";
             this.tableCell4.StyleName = "DetailCaption1";
             this.tableCell4.Text = "Mensagem";
-            this.tableCell4.Weight = 0.37667690865401449D;
+            this.tableCell4.Weight = 0.50752697174727346D;
             // 
             // tableCell5
             // 
             this.tableCell5.Name = "tableCell5";
             this.tableCell5.StyleName = "DetailCaption1";
             this.tableCell5.Text = "Data Mensagem";
-            this.tableCell5.Weight = 0.1969230330238668D;
-            // 
-            // Detail
-            // 
-            this.Detail.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.table2});
-            this.Detail.HeightF = 25F;
-            this.Detail.Name = "Detail";
+            this.tableCell5.Weight = 0.15859451490680759D;
             // 
             // table2
             // 
@@ -172,7 +173,7 @@ namespace rxWebReport.reportClasses
             this.table2.OddStyleName = "DetailData3_Odd";
             this.table2.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.tableRow2});
-            this.table2.SizeF = new System.Drawing.SizeF(853.5951F, 25F);
+            this.table2.SizeF = new System.Drawing.SizeF(1018.333F, 25F);
             // 
             // tableRow2
             // 
@@ -193,7 +194,7 @@ namespace rxWebReport.reportClasses
             this.tableCell6.Name = "tableCell6";
             this.tableCell6.StyleName = "DetailData1";
             this.tableCell6.StylePriority.UseBorders = false;
-            this.tableCell6.Weight = 0.20423149695763221D;
+            this.tableCell6.Weight = 0.17911951671141044D;
             // 
             // tableCell7
             // 
@@ -201,7 +202,7 @@ namespace rxWebReport.reportClasses
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Sensor]")});
             this.tableCell7.Name = "tableCell7";
             this.tableCell7.StyleName = "DetailData1";
-            this.tableCell7.Weight = 0.338461535981948D;
+            this.tableCell7.Weight = 0.28823767229237152D;
             // 
             // tableCell8
             // 
@@ -210,7 +211,7 @@ namespace rxWebReport.reportClasses
             this.tableCell8.Name = "tableCell8";
             this.tableCell8.StyleName = "DetailData1";
             this.tableCell8.TextFormatString = "{0:dd/MM/yy HH:mm:ss}";
-            this.tableCell8.Weight = 0.196923077054023D;
+            this.tableCell8.Weight = 0.15859407862637212D;
             // 
             // tableCell9
             // 
@@ -218,7 +219,7 @@ namespace rxWebReport.reportClasses
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Mensagem]")});
             this.tableCell9.Name = "tableCell9";
             this.tableCell9.StyleName = "DetailData1";
-            this.tableCell9.Weight = 0.3766840515592369D;
+            this.tableCell9.Weight = 0.50752962166120019D;
             // 
             // tableCell10
             // 
@@ -227,7 +228,7 @@ namespace rxWebReport.reportClasses
             this.tableCell10.Name = "tableCell10";
             this.tableCell10.StyleName = "DetailData1";
             this.tableCell10.TextFormatString = "{0:dd/MM/yy HH:mm:ss}";
-            this.tableCell10.Weight = 0.19692304195060426D;
+            this.tableCell10.Weight = 0.15859537940251939D;
             // 
             // objectDataSource1
             // 
@@ -332,7 +333,7 @@ namespace rxWebReport.reportClasses
             this.DataSource = this.objectDataSource1;
             this.Font = new System.Drawing.Font("Arial", 9.75F);
             this.Landscape = true;
-            this.Margins = new System.Drawing.Printing.Margins(100, 100, 0, 5);
+            this.Margins = new System.Drawing.Printing.Margins(9, 50, 0, 13);
             this.PageHeight = 850;
             this.PageWidth = 1100;
             this.Parameters.AddRange(new DevExpress.XtraReports.Parameters.Parameter[] {

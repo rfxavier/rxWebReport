@@ -93,6 +93,7 @@ namespace rxWebReport.reportClasses
             this.GroupHeader1.GroupUnion = DevExpress.XtraReports.UI.GroupUnion.WithFirstDetail;
             this.GroupHeader1.HeightF = 28F;
             this.GroupHeader1.Name = "GroupHeader1";
+            this.GroupHeader1.RepeatEveryPage = true;
             // 
             // Detail
             // 
@@ -121,7 +122,7 @@ namespace rxWebReport.reportClasses
             this.table1.Name = "table1";
             this.table1.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.tableRow1});
-            this.table1.SizeF = new System.Drawing.SizeF(768.8707F, 28F);
+            this.table1.SizeF = new System.Drawing.SizeF(1027.292F, 28F);
             // 
             // tableRow1
             // 
@@ -165,18 +166,18 @@ namespace rxWebReport.reportClasses
             this.tableCell5.Name = "tableCell5";
             this.tableCell5.StyleName = "DetailCaption1";
             this.tableCell5.Text = "Descrição";
-            this.tableCell5.Weight = 0.6846642282866251D;
+            this.tableCell5.Weight = 1.1094787798170758D;
             // 
             // label5
             // 
             this.label5.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[calcDescription]")});
             this.label5.Font = new System.Drawing.Font("Arial", 8.25F);
-            this.label5.LocationFloat = new DevExpress.Utils.PointFloat(323.8389F, 1.999982F);
+            this.label5.LocationFloat = new DevExpress.Utils.PointFloat(318.3511F, 1.999982F);
             this.label5.Multiline = true;
             this.label5.Name = "label5";
             this.label5.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.label5.SizeF = new System.Drawing.SizeF(445.0317F, 25F);
+            this.label5.SizeF = new System.Drawing.SizeF(708.9407F, 25F);
             this.label5.StylePriority.UseFont = false;
             this.label5.StylePriority.UseTextAlignment = false;
             this.label5.Text = "label5";
@@ -209,10 +210,10 @@ namespace rxWebReport.reportClasses
             this.label2.BorderWidth = 2F;
             this.label2.Font = new System.Drawing.Font("Arial", 8.25F);
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.LocationFloat = new DevExpress.Utils.PointFloat(211.5791F, 0F);
+            this.label2.LocationFloat = new DevExpress.Utils.PointFloat(207.9937F, 0F);
             this.label2.Name = "label2";
             this.label2.Padding = new DevExpress.XtraPrinting.PaddingInfo(6, 6, 0, 0, 100F);
-            this.label2.SizeF = new System.Drawing.SizeF(112.2599F, 25F);
+            this.label2.SizeF = new System.Drawing.SizeF(110.3574F, 25F);
             this.label2.StyleName = "DetailData1";
             this.label2.StylePriority.UseBorderColor = false;
             this.label2.StylePriority.UseBorders = false;
@@ -233,10 +234,10 @@ namespace rxWebReport.reportClasses
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Time]")});
             this.label3.Font = new System.Drawing.Font("Arial", 8.25F);
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.LocationFloat = new DevExpress.Utils.PointFloat(56.45227F, 0F);
+            this.label3.LocationFloat = new DevExpress.Utils.PointFloat(56.4523F, 0F);
             this.label3.Name = "label3";
             this.label3.Padding = new DevExpress.XtraPrinting.PaddingInfo(6, 6, 0, 0, 100F);
-            this.label3.SizeF = new System.Drawing.SizeF(155.1268F, 25F);
+            this.label3.SizeF = new System.Drawing.SizeF(151.5414F, 25F);
             this.label3.StyleName = "DetailData1";
             this.label3.StylePriority.UseBorderColor = false;
             this.label3.StylePriority.UseBorders = false;
@@ -381,7 +382,10 @@ namespace rxWebReport.reportClasses
             this.objectDataSource1});
             this.DataSource = this.objectDataSource1;
             this.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.Margins = new System.Drawing.Printing.Margins(23, 22, 3, 4);
+            this.Landscape = true;
+            this.Margins = new System.Drawing.Printing.Margins(23, 45, 3, 4);
+            this.PageHeight = 850;
+            this.PageWidth = 1100;
             this.Parameters.AddRange(new DevExpress.XtraReports.Parameters.Parameter[] {
             this.parRepInitialDate,
             this.parRepFinalDate,
