@@ -1509,6 +1509,7 @@
     <EmbeddedResource Include="Migrations\202501011921099_v036.resx">
       <DependentUpon>202501011921099_v036.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="reportClasses\repDadosSensor-Subreport-Justificativas.resx">
       <DependentUpon>repDadosSensor-Subreport-Justificativas.cs</DependentUpon>
     </EmbeddedResource>

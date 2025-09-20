@@ -115,7 +115,41 @@ namespace rxWebReport.dataObjClasses
                 }
                 else
                 {
-                    query = $@"
+                    if (itemNameFilter.StartsWith("TTU", StringComparison.OrdinalIgnoreCase))
+                    {
+                        query = $@"
+                            SELECT h.name AS Hostname, 
+                                    i.name AS Item, 
+                                    h2.value AS Value, 
+                                    i.description,
+                                    DATE_FORMAT(FROM_UNIXTIME(h2.clock), '%Y-%m-%d %H:%i:%s') AS SensorDate
+                            FROM hosts h
+                            INNER JOIN items i ON i.hostid = h.hostid
+                            INNER JOIN history h2 ON h2.itemid = i.itemid
+                            WHERE (h.name LIKE 'TTU%') 
+                            AND i.name LIKE '{itemNameFilter}' 
+                            AND DATE_FORMAT(FROM_UNIXTIME(h2.clock), '%Y-%m-%d %H:%i:%s') 
+                            BETWEEN '{InitialDate}' AND '{FinalDate}'";
+                    }
+                    else if (itemNameFilter.StartsWith("REG", StringComparison.OrdinalIgnoreCase))
+                    {
+                        query = $@"
+                            SELECT h.name AS Hostname, 
+                                    i.name AS Item, 
+                                    h2.value AS Value, 
+                                    i.description,
+                                    DATE_FORMAT(FROM_UNIXTIME(h2.clock), '%Y-%m-%d %H:%i:%s') AS SensorDate
+                            FROM hosts h
+                            INNER JOIN items i ON i.hostid = h.hostid
+                            INNER JOIN history h2 ON h2.itemid = i.itemid
+                            WHERE (h.name LIKE 'REG%') 
+                            AND i.name LIKE '{itemNameFilter}' 
+                            AND DATE_FORMAT(FROM_UNIXTIME(h2.clock), '%Y-%m-%d %H:%i:%s') 
+                            BETWEEN '{InitialDate}' AND '{FinalDate}'";
+                    }
+                    else
+                    {
+                        query = $@"
                             SELECT h.name AS Hostname, 
                                     i.name AS Item, 
                                     h2.value AS Value, 
@@ -128,6 +162,7 @@ namespace rxWebReport.dataObjClasses
                             AND i.name LIKE '{itemNameFilter}' 
                             AND DATE_FORMAT(FROM_UNIXTIME(h2.clock), '%Y-%m-%d %H:%i:%s') 
                             BETWEEN '{InitialDate}' AND '{FinalDate}'";
+                    }
                 }
 
                 using (var cmd = new MySqlCommand(query, conn))
