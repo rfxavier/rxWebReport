@@ -115,7 +115,14 @@ namespace rxWebReport.frmAgyliti.JaSaude
                             ((XYDiagram)chart.Diagram).AxisY.ConstantLines[0].Visible = true;
                             ((XYDiagram)chart.Diagram).AxisY.ConstantLines[0].AxisValue = 15;
                             ((XYDiagram)chart.Diagram).AxisY.ConstantLines[1].Visible = true;
-                            ((XYDiagram)chart.Diagram).AxisY.ConstantLines[1].AxisValue = 30;
+                            if (item.StartsWith("REG-01APQ") || item.StartsWith("TTU-01APQ"))
+                            {
+                                ((XYDiagram)chart.Diagram).AxisY.ConstantLines[1].AxisValue = 30;
+                            }
+                            else 
+                            {
+                                ((XYDiagram)chart.Diagram).AxisY.ConstantLines[1].AxisValue = 25;
+                            }
 
                         }
                         else if (item.EndsWith("Umidade", StringComparison.OrdinalIgnoreCase))
@@ -123,7 +130,13 @@ namespace rxWebReport.frmAgyliti.JaSaude
                             chart.Series[0].Name = item + " %HR";
                             ((XYDiagram)chart.Diagram).AxisY.ConstantLines[0].Visible = false;
                             ((XYDiagram)chart.Diagram).AxisY.ConstantLines[1].Visible = true;
-                            ((XYDiagram)chart.Diagram).AxisY.ConstantLines[1].AxisValue = 65;
+                            if (item.StartsWith("TTU-03BIPE"))
+                            {
+                                ((XYDiagram)chart.Diagram).AxisY.ConstantLines[1].AxisValue = 75;
+                            } else
+                            {
+                                ((XYDiagram)chart.Diagram).AxisY.ConstantLines[1].AxisValue = 80;
+                            }
                         }
                     }
                 }
