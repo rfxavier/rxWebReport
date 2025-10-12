@@ -136,7 +136,7 @@ namespace rxWebReport.frmAgyliti.Bacio
                     chart.Series[0].Name = item + $" {unidade}";
                     ((XYDiagram)chart.Diagram).AxisY.ConstantLines[0].Visible = true;
                     ((XYDiagram)chart.Diagram).AxisY.ConstantLines[0].AxisValue = limiteInferior;
-                    ((XYDiagram)chart.Diagram).AxisY.ConstantLines[1].Visible = true;
+                    ((XYDiagram)chart.Diagram).AxisY.ConstantLines[1].Visible = false;
                     ((XYDiagram)chart.Diagram).AxisY.ConstantLines[1].AxisValue = limiteSuperior;
                 }
 

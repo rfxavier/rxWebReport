@@ -337,7 +337,7 @@ namespace rxWebReport.reportClasses
             constantLine2.LineStyle.Thickness = 2;
             constantLine2.Name = "limSuperior";
             constantLine2.ShowInLegend = false;
-            constantLine2.Title.Text = "Limite superior";
+            constantLine2.Title.Text = "Limite";
             xyDiagram1.AxisY.ConstantLines.AddRange(new DevExpress.XtraCharts.ConstantLine[] {
             constantLine1,
             constantLine2});
