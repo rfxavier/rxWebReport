@@ -143,7 +143,8 @@ namespace rxWebReport.dataObjClasses
                             INNER JOIN items i ON i.hostid = h.hostid
                             INNER JOIN history h2 ON h2.itemid = i.itemid
                             WHERE (h.name LIKE 'REG%') 
-                            AND i.name LIKE '{itemNameFilter}' 
+                            AND i.name LIKE '{itemNameFilter}'
+                            AND h2.value > -100
                             AND DATE_FORMAT(FROM_UNIXTIME(h2.clock), '%Y-%m-%d %H:%i:%s') 
                             BETWEEN '{InitialDate}' AND '{FinalDate}'";
                     }

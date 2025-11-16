@@ -62,9 +62,9 @@ namespace rxWebReport.reportClasses
             this.label8 = new DevExpress.XtraReports.UI.XRLabel();
             this.label6 = new DevExpress.XtraReports.UI.XRLabel();
             this.chart2 = new DevExpress.XtraReports.UI.XRChart();
-            this.label23 = new DevExpress.XtraReports.UI.XRLabel();
+            this.labelLimiteInferior = new DevExpress.XtraReports.UI.XRLabel();
             this.label5 = new DevExpress.XtraReports.UI.XRLabel();
-            this.label3 = new DevExpress.XtraReports.UI.XRLabel();
+            this.labelLimiteSuperior = new DevExpress.XtraReports.UI.XRLabel();
             this.label19 = new DevExpress.XtraReports.UI.XRLabel();
             this.label18 = new DevExpress.XtraReports.UI.XRLabel();
             this.label17 = new DevExpress.XtraReports.UI.XRLabel();
@@ -137,9 +137,9 @@ namespace rxWebReport.reportClasses
             // PageHeader
             // 
             this.PageHeader.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.label23,
+            this.labelLimiteInferior,
             this.label5,
-            this.label3,
+            this.labelLimiteSuperior,
             this.label19,
             this.label18,
             this.label17,
@@ -354,45 +354,45 @@ namespace rxWebReport.reportClasses
         series1};
             this.chart2.SizeF = new System.Drawing.SizeF(880F, 557.25F);
             // 
-            // label23
+            // labelLimiteInferior
             // 
-            this.label23.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            this.labelLimiteInferior.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[calcLimiteInferior]"),
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Visible", "Not [calcLimitesVisibility]")});
-            this.label23.LocationFloat = new DevExpress.Utils.PointFloat(703.1249F, 40.70835F);
-            this.label23.Multiline = true;
-            this.label23.Name = "label23";
-            this.label23.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.label23.SizeF = new System.Drawing.SizeF(150.0001F, 19.79167F);
-            this.label23.StylePriority.UseTextAlignment = false;
-            this.label23.Text = "label23";
-            this.label23.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
-            this.label23.TextFormatString = "{0:#.0}";
+            this.labelLimiteInferior.LocationFloat = new DevExpress.Utils.PointFloat(703.1249F, 40.70835F);
+            this.labelLimiteInferior.Multiline = true;
+            this.labelLimiteInferior.Name = "labelLimiteInferior";
+            this.labelLimiteInferior.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.labelLimiteInferior.SizeF = new System.Drawing.SizeF(150.0001F, 19.79167F);
+            this.labelLimiteInferior.StylePriority.UseTextAlignment = false;
+            this.labelLimiteInferior.Text = "labelLimiteInferior";
+            this.labelLimiteInferior.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
+            this.labelLimiteInferior.TextFormatString = "{0:#.0}";
             // 
             // label5
             // 
             this.label5.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Description]")});
-            this.label5.LocationFloat = new DevExpress.Utils.PointFloat(111.4583F, 9.999974F);
+            this.label5.LocationFloat = new DevExpress.Utils.PointFloat(111.4583F, 9.999973F);
             this.label5.Multiline = true;
             this.label5.Name = "label5";
             this.label5.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.label5.SizeF = new System.Drawing.SizeF(419.1667F, 19.79167F);
             this.label5.Text = "label4";
             // 
-            // label3
+            // labelLimiteSuperior
             // 
-            this.label3.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            this.labelLimiteSuperior.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[calcLimiteSuperior]"),
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Visible", "(Not EndsWith(?parRepItemPrefix, \'BIPE\')) And (Not [calcLimitesVisibility])\n")});
-            this.label3.LocationFloat = new DevExpress.Utils.PointFloat(703.1252F, 60.50002F);
-            this.label3.Multiline = true;
-            this.label3.Name = "label3";
-            this.label3.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.label3.SizeF = new System.Drawing.SizeF(149.9998F, 19.79167F);
-            this.label3.StylePriority.UseTextAlignment = false;
-            this.label3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
-            this.label3.TextFormatString = "{0:#.0}";
+            this.labelLimiteSuperior.LocationFloat = new DevExpress.Utils.PointFloat(703.1252F, 60.50002F);
+            this.labelLimiteSuperior.Multiline = true;
+            this.labelLimiteSuperior.Name = "labelLimiteSuperior";
+            this.labelLimiteSuperior.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.labelLimiteSuperior.SizeF = new System.Drawing.SizeF(149.9998F, 19.79167F);
+            this.labelLimiteSuperior.StylePriority.UseTextAlignment = false;
+            this.labelLimiteSuperior.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
+            this.labelLimiteSuperior.TextFormatString = "{0:#.0}";
             // 
             // label19
             // 
@@ -508,7 +508,7 @@ namespace rxWebReport.reportClasses
             // 
             this.label10.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[calcLocalidadeTemp]")});
-            this.label10.LocationFloat = new DevExpress.Utils.PointFloat(530.625F, 9.999974F);
+            this.label10.LocationFloat = new DevExpress.Utils.PointFloat(530.625F, 9.999973F);
             this.label10.Multiline = true;
             this.label10.Name = "label10";
             this.label10.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -519,7 +519,7 @@ namespace rxWebReport.reportClasses
             // 
             // label9
             // 
-            this.label9.LocationFloat = new DevExpress.Utils.PointFloat(0F, 9.999974F);
+            this.label9.LocationFloat = new DevExpress.Utils.PointFloat(0F, 9.999973F);
             this.label9.Multiline = true;
             this.label9.Name = "label9";
             this.label9.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -687,9 +687,9 @@ namespace rxWebReport.reportClasses
         private DevExpress.XtraReports.UI.XRChart chart2;
         private DevExpress.DataAccess.ObjectBinding.ObjectDataSource objectDataSource3;
         private DevExpress.XtraReports.UI.PageHeaderBand PageHeader;
-        private DevExpress.XtraReports.UI.XRLabel label23;
+        private DevExpress.XtraReports.UI.XRLabel labelLimiteInferior;
         private DevExpress.XtraReports.UI.XRLabel label5;
-        private DevExpress.XtraReports.UI.XRLabel label3;
+        private DevExpress.XtraReports.UI.XRLabel labelLimiteSuperior;
         private DevExpress.XtraReports.UI.XRLabel label19;
         private DevExpress.XtraReports.UI.XRLabel label18;
         private DevExpress.XtraReports.UI.XRLabel label17;
