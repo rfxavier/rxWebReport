@@ -89,6 +89,7 @@ namespace rxWebReport.reportClasses
             this.calculatedField1 = new DevExpress.XtraReports.UI.CalculatedField();
             this.calcLimiteSuperior = new DevExpress.XtraReports.UI.CalculatedField();
             this.calcLimitesVisibility = new DevExpress.XtraReports.UI.CalculatedField();
+            this.calcParRepItemPrefix = new DevExpress.XtraReports.UI.CalculatedField();
             this.parRepItemPrefix = new DevExpress.XtraReports.Parameters.Parameter();
             this.parRepInitialDate = new DevExpress.XtraReports.Parameters.Parameter();
             this.parRepFinalDate = new DevExpress.XtraReports.Parameters.Parameter();
@@ -552,8 +553,8 @@ namespace rxWebReport.reportClasses
             // 
             // calcLocalidadeTemp
             // 
-            this.calcLocalidadeTemp.Expression = "Concat(?parRepItemPrefix, Iif(EndsWith(?parRepItemPrefix, \'BIPE\'),\' Dif.Pressão\'," +
-    " Iif([MeasurementType] = \'Temperatura\', \' ºC\', \' UR\')))";
+            this.calcLocalidadeTemp.Expression = "Concat([calcParRepItemPrefix], Iif(EndsWith(?parRepItemPrefix, \'BIPE\'),\' Dif.Pres" +
+    "são\', Iif([MeasurementType] = \'Temperatura\', \' ºC\', \' UR\')))";
             this.calcLocalidadeTemp.Name = "calcLocalidadeTemp";
             // 
             // calcLocalidadeHR
@@ -600,22 +601,27 @@ namespace rxWebReport.reportClasses
     "\'\n\n";
             this.calcLimitesVisibility.Name = "calcLimitesVisibility";
             // 
+            // calcParRepItemPrefix
+            // 
+            this.calcParRepItemPrefix.Expression = "?parRepItemPrefix";
+            this.calcParRepItemPrefix.Name = "calcParRepItemPrefix";
+            // 
             // parRepItemPrefix
             // 
             this.parRepItemPrefix.Name = "parRepItemPrefix";
-            this.parRepItemPrefix.ValueInfo = "REG-01APQ-Umidade";
+            this.parRepItemPrefix.ValueInfo = "TTU-01BIPE-Humidade";
             this.parRepItemPrefix.Visible = false;
             // 
             // parRepInitialDate
             // 
             this.parRepInitialDate.Name = "parRepInitialDate";
-            this.parRepInitialDate.ValueInfo = "2025-08-28";
+            this.parRepInitialDate.ValueInfo = "2025-11-02";
             this.parRepInitialDate.Visible = false;
             // 
             // parRepFinalDate
             // 
             this.parRepFinalDate.Name = "parRepFinalDate";
-            this.parRepFinalDate.ValueInfo = "2025-08-29";
+            this.parRepFinalDate.ValueInfo = "2025-11-03";
             this.parRepFinalDate.Visible = false;
             // 
             // repSalasTempHR
@@ -635,7 +641,8 @@ namespace rxWebReport.reportClasses
             this.calcHumidityValueColor,
             this.calculatedField1,
             this.calcLimiteSuperior,
-            this.calcLimitesVisibility});
+            this.calcLimitesVisibility,
+            this.calcParRepItemPrefix});
             this.ComponentStorage.AddRange(new System.ComponentModel.IComponent[] {
             this.objectDataSource3});
             this.DataSource = this.objectDataSource3;
@@ -713,5 +720,6 @@ namespace rxWebReport.reportClasses
         private DevExpress.XtraReports.UI.CalculatedField calculatedField1;
         private DevExpress.XtraReports.UI.CalculatedField calcLimiteSuperior;
         private DevExpress.XtraReports.UI.CalculatedField calcLimitesVisibility;
+        private DevExpress.XtraReports.UI.CalculatedField calcParRepItemPrefix;
     }
 }

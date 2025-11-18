@@ -156,6 +156,9 @@ namespace rxWebReport.frmAgyliti.JaSaude
                                 ? item.Replace("Humidade", "Umidade")
                                 : item;
 
+                            //calcParRepItemPrefix
+                            objReport.CalculatedFields[9].Expression = $"'{label}'";
+
                             chart.Series[0].Name = label + " %HR";
                             ((XYDiagram)chart.Diagram).AxisY.ConstantLines[0].Visible = false;
                             labelLimiteInferior.ExpressionBindings.Clear();
