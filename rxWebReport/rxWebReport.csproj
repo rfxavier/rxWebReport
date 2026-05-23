@@ -408,6 +408,7 @@
     <Content Include="frmAgyliti\GetLock\cnUsuariosAdmin\cnUsuariosCofre.aspx" />
     <Content Include="frmAgyliti\GetLock\cnUsuariosAdmin\cnUsuariosCofreDetalhe.aspx" />
     <Content Include="frmAgyliti\GetLock\cnUsuarios\cnUsuarios.aspx" />
+    <Content Include="frmAgyliti\JaSaude\DownloadSalasTempHR.aspx" />
     <Content Include="frmAgyliti\JaSaude\relSalasTempHR.aspx" />
     <Content Include="Global.asax" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -1077,6 +1078,13 @@
     </Compile>
     <Compile Include="frmAgyliti\GetLock\cnUsuarios\cnUsuarios.aspx.designer.cs">
       <DependentUpon>cnUsuarios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmAgyliti\JaSaude\DownloadSalasTempHR.aspx.cs">
+      <DependentUpon>DownloadSalasTempHR.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAgyliti\JaSaude\DownloadSalasTempHR.aspx.designer.cs">
+      <DependentUpon>DownloadSalasTempHR.aspx</DependentUpon>
     </Compile>
     <Compile Include="frmAgyliti\JaSaude\relSalasTempHR.aspx.cs">
       <DependentUpon>relSalasTempHR.aspx</DependentUpon>

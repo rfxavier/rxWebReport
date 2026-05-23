@@ -5,5 +5,8 @@
     <Setting Name="SelectedFolderPath" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="ReportBaseUrl" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://localhost:55670/frmAgyliti/JaSaude/DownloadSalasTempHR.aspx</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

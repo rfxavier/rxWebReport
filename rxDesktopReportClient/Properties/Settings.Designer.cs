@@ -34,5 +34,17 @@ namespace rxDesktopReportClient.Properties {
                 this["SelectedFolderPath"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:55670/frmAgyliti/JaSaude/DownloadSalasTempHR.aspx")]
+        public string ReportBaseUrl {
+            get {
+                return ((string)(this["ReportBaseUrl"]));
+            }
+            set {
+                this["ReportBaseUrl"] = value;
+            }
+        }
     }
 }

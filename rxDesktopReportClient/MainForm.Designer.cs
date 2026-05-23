@@ -32,15 +32,16 @@ namespace rxDesktopReportClient
             this.btnChooseFolder = new System.Windows.Forms.Button();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.txtFolderPath = new System.Windows.Forms.TextBox();
+            this.btnDownloadReport = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnChooseFolder
             // 
-            this.btnChooseFolder.Location = new System.Drawing.Point(483, 243);
+            this.btnChooseFolder.Location = new System.Drawing.Point(103, 233);
             this.btnChooseFolder.Name = "btnChooseFolder";
-            this.btnChooseFolder.Size = new System.Drawing.Size(75, 23);
+            this.btnChooseFolder.Size = new System.Drawing.Size(75, 60);
             this.btnChooseFolder.TabIndex = 0;
-            this.btnChooseFolder.Text = "button1";
+            this.btnChooseFolder.Text = "Escolher Pasta Raiz";
             this.btnChooseFolder.UseVisualStyleBackColor = true;
             this.btnChooseFolder.Click += new System.EventHandler(this.btnChooseFolder_Click);
             // 
@@ -51,11 +52,22 @@ namespace rxDesktopReportClient
             this.txtFolderPath.Size = new System.Drawing.Size(642, 22);
             this.txtFolderPath.TabIndex = 1;
             // 
+            // btnDownloadReport
+            // 
+            this.btnDownloadReport.Location = new System.Drawing.Point(103, 77);
+            this.btnDownloadReport.Name = "btnDownloadReport";
+            this.btnDownloadReport.Size = new System.Drawing.Size(75, 44);
+            this.btnDownloadReport.TabIndex = 2;
+            this.btnDownloadReport.Text = "download Report";
+            this.btnDownloadReport.UseVisualStyleBackColor = true;
+            this.btnDownloadReport.Click += new System.EventHandler(this.btnDownloadReport_ClickAsync);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnDownloadReport);
             this.Controls.Add(this.txtFolderPath);
             this.Controls.Add(this.btnChooseFolder);
             this.Name = "MainForm";
@@ -70,6 +82,7 @@ namespace rxDesktopReportClient
         private System.Windows.Forms.Button btnChooseFolder;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.Windows.Forms.TextBox txtFolderPath;
+        private System.Windows.Forms.Button btnDownloadReport;
     }
 }
 
