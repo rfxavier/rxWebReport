@@ -37,13 +37,26 @@ namespace rxDesktopReportClient.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:55670/frmAgyliti/JaSaude/DownloadSalasTempHR.aspx")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://relatorios.agyliti.com.br:9099/frmAgyliti/JaSaude/DownloadSalasTempHR.aspx" +
+            "")]
         public string ReportBaseUrl {
             get {
                 return ((string)(this["ReportBaseUrl"]));
             }
             set {
                 this["ReportBaseUrl"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\git.rfxavier\\rxWebReport\\rxDesktopReportClient\\tableData.json")]
+        public string JsonFilePath {
+            get {
+                return ((string)(this["JsonFilePath"]));
+            }
+            set {
+                this["JsonFilePath"] = value;
             }
         }
     }

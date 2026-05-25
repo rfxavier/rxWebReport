@@ -1,0 +1,17 @@
+[
+  {
+    "dispositivo": "TDP-01BIPE",
+    "unidadeProd": "São Paulo",
+    "setor": "penicilina"
+  },
+  {
+    "dispositivo": "TTU-01APQ-Temperatura",
+    "unidadeProd": "São Paulo",
+    "setor": "líquidos injetáveis"
+  },
+  {
+    "dispositivo": "REG-01APQ-Temperatura",
+    "unidadeProd": "Franca",
+    "setor": "penicilina"
+  }
+]
