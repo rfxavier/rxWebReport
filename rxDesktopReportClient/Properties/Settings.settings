@@ -11,5 +11,11 @@
     <Setting Name="JsonFilePath" Type="System.String" Scope="User">
       <Value Profile="(Default)">C:\git.rfxavier\rxWebReport\rxDesktopReportClient\tableData.json</Value>
     </Setting>
+    <Setting Name="ReportRunIntervalMinutes" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">10</Value>
+    </Setting>
+    <Setting Name="EnableTimedReportRuns" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -5,13 +5,188 @@
     "setor": "penicilina"
   },
   {
+    "dispositivo": "TDP-02BIPE",
+    "unidadeProd": "São Paulo",
+    "setor": "penicilina"
+  },
+  {
+    "dispositivo": "TDP-03BIPE",
+    "unidadeProd": "São Paulo",
+    "setor": "penicilina"
+  },
+  {
+    "dispositivo": "TDP-04BIPE",
+    "unidadeProd": "São Paulo",
+    "setor": "penicilina"
+  },
+  {
+    "dispositivo": "TDP-05BIPE",
+    "unidadeProd": "São Paulo",
+    "setor": "penicilina"
+  },
+  {
+    "dispositivo": "TDP-06BIPE",
+    "unidadeProd": "São Paulo",
+    "setor": "penicilina"
+  },
+  {
+    "dispositivo": "TDP-07BIPE",
+    "unidadeProd": "São Paulo",
+    "setor": "penicilina"
+  },
+  {
+    "dispositivo": "TDP-08BIPE",
+    "unidadeProd": "São Paulo",
+    "setor": "penicilina"
+  },
+  {
+    "dispositivo": "TDP-09BIPE",
+    "unidadeProd": "São Paulo",
+    "setor": "penicilina"
+  },
+  {
+    "dispositivo": "TDP-10BIPE",
+    "unidadeProd": "São Paulo",
+    "setor": "penicilina"
+  },
+  {
+    "dispositivo": "TDP-11BIPE",
+    "unidadeProd": "São Paulo",
+    "setor": "penicilina"
+  },
+  {
+    "dispositivo": "TDP-12BIPE",
+    "unidadeProd": "São Paulo",
+    "setor": "penicilina"
+  },
+  {
+    "dispositivo": "TDP-13BIPE",
+    "unidadeProd": "São Paulo",
+    "setor": "penicilina"
+  },
+  {
+    "dispositivo": "TDP-14BIPE",
+    "unidadeProd": "São Paulo",
+    "setor": "penicilina"
+  },
+  {
+    "dispositivo": "TDP-15BIPE",
+    "unidadeProd": "São Paulo",
+    "setor": "penicilina"
+  },
+  {
+    "dispositivo": "TDP-16BIPE",
+    "unidadeProd": "São Paulo",
+    "setor": "penicilina"
+  },
+  {
+    "dispositivo": "TDP-17BIPE",
+    "unidadeProd": "São Paulo",
+    "setor": "penicilina"
+  },
+  {
+    "dispositivo": "TDP-18BIPE",
+    "unidadeProd": "São Paulo",
+    "setor": "penicilina"
+  },
+  {
+    "dispositivo": "TDP-19BIPE",
+    "unidadeProd": "São Paulo",
+    "setor": "penicilina"
+  },
+  {
     "dispositivo": "TTU-01APQ-Temperatura",
     "unidadeProd": "São Paulo",
     "setor": "líquidos injetáveis"
   },
   {
+    "dispositivo": "TTU-01APQ-Umidade",
+    "unidadeProd": "São Paulo",
+    "setor": "líquidos injetáveis"
+  },
+  {
+    "dispositivo": "TTU-01BIPE-Humidade",
+    "unidadeProd": "São Paulo",
+    "setor": "penicilina"
+  },
+  {
+    "dispositivo": "TTU-01BIPE-Temperatura",
+    "unidadeProd": "São Paulo",
+    "setor": "penicilina"
+  },
+  {
+    "dispositivo": "TTU-02APQ-Humidade",
+    "unidadeProd": "São Paulo",
+    "setor": "líquidos injetáveis"
+  },
+  {
+    "dispositivo": "TTU-02APQ-Temperatura",
+    "unidadeProd": "São Paulo",
+    "setor": "líquidos injetáveis"
+  },
+  {
+    "dispositivo": "TTU-02BIPE-Humidade",
+    "unidadeProd": "São Paulo",
+    "setor": "penicilina"
+  },
+  {
+    "dispositivo": "TTU-02BIPE-Temperatura",
+    "unidadeProd": "São Paulo",
+    "setor": "penicilina"
+  },
+  {
+    "dispositivo": "TTU-03BIPE-Humidade",
+    "unidadeProd": "São Paulo",
+    "setor": "penicilina"
+  },
+  {
+    "dispositivo": "TTU-03BIPE-Temperatura",
+    "unidadeProd": "São Paulo",
+    "setor": "penicilina"
+  },
+  {
+    "dispositivo": "TTU-04BIPE-Humidade",
+    "unidadeProd": "São Paulo",
+    "setor": "penicilina"
+  },
+  {
+    "dispositivo": "TTU-04BIPE-Temperatura",
+    "unidadeProd": "São Paulo",
+    "setor": "penicilina"
+  },
+  {
+    "dispositivo": "TTU-05BIPE-Humidade",
+    "unidadeProd": "São Paulo",
+    "setor": "penicilina"
+  },
+  {
+    "dispositivo": "TTU-05BIPE-Temperatura",
+    "unidadeProd": "São Paulo",
+    "setor": "penicilina"
+  },
+  {
+    "dispositivo": "TTU-06BIPE-Humidade",
+    "unidadeProd": "São Paulo",
+    "setor": "penicilina"
+  },
+  {
+    "dispositivo": "TTU-06BIPE-Temperatura",
+    "unidadeProd": "São Paulo",
+    "setor": "penicilina"
+  },
+  {
     "dispositivo": "REG-01APQ-Temperatura",
     "unidadeProd": "Franca",
     "setor": "penicilina"
+  },
+  {
+    "dispositivo": "REG-01APQ-Umidade",
+    "unidadeProd": "Franca",
+    "setor": "penicilina"
+  },
+  {
+    "dispositivo": "TTU-01APQ-Humidade",
+    "unidadeProd": "São Paulo",
+    "setor": "líquidos injetáveis"
   }
 ]

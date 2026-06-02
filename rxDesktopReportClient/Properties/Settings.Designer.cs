@@ -59,5 +59,29 @@ namespace rxDesktopReportClient.Properties {
                 this["JsonFilePath"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("10")]
+        public int ReportRunIntervalMinutes {
+            get {
+                return ((int)(this["ReportRunIntervalMinutes"]));
+            }
+            set {
+                this["ReportRunIntervalMinutes"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool EnableTimedReportRuns {
+            get {
+                return ((bool)(this["EnableTimedReportRuns"]));
+            }
+            set {
+                this["EnableTimedReportRuns"] = value;
+            }
+        }
     }
 }

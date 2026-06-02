@@ -15,6 +15,8 @@ namespace rxDesktopReportClient
             Properties.Settings.Default.JsonFilePath;
 
         private BindingList<DeviceConfig> devices;
+        private System.Windows.Forms.Timer reportTimer;
+        private bool reportRunInProgress = false;
         public MainForm()
         {
             InitializeComponent();
@@ -22,6 +24,8 @@ namespace rxDesktopReportClient
 
             LoadGridFromJson();
             ConfigureGridEditing();
+
+            ConfigureReportTimer();
         }
 
         private void LoadGridFromJson()
@@ -74,6 +78,154 @@ namespace rxDesktopReportClient
             txtFolderPath.Text = Properties.Settings.Default.SelectedFolderPath;
         }
 
+        private void ConfigureReportTimer()
+        {
+            if (reportTimer != null)
+            {
+                reportTimer.Stop();
+                reportTimer.Dispose();
+            }
+
+            reportTimer = new System.Windows.Forms.Timer();
+
+            int intervalMinutes = Properties.Settings.Default.ReportRunIntervalMinutes;
+
+            if (intervalMinutes <= 0)
+                intervalMinutes = 60;
+
+            reportTimer.Interval = intervalMinutes * 60 * 1000;
+
+            reportTimer.Tick += async (s, e) =>
+            {
+                await RunTimedReportDownloadAsync();
+            };
+
+            if (Properties.Settings.Default.EnableTimedReportRuns)
+            {
+                reportTimer.Start();
+            }
+        }
+
+        private async Task RunTimedReportDownloadAsync()
+        {
+            if (reportRunInProgress)
+                return;
+
+            reportRunInProgress = true;
+            reportTimer.Stop();
+
+            try
+            {
+                await DownloadReportsAsync();
+            }
+            catch (Exception ex)
+            {
+                WriteLog("Timed report download failed: " + ex);
+            }
+            finally
+            {
+                reportRunInProgress = false;
+
+                if (Properties.Settings.Default.EnableTimedReportRuns)
+                    reportTimer.Start();
+            }
+        }
+
+        private async Task DownloadReportsAsync()
+        {
+            string folderPath = Properties.Settings.Default.SelectedFolderPath;
+            string baseUrl = Properties.Settings.Default.ReportBaseUrl;
+            string jsonFilePath = Properties.Settings.Default.JsonFilePath;
+
+            if (string.IsNullOrWhiteSpace(folderPath) || !Directory.Exists(folderPath))
+                throw new InvalidOperationException("Select a valid output folder first.");
+
+            if (string.IsNullOrWhiteSpace(baseUrl))
+                throw new InvalidOperationException("ReportBaseUrl is not configured.");
+
+            if (string.IsNullOrWhiteSpace(jsonFilePath) || !File.Exists(jsonFilePath))
+                throw new InvalidOperationException("JsonFilePath is not configured or file does not exist.");
+
+            string json = File.ReadAllText(jsonFilePath);
+
+            var devices = JsonConvert.DeserializeObject<List<DeviceConfig>>(json)
+                          ?? new List<DeviceConfig>();
+
+            if (devices.Count == 0)
+                throw new InvalidOperationException("JSON file does not contain any devices.");
+
+            DateTime reportDate = DateTime.Now;
+
+            string currentDate = reportDate.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
+            string year = reportDate.ToString("yyyy", CultureInfo.InvariantCulture);
+            string month = reportDate.ToString("MM", CultureInfo.InvariantCulture);
+            string day = reportDate.ToString("dd", CultureInfo.InvariantCulture);
+
+            using (var httpClient = new System.Net.Http.HttpClient())
+            {
+                foreach (var device in devices)
+                {
+                    if (string.IsNullOrWhiteSpace(device.dispositivo))
+                        continue;
+
+                    string item = device.dispositivo.Trim();
+
+                    string url =
+                        baseUrl +
+                        "?item=" + Uri.EscapeDataString(item) +
+                        "&dataInicial=" + Uri.EscapeDataString(currentDate) +
+                        "&dataFinal=" + Uri.EscapeDataString(currentDate);
+
+                    string outputFolder = Path.Combine(
+                        folderPath,
+                        MakeSafePathSegment(device.unidadeProd),
+                        MakeSafePathSegment(device.setor),
+                        MakeSafePathSegment(device.dispositivo),
+                        year,
+                        month,
+                        day
+                    );
+
+                    Directory.CreateDirectory(outputFolder);
+
+                    string outputFile = Path.Combine(
+                        outputFolder,
+                        $"JaSaudeSalasTempHR_{MakeSafePathSegment(item)}_{currentDate}_{DateTime.Now:HHmmss}.pdf"
+                    );
+
+                    byte[] pdfBytes = await httpClient.GetByteArrayAsync(url);
+
+                    File.WriteAllBytes(outputFile, pdfBytes);
+
+                    WriteLog("Downloaded report: " + outputFile);
+                }
+            }
+        }
+
+        private void WriteLog(string message)
+        {
+            try
+            {
+                string logFolder = Path.Combine(
+                    Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+                    "rxDesktopReportClient",
+                    "logs"
+                );
+
+                Directory.CreateDirectory(logFolder);
+
+                string logFile = Path.Combine(logFolder, "report-download.log");
+
+                File.AppendAllText(
+                    logFile,
+                    DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " - " + message + Environment.NewLine
+                );
+            }
+            catch
+            {
+                // Never let logging crash the tray app.
+            }
+        }
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
             if (e.CloseReason == CloseReason.UserClosing)
@@ -114,12 +266,12 @@ namespace rxDesktopReportClient
 
             try
             {
-                await DownloadReportAsync();
-                MessageBox.Show("Relatórios exportados com sucesso.");
+                await DownloadReportsAsync();
+                MessageBox.Show("Reports downloaded successfully.");
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erro no download do relatório:\n" + ex.Message);
+                MessageBox.Show("Error downloading reports:\n" + ex.Message);
             }
             finally
             {
