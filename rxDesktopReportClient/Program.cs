@@ -18,7 +18,7 @@ namespace rxWebReportTray
             {
                 Icon = rxDesktopReportClient.Properties.Resources.trayIcon,
                 Visible = true,
-                Text = "Relatórios Autoextração"
+                Text = "Agyliti Monitor - Relatórios Autoextração"
             };
 
             tray.DoubleClick += (s, e) =>

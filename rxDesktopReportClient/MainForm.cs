@@ -154,7 +154,7 @@ namespace rxDesktopReportClient
             if (devices.Count == 0)
                 throw new InvalidOperationException("JSON file does not contain any devices.");
 
-            DateTime reportDate = DateTime.Now;
+            DateTime reportDate = DateTime.Now.AddDays(-1);
 
             string currentDate = reportDate.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
             string year = reportDate.ToString("yyyy", CultureInfo.InvariantCulture);
