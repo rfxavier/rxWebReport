@@ -4,8 +4,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DevExpress.Pdf;
 
 namespace rxDesktopReportClient
 {
@@ -151,36 +153,35 @@ namespace rxDesktopReportClient
             var devices = JsonConvert.DeserializeObject<List<DeviceConfig>>(json)
                           ?? new List<DeviceConfig>();
 
-            if (devices.Count == 0)
-                throw new InvalidOperationException("JSON file does not contain any devices.");
-
-            DateTime reportDate = DateTime.Now.AddDays(-1);
+            DateTime reportDate = DateTime.Today.AddDays(-1);
 
             string currentDate = reportDate.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
             string year = reportDate.ToString("yyyy", CultureInfo.InvariantCulture);
             string month = reportDate.ToString("MM", CultureInfo.InvariantCulture);
             string day = reportDate.ToString("dd", CultureInfo.InvariantCulture);
 
+            var groups = devices
+                .Where(d => !string.IsNullOrWhiteSpace(d.dispositivo))
+                .GroupBy(d => new
+                {
+                    d.unidadeProd,
+                    d.setor,
+                    BaseName = GetBaseDeviceName(d.dispositivo)
+                });
+
             using (var httpClient = new System.Net.Http.HttpClient())
             {
-                foreach (var device in devices)
+                foreach (var group in groups)
                 {
-                    if (string.IsNullOrWhiteSpace(device.dispositivo))
-                        continue;
-
-                    string item = device.dispositivo.Trim();
-
-                    string url =
-                        baseUrl +
-                        "?item=" + Uri.EscapeDataString(item) +
-                        "&dataInicial=" + Uri.EscapeDataString(currentDate) +
-                        "&dataFinal=" + Uri.EscapeDataString(currentDate);
+                    var orderedItems = group
+                        .OrderBy(d => GetReportOrder(d.dispositivo))
+                        .ToList();
 
                     string outputFolder = Path.Combine(
                         folderPath,
-                        MakeSafePathSegment(device.unidadeProd),
-                        MakeSafePathSegment(device.setor),
-                        MakeSafePathSegment(device.dispositivo),
+                        MakeSafePathSegment(group.Key.unidadeProd),
+                        MakeSafePathSegment(group.Key.setor),
+                        MakeSafePathSegment(group.Key.BaseName),
                         year,
                         month,
                         day
@@ -190,15 +191,106 @@ namespace rxDesktopReportClient
 
                     string outputFile = Path.Combine(
                         outputFolder,
-                        $"JaSaudeSalasTempHR_{MakeSafePathSegment(item)}_{currentDate}_{DateTime.Now:HHmmss}.pdf"
+                        $"JaSaudeSalasTempHR_{MakeSafePathSegment(group.Key.BaseName)}_{currentDate}_{DateTime.Now:HHmmss}.pdf"
                     );
 
-                    byte[] pdfBytes = await httpClient.GetByteArrayAsync(url);
+                    var downloadedPdfFiles = new List<string>();
 
-                    File.WriteAllBytes(outputFile, pdfBytes);
+                    foreach (var device in orderedItems)
+                    {
+                        string item = device.dispositivo.Trim();
+
+                        string url =
+                            baseUrl +
+                            "?item=" + Uri.EscapeDataString(item) +
+                            "&dataInicial=" + Uri.EscapeDataString(currentDate) +
+                            "&dataFinal=" + Uri.EscapeDataString(currentDate);
+
+                        byte[] pdfBytes = await httpClient.GetByteArrayAsync(url);
+
+                        string tempFile = Path.Combine(
+                            Path.GetTempPath(),
+                            Guid.NewGuid().ToString("N") + ".pdf"
+                        );
+
+                        File.WriteAllBytes(tempFile, pdfBytes);
+                        downloadedPdfFiles.Add(tempFile);
+                    }
+
+                    if (downloadedPdfFiles.Count == 1)
+                    {
+                        File.Copy(downloadedPdfFiles[0], outputFile, true);
+                    }
+                    else
+                    {
+                        MergePdfFiles(downloadedPdfFiles, outputFile);
+                    }
+
+                    foreach (string tempFile in downloadedPdfFiles)
+                    {
+                        try { File.Delete(tempFile); } catch { }
+                    }
 
                     WriteLog("Downloaded report: " + outputFile);
                 }
+            }
+        }
+
+        private static string GetBaseDeviceName(string dispositivo)
+        {
+            if (string.IsNullOrWhiteSpace(dispositivo))
+                return "_";
+
+            dispositivo = dispositivo.Trim();
+
+            string[] suffixes =
+            {
+        "-Temperatura",
+        "-Humidade",
+        "-Umidade"
+    };
+
+            foreach (string suffix in suffixes)
+            {
+                if (dispositivo.EndsWith(suffix, StringComparison.OrdinalIgnoreCase))
+                {
+                    return dispositivo.Substring(0, dispositivo.Length - suffix.Length);
+                }
+            }
+
+            return dispositivo;
+        }
+
+        private static int GetReportOrder(string dispositivo)
+        {
+            if (dispositivo.EndsWith("-Temperatura", StringComparison.OrdinalIgnoreCase))
+                return 1;
+
+            if (dispositivo.EndsWith("-Humidade", StringComparison.OrdinalIgnoreCase) ||
+                dispositivo.EndsWith("-Umidade", StringComparison.OrdinalIgnoreCase))
+                return 2;
+
+            return 9;
+        }
+
+        private static void MergePdfFiles(List<string> inputFiles, string outputFile)
+        {
+            using (var outputDocument = new PdfSharp.Pdf.PdfDocument())
+            {
+                foreach (string file in inputFiles)
+                {
+                    using (var inputDocument = PdfSharp.Pdf.IO.PdfReader.Open(
+                        file,
+                        PdfSharp.Pdf.IO.PdfDocumentOpenMode.Import))
+                    {
+                        for (int i = 0; i < inputDocument.PageCount; i++)
+                        {
+                            outputDocument.AddPage(inputDocument.Pages[i]);
+                        }
+                    }
+                }
+
+                outputDocument.Save(outputFile);
             }
         }
 
