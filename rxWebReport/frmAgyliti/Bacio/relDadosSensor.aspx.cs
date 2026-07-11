@@ -136,7 +136,7 @@ namespace rxWebReport.frmAgyliti.Bacio
                     chart.Series[0].Name = item + $" {unidade}";
                     ((XYDiagram)chart.Diagram).AxisY.ConstantLines[0].Visible = true;
                     ((XYDiagram)chart.Diagram).AxisY.ConstantLines[0].AxisValue = limiteInferior;
-                    ((XYDiagram)chart.Diagram).AxisY.ConstantLines[1].Visible = false;
+                    ((XYDiagram)chart.Diagram).AxisY.ConstantLines[1].Visible = true;
                     ((XYDiagram)chart.Diagram).AxisY.ConstantLines[1].AxisValue = limiteSuperior;
                 }
 
@@ -171,7 +171,7 @@ namespace rxWebReport.frmAgyliti.Bacio
                         WriteDocumentToResponse(ms.ToArray(), "pdf", true, "DadosSensor.pdf");
                     } else if (formatoQuery == "CSV") 
                     {
-                        masterReport.ExportToXlsx(ms, new XlsxExportOptions() { ExportMode = XlsxExportMode.SingleFilePageByPage });
+                        masterReport.ExportToXlsx(ms, new XlsxExportOptions() { ExportMode = XlsxExportMode.SingleFile });
                         WriteDocumentToResponse(ms.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", false, "DadosSensor.xlsx");
                     }
                 }

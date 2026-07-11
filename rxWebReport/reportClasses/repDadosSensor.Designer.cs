@@ -333,11 +333,13 @@ namespace rxWebReport.reportClasses
             constantLine1.Name = "limInferior";
             constantLine1.ShowInLegend = false;
             constantLine1.Title.Text = "Limite inferior";
+            constantLine1.Color = System.Drawing.Color.Red;
             constantLine2.AxisValueSerializable = "7";
             constantLine2.LineStyle.Thickness = 2;
             constantLine2.Name = "limSuperior";
             constantLine2.ShowInLegend = false;
-            constantLine2.Title.Text = "Limite";
+            constantLine2.Title.Text = "Limite superior";
+            constantLine2.Color = System.Drawing.Color.Red;
             xyDiagram1.AxisY.ConstantLines.AddRange(new DevExpress.XtraCharts.ConstantLine[] {
             constantLine1,
             constantLine2});
