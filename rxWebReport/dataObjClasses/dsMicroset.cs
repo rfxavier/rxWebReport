@@ -44,7 +44,14 @@ namespace rxWebReport.dataObjClasses
         {
             var results = new List<dadosSensor>();
 
-            using (var conn = new MySqlConnection(connectionString))
+            string connString = connectionString;
+
+            if (GroupName == "IoT | Resispar")
+            {
+                connString = "Server=201.16.197.252;Database=zabbix;User Id=jasaude2;Password=C4m4l340;SslMode=None;";
+            }
+
+            using (var conn = new MySqlConnection(connString))
             {
                 conn.Open();
 
@@ -99,8 +106,14 @@ namespace rxWebReport.dataObjClasses
 
             if (TriggerTag != "")
             {
+                string connString = connectionString;
 
-                using (var conn = new MySqlConnection(connectionString))
+                if (TriggerTag == "potoftunel00")
+                {
+                    connString = "Server=201.16.197.252;Database=zabbix;User Id=jasaude2;Password=C4m4l340;SslMode=None;";
+                }
+
+                using (var conn = new MySqlConnection(connString))
                 {
                     conn.Open();
 
@@ -149,11 +162,17 @@ namespace rxWebReport.dataObjClasses
         public static List<dadosJustificativas> GetDataJustificativas(string HostName, string InitialDate, string FinalDate)
         {
             var results = new List<dadosJustificativas>();
-
+            
             if (HostName != "")
             {
+                string connString = connectionString;
 
-                using (var conn = new MySqlConnection(connectionString))
+                if (HostName == "PotOf - TUNEL-00")
+                {
+                    connString = "Server=201.16.197.252;Database=zabbix;User Id=jasaude2;Password=C4m4l340;SslMode=None;";
+                }
+
+                using (var conn = new MySqlConnection(connString))
                 {
                     conn.Open();
 
@@ -170,8 +189,7 @@ namespace rxWebReport.dataObjClasses
                                       inner join triggers t on t.triggerid = f.triggerid 
                                       inner join events e on e.objectid = t.triggerid
                                       inner join acknowledges a on a.eventid = e.eventid
-                                    WHERE h.name in ('{HostName}') and DATE_FORMAT(FROM_UNIXTIME(e.clock), '%Y-%m-%d %H:%i:%s') between '{InitialDate}' AND '{FinalDate}' and a.userid = 23
-                                    -- WHERE (h.name in ('{HostName}') or 0=0) and DATE_FORMAT(FROM_UNIXTIME(e.clock), '%Y-%m-%d %H:%i:%s') between '{InitialDate}' AND '{FinalDate}' and ((a.userid = 23) or 0=0)
+                                    WHERE h.name in ('{HostName}') and DATE_FORMAT(FROM_UNIXTIME(e.clock), '%Y-%m-%d %H:%i:%s') between '{InitialDate}' AND '{FinalDate}'
                                     GROUP BY
                                       h.name,
                                       e.name,
