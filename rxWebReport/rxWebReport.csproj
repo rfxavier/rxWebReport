@@ -369,6 +369,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="frmAgyliti\Bacio\relDadosSensor.aspx" />
     <Content Include="frmAgyliti\Cliente001\DevExtreme\cnRxApp\app01JS\cnRxAppApp01JS.aspx" />
+    <Content Include="frmAgyliti\DadosSensor\relControleTemperatura.aspx" />
     <Content Include="frmAgyliti\DadosSensor\relDadosSensor.aspx" />
     <Content Include="frmAgyliti\GetLock\cnCadastros\cnGridCliente.aspx" />
     <Content Include="frmAgyliti\GetLock\cnCadastros\cnGridCofre.aspx" />
@@ -730,6 +731,7 @@
       <DependentUpon>dashCnCofreUsuarioDepositos.cs</DependentUpon>
     </Compile>
     <Compile Include="dataObjClasses\dsCofre.cs" />
+    <Compile Include="dataObjClasses\dsControleTemperatura.cs" />
     <Compile Include="dataObjClasses\dsJaSaude.cs" />
     <Compile Include="dataObjClasses\dsMicroset.cs" />
     <Compile Include="Default.aspx.cs">
@@ -805,6 +807,13 @@
     </Compile>
     <Compile Include="frmAgyliti\Cliente001\DevExtreme\cnRxApp\app01JS\cnRxAppApp01JS.aspx.designer.cs">
       <DependentUpon>cnRxAppApp01JS.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmAgyliti\DadosSensor\relControleTemperatura.aspx.cs">
+      <DependentUpon>relControleTemperatura.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAgyliti\DadosSensor\relControleTemperatura.aspx.designer.cs">
+      <DependentUpon>relControleTemperatura.aspx</DependentUpon>
     </Compile>
     <Compile Include="frmAgyliti\DadosSensor\relDadosSensor.aspx.cs">
       <DependentUpon>relDadosSensor.aspx</DependentUpon>
