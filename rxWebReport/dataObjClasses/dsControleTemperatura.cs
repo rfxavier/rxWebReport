@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace rxWebReport.dataObjClasses
 {
@@ -22,6 +23,7 @@ namespace rxWebReport.dataObjClasses
         public static List<dadosSensor> GetData(string GroupName, string HostName, string Item, string InitialDate, string FinalDate)
         {
             var results = new List<dadosSensor>();
+            var dataByHour = new Dictionary<DateTime, dadosSensor>();
 
             string connString = connectionString;
 
@@ -35,6 +37,7 @@ namespace rxWebReport.dataObjClasses
                                     i.name as Item,
 	                                h2.value as Value,
 	                                DATE_FORMAT(FROM_UNIXTIME(h2.clock), '%Y-%m-%d %H:%i:%s') as SensorDate,
+                                    1 as HasData,
                                     hi.type
                                   from
 	                                hosts h
@@ -53,6 +56,7 @@ namespace rxWebReport.dataObjClasses
                                     and h.name = '{HostName}'
                                     and i.name = '{Item}'
                                     and DATE_FORMAT(FROM_UNIXTIME(h2.clock), '%Y-%m-%d %H:%i:%s') BETWEEN '{InitialDate}' AND '{FinalDate}'
+                                    and DATE_FORMAT(FROM_UNIXTIME(h2.clock), '%i:%s') = '00:00'
                                   order by h2.clock";
 
                 using (var cmd = new MySqlCommand(query, conn))
@@ -61,17 +65,53 @@ namespace rxWebReport.dataObjClasses
                     {
                         while (reader.Read())
                         {
-                            results.Add(new dadosSensor
+                            var sensorData = new dadosSensor
                             {
                                 Groupname = reader.GetString("Groupname"),
                                 Hostname = reader.GetString("Hostname"),
                                 Item = reader.GetString("Item"),
                                 Value = reader.GetDecimal("Value"),
-                                SensorDate = reader.GetDateTime("SensorDate")
-                            });
+                                SensorDate = reader.GetDateTime("SensorDate"),
+                                HasData = reader.GetBoolean("HasData")
+                            };
+
+                            dataByHour[sensorData.SensorDate] = sensorData;
                         }
                     }
                 }
+            }
+
+            var initialDate = DateTime.Parse(InitialDate, CultureInfo.InvariantCulture);
+            var finalDate = DateTime.Parse(FinalDate, CultureInfo.InvariantCulture);
+            var currentHour = new DateTime(initialDate.Year, initialDate.Month, initialDate.Day, initialDate.Hour, 0, 0);
+
+            if (currentHour < initialDate)
+            {
+                currentHour = currentHour.AddHours(1);
+            }
+
+            var finalHour = new DateTime(finalDate.Year, finalDate.Month, finalDate.Day, finalDate.Hour, 0, 0);
+
+            while (currentHour <= finalHour)
+            {
+                if (dataByHour.TryGetValue(currentHour, out var sensorData))
+                {
+                    results.Add(sensorData);
+                }
+                else
+                {
+                    results.Add(new dadosSensor
+                    {
+                        Groupname = GroupName,
+                        Hostname = HostName,
+                        Item = Item,
+                        Value = 0,
+                        SensorDate = currentHour,
+                        HasData = false
+                    });
+                }
+
+                currentHour = currentHour.AddHours(1);
             }
 
             return results;

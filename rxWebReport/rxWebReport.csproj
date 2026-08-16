@@ -1307,6 +1307,12 @@
     <Compile Include="rede.cs">
       <DependentUpon>rxAppModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="reportClasses\repControleTemperatura.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="reportClasses\repControleTemperatura.Designer.cs">
+      <DependentUpon>repControleTemperatura.cs</DependentUpon>
+    </Compile>
     <Compile Include="reportClasses\repDadosSensor-Subreport-Justificativas.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -1527,6 +1533,9 @@
       <DependentUpon>202501011921099_v036.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="reportClasses\repControleTemperatura.resx">
+      <DependentUpon>repControleTemperatura.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="reportClasses\repDadosSensor-Subreport-Justificativas.resx">
       <DependentUpon>repDadosSensor-Subreport-Justificativas.cs</DependentUpon>
     </EmbeddedResource>
