@@ -57,13 +57,14 @@ namespace rxWebReport.reportClasses
             this.tableRow5 = new DevExpress.XtraReports.UI.XRTableRow();
             this.tableRow4 = new DevExpress.XtraReports.UI.XRTableRow();
             this.tableRow6 = new DevExpress.XtraReports.UI.XRTableRow();
-            this.tableRow7 = new DevExpress.XtraReports.UI.XRTableRow();
             this.tableCell11 = new DevExpress.XtraReports.UI.XRTableCell();
             this.tableCell12 = new DevExpress.XtraReports.UI.XRTableCell();
             this.tableCell14 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.tableCell17 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.tableCell19 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.tableCell18 = new DevExpress.XtraReports.UI.XRTableCell();
             this.tableCell16 = new DevExpress.XtraReports.UI.XRTableCell();
             this.tableCell13 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.tableCell15 = new DevExpress.XtraReports.UI.XRTableCell();
             this.tableRow1 = new DevExpress.XtraReports.UI.XRTableRow();
             this.tableCell1 = new DevExpress.XtraReports.UI.XRTableCell();
             this.tableCell2 = new DevExpress.XtraReports.UI.XRTableCell();
@@ -75,6 +76,8 @@ namespace rxWebReport.reportClasses
             this.label4 = new DevExpress.XtraReports.UI.XRLabel();
             this.label3 = new DevExpress.XtraReports.UI.XRLabel();
             this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
+            this.calcParRepInitialDate = new DevExpress.XtraReports.UI.CalculatedField();
+            this.calcParRepFinalDate = new DevExpress.XtraReports.UI.CalculatedField();
             this.parRepGroupname = new DevExpress.XtraReports.Parameters.Parameter();
             this.parRepHostname = new DevExpress.XtraReports.Parameters.Parameter();
             this.parRepItem = new DevExpress.XtraReports.Parameters.Parameter();
@@ -110,7 +113,7 @@ namespace rxWebReport.reportClasses
             this.label1,
             this.pictureBox1,
             this.table1});
-            this.ReportHeader.HeightF = 287.0833F;
+            this.ReportHeader.HeightF = 263.0833F;
             this.ReportHeader.Name = "ReportHeader";
             // 
             // PageFooter
@@ -119,6 +122,7 @@ namespace rxWebReport.reportClasses
             this.label2});
             this.PageFooter.HeightF = 87.1666F;
             this.PageFooter.Name = "PageFooter";
+            this.PageFooter.PrintOn = DevExpress.XtraReports.UI.PrintOnPages.NotWithReportFooter;
             // 
             // ReportFooter
             // 
@@ -210,9 +214,8 @@ namespace rxWebReport.reportClasses
             this.tableRow3,
             this.tableRow5,
             this.tableRow4,
-            this.tableRow6,
-            this.tableRow7});
-            this.table3.SizeF = new System.Drawing.SizeF(650F, 120F);
+            this.tableRow6});
+            this.table3.SizeF = new System.Drawing.SizeF(650F, 96F);
             this.table3.StylePriority.UseBorders = false;
             this.table3.StylePriority.UseTextAlignment = false;
             this.table3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
@@ -245,7 +248,7 @@ namespace rxWebReport.reportClasses
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.table1.ForeColor = System.Drawing.Color.White;
-            this.table1.LocationFloat = new DevExpress.Utils.PointFloat(0F, 260.625F);
+            this.table1.LocationFloat = new DevExpress.Utils.PointFloat(0F, 236.625F);
             this.table1.Name = "table1";
             this.table1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
             this.table1.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
@@ -275,6 +278,9 @@ namespace rxWebReport.reportClasses
             // 
             this.tableRow4.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
             this.tableCell14,
+            this.tableCell17,
+            this.tableCell19,
+            this.tableCell18,
             this.tableCell16});
             this.tableRow4.Name = "tableRow4";
             this.tableRow4.Weight = 0.34388057195366634D;
@@ -286,20 +292,13 @@ namespace rxWebReport.reportClasses
             this.tableRow6.Name = "tableRow6";
             this.tableRow6.Weight = 0.34388057195366634D;
             // 
-            // tableRow7
-            // 
-            this.tableRow7.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
-            this.tableCell15});
-            this.tableRow7.Name = "tableRow7";
-            this.tableRow7.Weight = 0.34388057195366639D;
-            // 
             // tableCell11
             // 
             this.tableCell11.Multiline = true;
             this.tableCell11.Name = "tableCell11";
             this.tableCell11.StylePriority.UseTextAlignment = false;
             this.tableCell11.Text = "CONTROLE DE TEMPERATURA";
-            this.tableCell11.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
+            this.tableCell11.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.tableCell11.Weight = 3D;
             // 
             // tableCell12
@@ -307,37 +306,77 @@ namespace rxWebReport.reportClasses
             this.tableCell12.Multiline = true;
             this.tableCell12.Name = "tableCell12";
             this.tableCell12.StylePriority.UseTextAlignment = false;
-            this.tableCell12.Text = " Identificação do Equipamento nº: ";
-            this.tableCell12.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
+            this.tableCell12.Text = " Identificação do Equipamento nº: [Host]";
+            this.tableCell12.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
             this.tableCell12.Weight = 3D;
             // 
             // tableCell14
             // 
+            this.tableCell14.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.tableCell14.Multiline = true;
             this.tableCell14.Name = "tableCell14";
-            this.tableCell14.Text = "Período: ";
-            this.tableCell14.Weight = 1.4935065333455975D;
+            this.tableCell14.StylePriority.UseBorders = false;
+            this.tableCell14.StylePriority.UseTextAlignment = false;
+            this.tableCell14.Text = "Data Inicial:";
+            this.tableCell14.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
+            this.tableCell14.Weight = 0.48233020148725186D;
+            // 
+            // tableCell17
+            // 
+            this.tableCell17.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Top | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.tableCell17.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[calcParRepInitialDate]")});
+            this.tableCell17.Multiline = true;
+            this.tableCell17.Name = "tableCell17";
+            this.tableCell17.StylePriority.UseBorders = false;
+            this.tableCell17.StylePriority.UseTextAlignment = false;
+            this.tableCell17.Text = "tableCell17";
+            this.tableCell17.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.tableCell17.TextFormatString = "{0:dd/MM/yy}";
+            this.tableCell17.Weight = 0.37523078539941962D;
+            // 
+            // tableCell19
+            // 
+            this.tableCell19.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.tableCell19.Multiline = true;
+            this.tableCell19.Name = "tableCell19";
+            this.tableCell19.StylePriority.UseBorders = false;
+            this.tableCell19.StylePriority.UseTextAlignment = false;
+            this.tableCell19.Text = "Data Final:";
+            this.tableCell19.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
+            this.tableCell19.Weight = 0.44820835028448575D;
+            // 
+            // tableCell18
+            // 
+            this.tableCell18.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Top | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.tableCell18.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[calcParRepFinalDate]")});
+            this.tableCell18.Multiline = true;
+            this.tableCell18.Name = "tableCell18";
+            this.tableCell18.StylePriority.UseBorders = false;
+            this.tableCell18.StylePriority.UseTextAlignment = false;
+            this.tableCell18.Text = "tableCell18";
+            this.tableCell18.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.tableCell18.TextFormatString = "{0:dd/MM/yy}";
+            this.tableCell18.Weight = 0.37523719617444024D;
             // 
             // tableCell16
             // 
             this.tableCell16.Multiline = true;
             this.tableCell16.Name = "tableCell16";
-            this.tableCell16.Text = "Setor: ";
-            this.tableCell16.Weight = 1.5064934666544025D;
+            this.tableCell16.Text = "Setor: [Hostname]";
+            this.tableCell16.Weight = 1.3189934666544025D;
             // 
             // tableCell13
             // 
             this.tableCell13.Multiline = true;
             this.tableCell13.Name = "tableCell13";
-            this.tableCell13.Text = "Classificação: ";
+            this.tableCell13.Text = "Classificação: [Type]";
             this.tableCell13.Weight = 3D;
-            // 
-            // tableCell15
-            // 
-            this.tableCell15.Multiline = true;
-            this.tableCell15.Name = "tableCell15";
-            this.tableCell15.Text = "Especificações: ";
-            this.tableCell15.Weight = 3D;
             // 
             // tableRow1
             // 
@@ -455,6 +494,18 @@ namespace rxWebReport.reportClasses
             parameter4,
             parameter5});
             // 
+            // calcParRepInitialDate
+            // 
+            this.calcParRepInitialDate.Expression = "FormatString(?parRepInitialDate, \'{0:dd/MM/yy}\')";
+            this.calcParRepInitialDate.FieldType = DevExpress.XtraReports.UI.FieldType.DateTime;
+            this.calcParRepInitialDate.Name = "calcParRepInitialDate";
+            // 
+            // calcParRepFinalDate
+            // 
+            this.calcParRepFinalDate.Expression = "FormatString(?parRepFinalDate, \'{0:dd/MM/yy}\')\n";
+            this.calcParRepFinalDate.FieldType = DevExpress.XtraReports.UI.FieldType.DateTime;
+            this.calcParRepFinalDate.Name = "calcParRepFinalDate";
+            // 
             // parRepGroupname
             // 
             this.parRepGroupname.Name = "parRepGroupname";
@@ -494,6 +545,9 @@ namespace rxWebReport.reportClasses
             this.ReportHeader,
             this.PageFooter,
             this.ReportFooter});
+            this.CalculatedFields.AddRange(new DevExpress.XtraReports.UI.CalculatedField[] {
+            this.calcParRepInitialDate,
+            this.calcParRepFinalDate});
             this.ComponentStorage.AddRange(new System.ComponentModel.IComponent[] {
             this.objectDataSource1});
             this.DataSource = this.objectDataSource1;
@@ -534,11 +588,12 @@ namespace rxWebReport.reportClasses
         private DevExpress.XtraReports.UI.XRTableCell tableCell12;
         private DevExpress.XtraReports.UI.XRTableRow tableRow4;
         private DevExpress.XtraReports.UI.XRTableCell tableCell14;
+        private DevExpress.XtraReports.UI.XRTableCell tableCell17;
+        private DevExpress.XtraReports.UI.XRTableCell tableCell19;
+        private DevExpress.XtraReports.UI.XRTableCell tableCell18;
         private DevExpress.XtraReports.UI.XRTableCell tableCell16;
         private DevExpress.XtraReports.UI.XRTableRow tableRow6;
         private DevExpress.XtraReports.UI.XRTableCell tableCell13;
-        private DevExpress.XtraReports.UI.XRTableRow tableRow7;
-        private DevExpress.XtraReports.UI.XRTableCell tableCell15;
         private DevExpress.XtraReports.UI.XRLabel label1;
         private DevExpress.XtraReports.UI.XRPictureBox pictureBox1;
         private DevExpress.XtraReports.UI.XRTable table1;
@@ -555,6 +610,8 @@ namespace rxWebReport.reportClasses
         private DevExpress.XtraReports.UI.XRLabel label4;
         private DevExpress.XtraReports.UI.XRLabel label3;
         private DevExpress.DataAccess.ObjectBinding.ObjectDataSource objectDataSource1;
+        private DevExpress.XtraReports.UI.CalculatedField calcParRepInitialDate;
+        private DevExpress.XtraReports.UI.CalculatedField calcParRepFinalDate;
         private DevExpress.XtraReports.Parameters.Parameter parRepGroupname;
         private DevExpress.XtraReports.Parameters.Parameter parRepHostname;
         private DevExpress.XtraReports.Parameters.Parameter parRepItem;

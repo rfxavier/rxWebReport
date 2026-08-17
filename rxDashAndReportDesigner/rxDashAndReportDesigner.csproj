@@ -231,12 +231,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\rxWebReport\rxWebReport.csproj">
-      <Project>{d313686d-52ba-48e7-87ef-2901d2e23d9f}</Project>
-      <Name>rxWebReport</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
       <Visible>False</Visible>
       <ProductName>Microsoft .NET Framework 4.6.1 %28x86 and x64%29</ProductName>
@@ -247,6 +241,12 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\rxWebReport\rxWebReport.csproj">
+      <Project>{d313686d-52ba-48e7-87ef-2901d2e23d9f}</Project>
+      <Name>rxWebReport</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

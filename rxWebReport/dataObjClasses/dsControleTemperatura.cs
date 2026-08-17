@@ -14,7 +14,9 @@ namespace rxWebReport.dataObjClasses
         {
             public string Groupname { get; set; }
             public string Hostname { get; set; }
+            public string Host { get; set; }
             public string Item { get; set; }
+            public string Type { get; set; }
             public decimal Value { get; set; }
             public DateTime SensorDate { get; set; }
             public bool HasData { get; set; }
@@ -34,6 +36,7 @@ namespace rxWebReport.dataObjClasses
                 string query = $@"select
                                     hgrp.name as Groupname,
 	                                h.name as Hostname,
+                                    h.host as Host,
                                     i.name as Item,
 	                                h2.value as Value,
 	                                DATE_FORMAT(FROM_UNIXTIME(h2.clock), '%Y-%m-%d %H:%i:%s') as SensorDate,
@@ -69,7 +72,9 @@ namespace rxWebReport.dataObjClasses
                             {
                                 Groupname = reader.GetString("Groupname"),
                                 Hostname = reader.GetString("Hostname"),
+                                Host = reader.GetString("Host"),
                                 Item = reader.GetString("Item"),
+                                Type = reader.GetString("type"),
                                 Value = reader.GetDecimal("Value"),
                                 SensorDate = reader.GetDateTime("SensorDate"),
                                 HasData = reader.GetBoolean("HasData")
