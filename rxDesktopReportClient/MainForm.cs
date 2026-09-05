@@ -165,8 +165,7 @@ namespace rxDesktopReportClient
                 .GroupBy(d => new
                 {
                     d.unidadeProd,
-                    d.setor,
-                    BaseName = GetBaseDeviceName(d.dispositivo)
+                    d.setor
                 });
 
             using (var httpClient = new System.Net.Http.HttpClient())
@@ -174,14 +173,15 @@ namespace rxDesktopReportClient
                 foreach (var group in groups)
                 {
                     var orderedItems = group
-                        .OrderBy(d => GetReportOrder(d.dispositivo))
+                        .OrderBy(d => GetBaseDeviceName(d.dispositivo), StringComparer.OrdinalIgnoreCase)
+                        .ThenBy(d => GetReportOrder(d.dispositivo))
+                        .ThenBy(d => d.dispositivo, StringComparer.OrdinalIgnoreCase)
                         .ToList();
 
                     string outputFolder = Path.Combine(
                         folderPath,
                         MakeSafePathSegment(group.Key.unidadeProd),
                         MakeSafePathSegment(group.Key.setor),
-                        MakeSafePathSegment(group.Key.BaseName),
                         year,
                         month,
                         day
@@ -191,45 +191,20 @@ namespace rxDesktopReportClient
 
                     string outputFile = Path.Combine(
                         outputFolder,
-                        $"JaSaudeSalasTempHR_{MakeSafePathSegment(group.Key.BaseName)}_{currentDate}_{DateTime.Now:HHmmss}.pdf"
+                        $"JaSaudeSalasTempHR_{MakeSafePathSegment(group.Key.setor)}_{currentDate}_{DateTime.Now:HHmmss}.pdf"
                     );
 
-                    var downloadedPdfFiles = new List<string>();
+                    string itemQuery = string.Join(",", orderedItems
+                        .Select(d => d.dispositivo.Trim()));
 
-                    foreach (var device in orderedItems)
-                    {
-                        string item = device.dispositivo.Trim();
+                    string url =
+                        baseUrl +
+                        "?item=" + Uri.EscapeDataString(itemQuery) +
+                        "&dataInicial=" + Uri.EscapeDataString(currentDate) +
+                        "&dataFinal=" + Uri.EscapeDataString(currentDate);
 
-                        string url =
-                            baseUrl +
-                            "?item=" + Uri.EscapeDataString(item) +
-                            "&dataInicial=" + Uri.EscapeDataString(currentDate) +
-                            "&dataFinal=" + Uri.EscapeDataString(currentDate);
-
-                        byte[] pdfBytes = await httpClient.GetByteArrayAsync(url);
-
-                        string tempFile = Path.Combine(
-                            Path.GetTempPath(),
-                            Guid.NewGuid().ToString("N") + ".pdf"
-                        );
-
-                        File.WriteAllBytes(tempFile, pdfBytes);
-                        downloadedPdfFiles.Add(tempFile);
-                    }
-
-                    if (downloadedPdfFiles.Count == 1)
-                    {
-                        File.Copy(downloadedPdfFiles[0], outputFile, true);
-                    }
-                    else
-                    {
-                        MergePdfFiles(downloadedPdfFiles, outputFile);
-                    }
-
-                    foreach (string tempFile in downloadedPdfFiles)
-                    {
-                        try { File.Delete(tempFile); } catch { }
-                    }
+                    byte[] pdfBytes = await httpClient.GetByteArrayAsync(url);
+                    File.WriteAllBytes(outputFile, pdfBytes);
 
                     WriteLog("Downloaded report: " + outputFile);
                 }
@@ -373,6 +348,12 @@ namespace rxDesktopReportClient
 
         private async Task DownloadReportAsync()
         {
+            if (!IsLegacyDeviceReportGenerationEnabled())
+            {
+                WriteLog("Legacy per-device report generation is disabled.");
+                return;
+            }
+
             string folderPath = Properties.Settings.Default.SelectedFolderPath;
             string baseUrl = Properties.Settings.Default.ReportBaseUrl;
             string jsonFilePath = Properties.Settings.Default.JsonFilePath;
@@ -436,6 +417,21 @@ namespace rxDesktopReportClient
 
                     File.WriteAllBytes(outputFile, pdfBytes);
                 }
+            }
+        }
+
+        private static bool IsLegacyDeviceReportGenerationEnabled()
+        {
+            try
+            {
+                string configuredValue = System.Configuration.ConfigurationManager
+                    .AppSettings["EnableLegacyDeviceReportGeneration"];
+
+                return bool.TryParse(configuredValue, out bool isEnabled) && isEnabled;
+            }
+            catch (System.Configuration.ConfigurationErrorsException)
+            {
+                return false;
             }
         }
 
