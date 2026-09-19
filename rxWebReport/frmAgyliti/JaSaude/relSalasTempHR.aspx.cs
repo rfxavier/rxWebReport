@@ -99,7 +99,7 @@ namespace rxWebReport.frmAgyliti.JaSaude
                 var chart = (DevExpress.XtraReports.UI.XRChart)objReport.FindControl("chart2", true);
                 if (chart != null)
                 {
-                    if (item.EndsWith("BIPE", StringComparison.OrdinalIgnoreCase))
+                    if (item.EndsWith("BIPE", StringComparison.OrdinalIgnoreCase) || item.StartsWith("TDP", StringComparison.OrdinalIgnoreCase))
                     {
                         chart.Series[0].Name = item + " Dif. Pressão";
 
@@ -115,7 +115,7 @@ namespace rxWebReport.frmAgyliti.JaSaude
                     }
                     else
                     {
-                        if (item.EndsWith("Temperatura", StringComparison.OrdinalIgnoreCase))
+                        if (item.EndsWith("Temperatura", StringComparison.OrdinalIgnoreCase) || item.StartsWith("CFR", StringComparison.OrdinalIgnoreCase))
                         {
                             chart.Series[0].Name = item + " ºC";
                             ((XYDiagram)chart.Diagram).AxisY.ConstantLines[0].Visible = true;
@@ -150,7 +150,7 @@ namespace rxWebReport.frmAgyliti.JaSaude
                             ((XYDiagram)chart.Diagram).AxisY.WholeRange.MinValue = 0;
                             ((XYDiagram)chart.Diagram).AxisY.WholeRange.MaxValue = 50;
                         }
-                        else if (item.EndsWith("Umidade", StringComparison.OrdinalIgnoreCase))
+                        else if (item.EndsWith("Umidade", StringComparison.OrdinalIgnoreCase) || item.StartsWith("CCL", StringComparison.OrdinalIgnoreCase))
                         {
                             var label = item.Contains("Humidade")
                                 ? item.Replace("Humidade", "Umidade")
