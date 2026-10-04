@@ -62,13 +62,13 @@ namespace rxDesktopReportClient.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("10")]
-        public int ReportRunIntervalMinutes {
+        [global::System.Configuration.DefaultSettingValueAttribute("00:00")]
+        public string ReportRunTimeOfDay {
             get {
-                return ((int)(this["ReportRunIntervalMinutes"]));
+                return ((string)(this["ReportRunTimeOfDay"]));
             }
             set {
-                this["ReportRunIntervalMinutes"] = value;
+                this["ReportRunTimeOfDay"] = value;
             }
         }
         

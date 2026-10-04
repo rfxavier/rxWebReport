@@ -18,6 +18,8 @@ namespace rxDesktopReportClient
 
         private BindingList<DeviceConfig> devices;
         private System.Windows.Forms.Timer reportTimer;
+        private TimeSpan reportRunTimeOfDay;
+        private DateTime nextReportRun;
         private bool reportRunInProgress = false;
         public MainForm()
         {
@@ -88,18 +90,22 @@ namespace rxDesktopReportClient
                 reportTimer.Dispose();
             }
 
-            reportTimer = new System.Windows.Forms.Timer();
+            string configuredTime = Properties.Settings.Default.ReportRunTimeOfDay;
+            if (!DailyReportSchedule.TryParseTimeOfDay(configuredTime, out reportRunTimeOfDay))
+            {
+                reportRunTimeOfDay = TimeSpan.Zero;
+                WriteLog("Invalid ReportRunTimeOfDay; expected HH:mm (00:00-23:59). Using midnight.");
+            }
 
-            int intervalMinutes = Properties.Settings.Default.ReportRunIntervalMinutes;
-
-            if (intervalMinutes <= 0)
-                intervalMinutes = 60;
-
-            reportTimer.Interval = intervalMinutes * 60 * 1000;
+            nextReportRun = DailyReportSchedule.GetNextRun(DateTime.Now, reportRunTimeOfDay);
+            // Check the local clock so clock changes and sleep do not shift the daily schedule.
+            reportTimer = new System.Windows.Forms.Timer(components);
+            reportTimer.Interval = 1000;
 
             reportTimer.Tick += async (s, e) =>
             {
-                await RunTimedReportDownloadAsync();
+                if (Properties.Settings.Default.EnableTimedReportRuns && DateTime.Now >= nextReportRun)
+                    await RunTimedReportDownloadAsync();
             };
 
             if (Properties.Settings.Default.EnableTimedReportRuns)
@@ -126,6 +132,8 @@ namespace rxDesktopReportClient
             }
             finally
             {
+                // Recalculate from the wall clock, including after a failed or long-running download.
+                nextReportRun = DailyReportSchedule.GetNextRun(DateTime.Now, reportRunTimeOfDay);
                 reportRunInProgress = false;
 
                 if (Properties.Settings.Default.EnableTimedReportRuns)

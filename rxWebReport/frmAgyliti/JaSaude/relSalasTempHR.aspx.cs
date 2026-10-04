@@ -143,6 +143,46 @@ namespace rxWebReport.frmAgyliti.JaSaude
                                 objReport.CalculatedFields[4].Expression = "Iif([Value] < 15, 'Red', Iif([Value] > 25, 'Red', 'Black'))";
                             }
 
+                            if (item == "CFR-01UEA")
+                            {
+                                ((XYDiagram)chart.Diagram).AxisY.ConstantLines[0].AxisValue = 2;
+                                labelLimiteInferior.ExpressionBindings.Clear();
+                                labelLimiteInferior.Text = "2,0";
+
+                                ((XYDiagram)chart.Diagram).AxisY.ConstantLines[1].AxisValue = 8;
+                                labelLimiteSuperior.ExpressionBindings.Clear();
+                                labelLimiteSuperior.Text = "8,0";
+
+                                //calcTempValueColor
+                                objReport.CalculatedFields[4].Expression = "Iif([Value] < 2, 'Red', Iif([Value] > 8, 'Red', 'Black'))";
+                            }
+                            else if (item == "CCL-01UEA Temperatura")
+                            {
+                                ((XYDiagram)chart.Diagram).AxisY.ConstantLines[0].AxisValue = 28;
+                                labelLimiteInferior.ExpressionBindings.Clear();
+                                labelLimiteInferior.Text = "28,0";
+
+                                ((XYDiagram)chart.Diagram).AxisY.ConstantLines[1].AxisValue = 32;
+                                labelLimiteSuperior.ExpressionBindings.Clear();
+                                labelLimiteSuperior.Text = "32,0";
+
+                                //calcTempValueColor
+                                objReport.CalculatedFields[4].Expression = "Iif([Value] < 28, 'Red', Iif([Value] > 32, 'Red', 'Black'))";
+                            }
+                            else if (item == "CCL-02UEA Temperatura")
+                            {
+                                ((XYDiagram)chart.Diagram).AxisY.ConstantLines[0].AxisValue = 38;
+                                labelLimiteInferior.ExpressionBindings.Clear();
+                                labelLimiteInferior.Text = "38,0";
+
+                                ((XYDiagram)chart.Diagram).AxisY.ConstantLines[1].AxisValue = 42;
+                                labelLimiteSuperior.ExpressionBindings.Clear();
+                                labelLimiteSuperior.Text = "42,0";
+
+                                //calcTempValueColor
+                                objReport.CalculatedFields[4].Expression = "Iif([Value] < 38, 'Red', Iif([Value] > 42, 'Red', 'Black'))";
+                            }
+
                             ((XYDiagram)chart.Diagram).AxisY.WholeRange.Auto = false;
                             ((XYDiagram)chart.Diagram).AxisY.WholeRange.AutoSideMargins = false;
                             ((XYDiagram)chart.Diagram).AxisY.WholeRange.SideMarginsValue = 0;
@@ -231,6 +271,42 @@ namespace rxWebReport.frmAgyliti.JaSaude
 
                                 //calcHumidityValueColor
                                 objReport.CalculatedFields[5].Expression = "Iif([Value] > 80, 'Red', 'Black')";
+
+                                if (item == "CCL-01UEA Umidade")
+                                {
+                                    ((XYDiagram)chart.Diagram).AxisY.ConstantLines[0].Visible = true;
+                                    labelLimiteInferior.ExpressionBindings.Clear();
+                                    labelLimiteInferior.Visible = true;
+
+                                    ((XYDiagram)chart.Diagram).AxisY.ConstantLines[0].AxisValue = 60;
+                                    labelLimiteInferior.ExpressionBindings.Clear();
+                                    labelLimiteInferior.Text = "60,0";
+
+                                    ((XYDiagram)chart.Diagram).AxisY.ConstantLines[1].AxisValue = 70;
+                                    labelLimiteSuperior.ExpressionBindings.Clear();
+                                    labelLimiteSuperior.Text = "70,0";
+
+                                    //calcTempValueColor
+                                    objReport.CalculatedFields[5].Expression = "Iif([Value] < 60, 'Red', Iif([Value] > 70, 'Red', 'Black'))";
+                                }
+                                else if (item == "CCL-02UEA Umidade")
+                                {
+                                    ((XYDiagram)chart.Diagram).AxisY.ConstantLines[0].Visible = true;
+                                    labelLimiteInferior.ExpressionBindings.Clear();
+                                    labelLimiteInferior.Visible = true;
+
+                                    ((XYDiagram)chart.Diagram).AxisY.ConstantLines[0].AxisValue = 70;
+                                    labelLimiteInferior.ExpressionBindings.Clear();
+                                    labelLimiteInferior.Text = "70,0";
+
+                                    ((XYDiagram)chart.Diagram).AxisY.ConstantLines[1].AxisValue = 80;
+                                    labelLimiteSuperior.ExpressionBindings.Clear();
+                                    labelLimiteSuperior.Text = "80,0";
+
+                                    //calcTempValueColor
+                                    objReport.CalculatedFields[5].Expression = "Iif([Value] < 70, 'Red', Iif([Value] > 80, 'Red', 'Black'))";
+                                }
+
                             }
                         }
                     }
