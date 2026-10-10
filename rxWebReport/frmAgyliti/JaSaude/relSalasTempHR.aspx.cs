@@ -312,6 +312,7 @@ namespace rxWebReport.frmAgyliti.JaSaude
                     }
                 }
 
+                objReport.ConfigureReadings(item, dataInicial, dataFinal);
                 objReport.CreateDocument(); // Generate the report document
 
                 if (masterReport == null)

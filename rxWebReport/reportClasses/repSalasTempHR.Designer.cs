@@ -529,7 +529,7 @@ namespace rxWebReport.reportClasses
             // 
             // objectDataSource3
             // 
-            this.objectDataSource3.DataMember = "GetData";
+            this.objectDataSource3.DataMember = "GetReportData";
             this.objectDataSource3.DataSource = typeof(rxWebReport.dataObjClasses.dsJaSaude);
             this.objectDataSource3.Name = "objectDataSource3";
             parameter1.Name = "ItemPrefix";

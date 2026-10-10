@@ -86,6 +86,11 @@ namespace rxWebReport.dataObjClasses
 
         public static List<dadosSensor> GetData(string ItemPrefix, string InitialDate, string FinalDate)
         {
+            return GetSensorData(ItemPrefix, InitialDate, FinalDate, false);
+        }
+
+        private static List<dadosSensor> GetSensorData(string ItemPrefix, string InitialDate, string FinalDate, bool preserveCollectionTime)
+        {
             var results = new List<dadosSensor>();
 
             // Determine the item name filter based on ValueType
@@ -97,14 +102,16 @@ namespace rxWebReport.dataObjClasses
 
                 string query = "";
 
+                // BIPE selects the JASAUDE host; other TDP items use the regular host filters.
                 if (ItemPrefix.EndsWith("BIPE", StringComparison.OrdinalIgnoreCase))
                 {
+                    string dateFormat = preserveCollectionTime ? "%Y-%m-%d %H:%i:%s" : "%Y-%m-%d %H:00:00";
                     query = $@"
                             SELECT h.name AS Hostname, 
                                     i.name AS Item, 
                                     h2.value AS Value, 
                                     i.description,
-                                    DATE_FORMAT(FROM_UNIXTIME(h2.clock), '%Y-%m-%d %H:00:00') AS SensorDate
+                                    DATE_FORMAT(FROM_UNIXTIME(h2.clock), '{dateFormat}') AS SensorDate
                             FROM hosts h
                             INNER JOIN items i ON i.hostid = h.hostid
                             INNER JOIN history h2 ON h2.itemid = i.itemid
@@ -238,6 +245,55 @@ namespace rxWebReport.dataObjClasses
             }
 
             return results;
+        }
+
+        // Only this report uses the display cadence; acquisition and other reports keep all readings.
+        public static List<dadosSensor> GetReportData(string ItemPrefix, string InitialDate, string FinalDate)
+        {
+            return SelectReportReadings(GetSensorData(ItemPrefix, InitialDate, FinalDate, true));
+        }
+
+        internal static List<dadosSensor> SelectReportReadings(IEnumerable<dadosSensor> readings)
+        {
+            var data = readings.ToList();
+            var pressure = data.Where(reading => IsPressureItem(reading.Item))
+                .GroupBy(reading => new { reading.Hostname, reading.Item,
+                    Hour = reading.SensorDate.Date.AddHours(reading.SensorDate.Hour) })
+                // Prefer minute 00; otherwise use the first real reading within that hour.
+                .Select(group => group.OrderBy(reading => reading.SensorDate.Minute == 0 ? 0 : 1)
+                    .ThenBy(reading => reading.SensorDate).First())
+                // Preserve the original report's HH:00:00 presentation, without changing
+                // the collected value or mutating the original database reading.
+                .Select(reading => new dadosSensor {
+                    Hostname = reading.Hostname,
+                    Item = reading.Item,
+                    MeasurementType = reading.MeasurementType,
+                    Value = reading.Value,
+                    Description = reading.Description,
+                    SensorDate = reading.SensorDate.Date.AddHours(reading.SensorDate.Hour),
+                    HasAcceptanceCriteria = reading.HasAcceptanceCriteria,
+                    ValueAcceptanceCriteria = reading.ValueAcceptanceCriteria
+                });
+            return data.Where(reading => !IsPressureItem(reading.Item)
+                    && IsReportReading(reading.Item, reading.SensorDate))
+                .Concat(pressure)
+                .OrderBy(reading => reading.SensorDate)
+                .ToList();
+        }
+
+        internal static bool IsPressureItem(string item)
+        {
+            return item.EndsWith("BIPE", StringComparison.OrdinalIgnoreCase)
+                || item.StartsWith("TDP", StringComparison.OrdinalIgnoreCase);
+        }
+
+        internal static bool IsReportReading(string item, DateTime sensorDate)
+        {
+            bool isPressure = IsPressureItem(item);
+
+            // Match the collection minute, preserving the original timestamp and raw value.
+            // Pressure fallback is handled separately in SelectReportReadings.
+            return isPressure ? sensorDate.Minute == 0 : sensorDate.Minute % 15 == 0;
         }
 
         public static List<dadosSensor> GetData(string ItemPrefix, string ValueType, string InitialDate, string FinalDate)
