@@ -30,6 +30,9 @@ namespace rxWebReport.reportClasses
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            DevExpress.DataAccess.ObjectBinding.Parameter parameter1 = new DevExpress.DataAccess.ObjectBinding.Parameter();
+            DevExpress.DataAccess.ObjectBinding.Parameter parameter2 = new DevExpress.DataAccess.ObjectBinding.Parameter();
+            DevExpress.DataAccess.ObjectBinding.Parameter parameter3 = new DevExpress.DataAccess.ObjectBinding.Parameter();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(repSalasTempHR));
             DevExpress.XtraCharts.XYDiagram xyDiagram1 = new DevExpress.XtraCharts.XYDiagram();
             DevExpress.XtraCharts.ConstantLine constantLine1 = new DevExpress.XtraCharts.ConstantLine();
@@ -39,22 +42,22 @@ namespace rxWebReport.reportClasses
             DevExpress.XtraReports.UI.XRSummary xrSummary1 = new DevExpress.XtraReports.UI.XRSummary();
             DevExpress.XtraReports.UI.XRSummary xrSummary2 = new DevExpress.XtraReports.UI.XRSummary();
             DevExpress.XtraReports.UI.XRSummary xrSummary3 = new DevExpress.XtraReports.UI.XRSummary();
-            DevExpress.DataAccess.ObjectBinding.Parameter parameter1 = new DevExpress.DataAccess.ObjectBinding.Parameter();
-            DevExpress.DataAccess.ObjectBinding.Parameter parameter2 = new DevExpress.DataAccess.ObjectBinding.Parameter();
-            DevExpress.DataAccess.ObjectBinding.Parameter parameter3 = new DevExpress.DataAccess.ObjectBinding.Parameter();
+            this.objectDataSource3 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
-            this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
-            this.ReportHeader = new DevExpress.XtraReports.UI.ReportHeaderBand();
-            this.PageHeader = new DevExpress.XtraReports.UI.PageHeaderBand();
             this.table1 = new DevExpress.XtraReports.UI.XRTable();
             this.tableRow1 = new DevExpress.XtraReports.UI.XRTableRow();
             this.tableCell1 = new DevExpress.XtraReports.UI.XRTableCell();
             this.tableCell2 = new DevExpress.XtraReports.UI.XRTableCell();
             this.tableCell3 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
+            this.ReportHeader = new DevExpress.XtraReports.UI.ReportHeaderBand();
             this.pageBreak2 = new DevExpress.XtraReports.UI.XRPageBreak();
             this.pageBreak1 = new DevExpress.XtraReports.UI.XRPageBreak();
             this.subreport1 = new DevExpress.XtraReports.UI.XRSubreport();
+            this.parRepItemPrefix = new DevExpress.XtraReports.Parameters.Parameter();
+            this.parRepInitialDate = new DevExpress.XtraReports.Parameters.Parameter();
+            this.parRepFinalDate = new DevExpress.XtraReports.Parameters.Parameter();
             this.label4 = new DevExpress.XtraReports.UI.XRLabel();
             this.pictureBox1 = new DevExpress.XtraReports.UI.XRPictureBox();
             this.label7 = new DevExpress.XtraReports.UI.XRLabel();
@@ -62,6 +65,7 @@ namespace rxWebReport.reportClasses
             this.label8 = new DevExpress.XtraReports.UI.XRLabel();
             this.label6 = new DevExpress.XtraReports.UI.XRLabel();
             this.chart2 = new DevExpress.XtraReports.UI.XRChart();
+            this.PageHeader = new DevExpress.XtraReports.UI.PageHeaderBand();
             this.labelLimiteInferior = new DevExpress.XtraReports.UI.XRLabel();
             this.label5 = new DevExpress.XtraReports.UI.XRLabel();
             this.labelLimiteSuperior = new DevExpress.XtraReports.UI.XRLabel();
@@ -78,7 +82,6 @@ namespace rxWebReport.reportClasses
             this.label12 = new DevExpress.XtraReports.UI.XRLabel();
             this.label10 = new DevExpress.XtraReports.UI.XRLabel();
             this.label9 = new DevExpress.XtraReports.UI.XRLabel();
-            this.objectDataSource3 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             this.evenStyle = new DevExpress.XtraReports.UI.XRControlStyle();
             this.calcLocalidadeTemp = new DevExpress.XtraReports.UI.CalculatedField();
             this.calcLocalidadeHR = new DevExpress.XtraReports.UI.CalculatedField();
@@ -90,16 +93,32 @@ namespace rxWebReport.reportClasses
             this.calcLimiteSuperior = new DevExpress.XtraReports.UI.CalculatedField();
             this.calcLimitesVisibility = new DevExpress.XtraReports.UI.CalculatedField();
             this.calcParRepItemPrefix = new DevExpress.XtraReports.UI.CalculatedField();
-            this.parRepItemPrefix = new DevExpress.XtraReports.Parameters.Parameter();
-            this.parRepInitialDate = new DevExpress.XtraReports.Parameters.Parameter();
-            this.parRepFinalDate = new DevExpress.XtraReports.Parameters.Parameter();
+            ((System.ComponentModel.ISupportInitialize)(this.objectDataSource3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.table1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(xyDiagram1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(series1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(lineSeriesView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.objectDataSource3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
+            // 
+            // objectDataSource3
+            // 
+            this.objectDataSource3.DataMember = "GetReportData";
+            this.objectDataSource3.DataSource = typeof(rxWebReport.dataObjClasses.dsJaSaude);
+            this.objectDataSource3.Name = "objectDataSource3";
+            parameter1.Name = "ItemPrefix";
+            parameter1.Type = typeof(DevExpress.DataAccess.Expression);
+            parameter1.Value = new DevExpress.DataAccess.Expression("?parRepItemPrefix", typeof(string));
+            parameter2.Name = "InitialDate";
+            parameter2.Type = typeof(DevExpress.DataAccess.Expression);
+            parameter2.Value = new DevExpress.DataAccess.Expression("?parRepInitialDate", typeof(string));
+            parameter3.Name = "FinalDate";
+            parameter3.Type = typeof(DevExpress.DataAccess.Expression);
+            parameter3.Value = new DevExpress.DataAccess.Expression("?parRepFinalDate", typeof(string));
+            this.objectDataSource3.Parameters.AddRange(new DevExpress.DataAccess.ObjectBinding.Parameter[] {
+            parameter1,
+            parameter2,
+            parameter3});
             // 
             // TopMargin
             // 
@@ -112,50 +131,6 @@ namespace rxWebReport.reportClasses
             this.table1});
             this.Detail.HeightF = 23F;
             this.Detail.Name = "Detail";
-            // 
-            // BottomMargin
-            // 
-            this.BottomMargin.HeightF = 50.04165F;
-            this.BottomMargin.Name = "BottomMargin";
-            // 
-            // ReportHeader
-            // 
-            this.ReportHeader.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.pageBreak2,
-            this.pageBreak1,
-            this.subreport1,
-            this.label4,
-            this.pictureBox1,
-            this.label7,
-            this.label2,
-            this.label8,
-            this.label6,
-            this.chart2});
-            this.ReportHeader.HeightF = 680.2084F;
-            this.ReportHeader.Name = "ReportHeader";
-            this.ReportHeader.PageBreak = DevExpress.XtraReports.UI.PageBreak.AfterBand;
-            // 
-            // PageHeader
-            // 
-            this.PageHeader.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.labelLimiteInferior,
-            this.label5,
-            this.labelLimiteSuperior,
-            this.label19,
-            this.label18,
-            this.label17,
-            this.line3,
-            this.line2,
-            this.line1,
-            this.label16,
-            this.label15,
-            this.label14,
-            this.label13,
-            this.label12,
-            this.label10,
-            this.label9});
-            this.PageHeader.HeightF = 155.0834F;
-            this.PageHeader.Name = "PageHeader";
             // 
             // table1
             // 
@@ -218,6 +193,28 @@ namespace rxWebReport.reportClasses
             this.tableCell3.TextFormatString = "{0:#0.0}";
             this.tableCell3.Weight = 312.4999975144064D;
             // 
+            // BottomMargin
+            // 
+            this.BottomMargin.HeightF = 50.04165F;
+            this.BottomMargin.Name = "BottomMargin";
+            // 
+            // ReportHeader
+            // 
+            this.ReportHeader.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.pageBreak2,
+            this.pageBreak1,
+            this.subreport1,
+            this.label4,
+            this.pictureBox1,
+            this.label7,
+            this.label2,
+            this.label8,
+            this.label6,
+            this.chart2});
+            this.ReportHeader.HeightF = 680.2084F;
+            this.ReportHeader.Name = "ReportHeader";
+            this.ReportHeader.PageBreak = DevExpress.XtraReports.UI.PageBreak.AfterBand;
+            // 
             // pageBreak2
             // 
             this.pageBreak2.LocationFloat = new DevExpress.Utils.PointFloat(0F, 677.0833F);
@@ -237,6 +234,24 @@ namespace rxWebReport.reportClasses
             this.subreport1.ParameterBindings.Add(new DevExpress.XtraReports.UI.ParameterBinding("parRepFinalDate", this.parRepFinalDate));
             this.subreport1.ReportSource = new rxWebReport.reportClasses.repSalasTempHR_Triggers();
             this.subreport1.SizeF = new System.Drawing.SizeF(878.5416F, 46.87506F);
+            // 
+            // parRepItemPrefix
+            // 
+            this.parRepItemPrefix.Name = "parRepItemPrefix";
+            this.parRepItemPrefix.ValueInfo = "TTU-01BIPE-Humidade";
+            this.parRepItemPrefix.Visible = false;
+            // 
+            // parRepInitialDate
+            // 
+            this.parRepInitialDate.Name = "parRepInitialDate";
+            this.parRepInitialDate.ValueInfo = "2025-11-02";
+            this.parRepInitialDate.Visible = false;
+            // 
+            // parRepFinalDate
+            // 
+            this.parRepFinalDate.Name = "parRepFinalDate";
+            this.parRepFinalDate.ValueInfo = "2025-11-03";
+            this.parRepFinalDate.Visible = false;
             // 
             // label4
             // 
@@ -354,6 +369,28 @@ namespace rxWebReport.reportClasses
             this.chart2.SeriesSerializable = new DevExpress.XtraCharts.Series[] {
         series1};
             this.chart2.SizeF = new System.Drawing.SizeF(880F, 557.25F);
+            // 
+            // PageHeader
+            // 
+            this.PageHeader.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.labelLimiteInferior,
+            this.label5,
+            this.labelLimiteSuperior,
+            this.label19,
+            this.label18,
+            this.label17,
+            this.line3,
+            this.line2,
+            this.line1,
+            this.label16,
+            this.label15,
+            this.label14,
+            this.label13,
+            this.label12,
+            this.label10,
+            this.label9});
+            this.PageHeader.HeightF = 155.0834F;
+            this.PageHeader.Name = "PageHeader";
             // 
             // labelLimiteInferior
             // 
@@ -527,25 +564,6 @@ namespace rxWebReport.reportClasses
             this.label9.SizeF = new System.Drawing.SizeF(111.4583F, 19.79167F);
             this.label9.Text = "Localidade";
             // 
-            // objectDataSource3
-            // 
-            this.objectDataSource3.DataMember = "GetReportData";
-            this.objectDataSource3.DataSource = typeof(rxWebReport.dataObjClasses.dsJaSaude);
-            this.objectDataSource3.Name = "objectDataSource3";
-            parameter1.Name = "ItemPrefix";
-            parameter1.Type = typeof(DevExpress.DataAccess.Expression);
-            parameter1.Value = new DevExpress.DataAccess.Expression("?parRepItemPrefix", typeof(string));
-            parameter2.Name = "InitialDate";
-            parameter2.Type = typeof(DevExpress.DataAccess.Expression);
-            parameter2.Value = new DevExpress.DataAccess.Expression("?parRepInitialDate", typeof(string));
-            parameter3.Name = "FinalDate";
-            parameter3.Type = typeof(DevExpress.DataAccess.Expression);
-            parameter3.Value = new DevExpress.DataAccess.Expression("?parRepFinalDate", typeof(string));
-            this.objectDataSource3.Parameters.AddRange(new DevExpress.DataAccess.ObjectBinding.Parameter[] {
-            parameter1,
-            parameter2,
-            parameter3});
-            // 
             // evenStyle
             // 
             this.evenStyle.BackColor = System.Drawing.Color.Silver;
@@ -554,7 +572,8 @@ namespace rxWebReport.reportClasses
             // calcLocalidadeTemp
             // 
             this.calcLocalidadeTemp.Expression = "Concat([calcParRepItemPrefix], Iif(EndsWith(?parRepItemPrefix, \'BIPE\'),\' Dif.Pres" +
-    "são\', Iif([MeasurementType] = \'Temperatura\', \' ºC\', \' UR\')))";
+    "são\', Iif([MeasurementType] = \'Temperatura\', \' ºC\', Iif(StartsWith(?parRepItemPr" +
+    "efix, \'TDP\'),\' Dif.Pressão\', \' UR\'))))";
             this.calcLocalidadeTemp.Name = "calcLocalidadeTemp";
             // 
             // calcLocalidadeHR
@@ -606,24 +625,6 @@ namespace rxWebReport.reportClasses
             this.calcParRepItemPrefix.Expression = "?parRepItemPrefix";
             this.calcParRepItemPrefix.Name = "calcParRepItemPrefix";
             // 
-            // parRepItemPrefix
-            // 
-            this.parRepItemPrefix.Name = "parRepItemPrefix";
-            this.parRepItemPrefix.ValueInfo = "TTU-01BIPE-Humidade";
-            this.parRepItemPrefix.Visible = false;
-            // 
-            // parRepInitialDate
-            // 
-            this.parRepInitialDate.Name = "parRepInitialDate";
-            this.parRepInitialDate.ValueInfo = "2025-11-02";
-            this.parRepInitialDate.Visible = false;
-            // 
-            // parRepFinalDate
-            // 
-            this.parRepFinalDate.Name = "parRepFinalDate";
-            this.parRepFinalDate.ValueInfo = "2025-11-03";
-            this.parRepFinalDate.Visible = false;
-            // 
             // repSalasTempHR
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -658,12 +659,12 @@ namespace rxWebReport.reportClasses
             this.StyleSheet.AddRange(new DevExpress.XtraReports.UI.XRControlStyle[] {
             this.evenStyle});
             this.Version = "21.1";
+            ((System.ComponentModel.ISupportInitialize)(this.objectDataSource3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.table1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(xyDiagram1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(lineSeriesView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(series1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.objectDataSource3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 
         }
