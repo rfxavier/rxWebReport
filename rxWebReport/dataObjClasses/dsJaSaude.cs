@@ -66,7 +66,8 @@ namespace rxWebReport.dataObjClasses
                         {
                             string itemName = reader.GetString("Item");
                             string measurementType = itemName.EndsWith("Temperatura") ? "Temperatura" :
-                                                     itemName.EndsWith("Humidade") ? "Humidade" : "";
+                                                     (itemName.EndsWith("Humidade", StringComparison.OrdinalIgnoreCase) ||
+                                                      itemName.EndsWith("Umidade", StringComparison.OrdinalIgnoreCase)) ? "Humidade" : "";
 
                             results.Add(new dadosSensor
                             {
@@ -181,7 +182,8 @@ namespace rxWebReport.dataObjClasses
                         {
                             string itemName = reader.GetString("Item");
                             string measurementType = itemName.EndsWith("Temperatura") ? "Temperatura" :
-                                                     itemName.EndsWith("Humidade") ? "Humidade" : 
+                                                     (itemName.EndsWith("Humidade", StringComparison.OrdinalIgnoreCase) ||
+                                                      itemName.EndsWith("Umidade", StringComparison.OrdinalIgnoreCase)) ? "Humidade" :
                                                      itemName.EndsWith("BIPE") ? "Pressão" : "";
 
                             results.Add(new dadosSensor

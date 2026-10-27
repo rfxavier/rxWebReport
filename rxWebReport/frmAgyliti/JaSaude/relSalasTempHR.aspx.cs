@@ -112,6 +112,133 @@ namespace rxWebReport.frmAgyliti.JaSaude
                         labelLimiteSuperior.ExpressionBindings.Clear();
                         labelLimiteSuperior.Visible = false;
 
+                        // Section 4.1-4.7 pressure references.
+                        if (item == "TDP-01LI" ||
+                            item == "TDP-02BIIAC" ||
+                            item == "TDP-05ANS" ||
+                            item == "TDP-07APN" ||
+                            item == "TDP-10APN" ||
+                            item == "TDP-11APN" ||
+                            item == "TDP-14APN" ||
+                            item == "TDP-15APN")
+                        {
+                            ((XYDiagram)chart.Diagram).AxisY.ConstantLines[0].Visible = true;
+                            labelLimiteInferior.ExpressionBindings.Clear();
+                            labelLimiteInferior.Visible = true;
+                            ((XYDiagram)chart.Diagram).AxisY.ConstantLines[0].AxisValue = 10;
+                            labelLimiteInferior.Text = "10,0";
+
+                            ((XYDiagram)chart.Diagram).AxisY.ConstantLines[1].Visible = false;
+                            labelLimiteSuperior.ExpressionBindings.Clear();
+                            labelLimiteSuperior.Visible = false;
+
+                            objReport.CalculatedFields[2].Expression = "Iif([Value] < 10, 'Red', 'Black')";
+                        }
+                        else if (item == "TDP-02LI" ||
+                            item == "TDP-03LI" ||
+                            item == "TDP-05LI" ||
+                            item == "TDP-06LI" ||
+                            item == "TDP-07LI" ||
+                            item == "TDP-08LI" ||
+                            item == "TDP-09LI" ||
+                            item == "TDP-11LI" ||
+                            item == "TDP-12LI" ||
+                            item == "TDP-13LI")
+                        {
+                            ((XYDiagram)chart.Diagram).AxisY.ConstantLines[0].Visible = true;
+                            labelLimiteInferior.ExpressionBindings.Clear();
+                            labelLimiteInferior.Visible = true;
+                            ((XYDiagram)chart.Diagram).AxisY.ConstantLines[0].AxisValue = 5;
+                            labelLimiteInferior.Text = "5,0";
+
+                            ((XYDiagram)chart.Diagram).AxisY.ConstantLines[1].Visible = false;
+                            labelLimiteSuperior.ExpressionBindings.Clear();
+                            labelLimiteSuperior.Visible = false;
+
+                            objReport.CalculatedFields[2].Expression = "Iif([Value] < 5, 'Red', 'Black')";
+                        }
+                        else if (item == "TDP-04LI" ||
+                            item == "TDP-10LI" ||
+                            item == "TDP-01BIIL1" ||
+                            item == "TDP-02BIIL1" ||
+                            item == "TDP-03BIIL1" ||
+                            item == "TDP-04BIIL1" ||
+                            item == "TDP-06BIIL1" ||
+                            item == "TDP-08BIIL1" ||
+                            item == "TDP-01BIIL2" ||
+                            item == "TDP-02BIIL2" ||
+                            item == "TDP-03BIIL2" ||
+                            item == "TDP-04BIIL2" ||
+                            item == "TDP-06BIIL2" ||
+                            item == "TDP-08BIIL2" ||
+                            item == "TDP-01BIIL3" ||
+                            item == "TDP-02BIIL3" ||
+                            item == "TDP-03BIIL3" ||
+                            item == "TDP-04BIIL3" ||
+                            item == "TDP-05BIIL3" ||
+                            item == "TDP-06BIIL3" ||
+                            item == "TDP-07BIIL3" ||
+                            item == "TDP-01BIIAC" ||
+                            item == "TDP-02ANS" ||
+                            item == "TDP-03ANS" ||
+                            item == "TDP-04ANS" ||
+                            item == "TDP-06ANS" ||
+                            item == "TDP-07ANS" ||
+                            item == "TDP-03APN" ||
+                            item == "TDP-04APN" ||
+                            item == "TDP-05APN" ||
+                            item == "TDP-06APN" ||
+                            item == "TDP-09APN" ||
+                            item == "TDP-12APN" ||
+                            item == "TDP-13APN")
+                        {
+                            ((XYDiagram)chart.Diagram).AxisY.ConstantLines[0].Visible = true;
+                            labelLimiteInferior.ExpressionBindings.Clear();
+                            labelLimiteInferior.Visible = true;
+                            ((XYDiagram)chart.Diagram).AxisY.ConstantLines[0].AxisValue = 15;
+                            labelLimiteInferior.Text = "15,0";
+
+                            ((XYDiagram)chart.Diagram).AxisY.ConstantLines[1].Visible = false;
+                            labelLimiteSuperior.ExpressionBindings.Clear();
+                            labelLimiteSuperior.Visible = false;
+
+                            objReport.CalculatedFields[2].Expression = "Iif([Value] < 15, 'Red', 'Black')";
+                        }
+                        else if (item == "TDP-05BIIL1" ||
+                            item == "TDP-07BIIL1" ||
+                            item == "TDP-05BIIL2" ||
+                            item == "TDP-07BIIL2" ||
+                            item == "TDP-08BIIL3")
+                        {
+                            ((XYDiagram)chart.Diagram).AxisY.ConstantLines[0].Visible = true;
+                            labelLimiteInferior.ExpressionBindings.Clear();
+                            labelLimiteInferior.Visible = true;
+                            ((XYDiagram)chart.Diagram).AxisY.ConstantLines[0].AxisValue = 20;
+                            labelLimiteInferior.Text = "20,0";
+
+                            ((XYDiagram)chart.Diagram).AxisY.ConstantLines[1].Visible = false;
+                            labelLimiteSuperior.ExpressionBindings.Clear();
+                            labelLimiteSuperior.Visible = false;
+
+                            objReport.CalculatedFields[2].Expression = "Iif([Value] < 20, 'Red', 'Black')";
+                        }
+                        else if (item == "TDP-02APN" ||
+                            item == "TDP-08APN")
+                        {
+                            ((XYDiagram)chart.Diagram).AxisY.ConstantLines[0].Visible = true;
+                            labelLimiteInferior.ExpressionBindings.Clear();
+                            labelLimiteInferior.Visible = true;
+                            ((XYDiagram)chart.Diagram).AxisY.ConstantLines[0].AxisValue = 0;
+                            labelLimiteInferior.Text = "0,0";
+
+                            ((XYDiagram)chart.Diagram).AxisY.ConstantLines[1].Visible = false;
+                            labelLimiteSuperior.ExpressionBindings.Clear();
+                            labelLimiteSuperior.Visible = false;
+
+                            // Only a 0 Pa reference is specified; no conformity tolerance is defined.
+                            objReport.CalculatedFields[2].Expression = "'Black'";
+                        }
+
                     }
                     else
                     {
@@ -143,7 +270,88 @@ namespace rxWebReport.frmAgyliti.JaSaude
                                 objReport.CalculatedFields[4].Expression = "Iif([Value] < 15, 'Red', Iif([Value] > 25, 'Red', 'Black'))";
                             }
 
-                            if (item == "CFR-01UEA")
+                            // Section 4.1-4.7 temperature limits.
+                            if (item.StartsWith("TTU-01LI", StringComparison.OrdinalIgnoreCase) ||
+                                item.StartsWith("TTU-06LI", StringComparison.OrdinalIgnoreCase) ||
+                                item.StartsWith("TTU-07LI", StringComparison.OrdinalIgnoreCase))
+                            {
+                                ((XYDiagram)chart.Diagram).AxisY.ConstantLines[0].Visible = true;
+                                labelLimiteInferior.ExpressionBindings.Clear();
+                                labelLimiteInferior.Visible = true;
+                                ((XYDiagram)chart.Diagram).AxisY.ConstantLines[0].AxisValue = 15;
+                                labelLimiteInferior.Text = "15,0";
+
+                                ((XYDiagram)chart.Diagram).AxisY.ConstantLines[1].Visible = true;
+                                labelLimiteSuperior.ExpressionBindings.Clear();
+                                labelLimiteSuperior.Visible = true;
+                                ((XYDiagram)chart.Diagram).AxisY.ConstantLines[1].AxisValue = 25;
+                                labelLimiteSuperior.Text = "25,0";
+
+                                objReport.CalculatedFields[4].Expression = "Iif([Value] < 15, 'Red', Iif([Value] > 25, 'Red', 'Black'))";
+                            }
+                            else if (item.StartsWith("TTU-02LI", StringComparison.OrdinalIgnoreCase) ||
+                                item.StartsWith("TTU-03LI", StringComparison.OrdinalIgnoreCase) ||
+                                item.StartsWith("TTU-04LI", StringComparison.OrdinalIgnoreCase) ||
+                                item.StartsWith("TTU-05LI", StringComparison.OrdinalIgnoreCase))
+                            {
+                                ((XYDiagram)chart.Diagram).AxisY.ConstantLines[0].Visible = true;
+                                labelLimiteInferior.ExpressionBindings.Clear();
+                                labelLimiteInferior.Visible = true;
+                                ((XYDiagram)chart.Diagram).AxisY.ConstantLines[0].AxisValue = 15;
+                                labelLimiteInferior.Text = "15,0";
+
+                                ((XYDiagram)chart.Diagram).AxisY.ConstantLines[1].Visible = true;
+                                labelLimiteSuperior.ExpressionBindings.Clear();
+                                labelLimiteSuperior.Visible = true;
+                                ((XYDiagram)chart.Diagram).AxisY.ConstantLines[1].AxisValue = 22;
+                                labelLimiteSuperior.Text = "22,0";
+
+                                objReport.CalculatedFields[4].Expression = "Iif([Value] < 15, 'Red', Iif([Value] > 22, 'Red', 'Black'))";
+                            }
+                            else if (item.StartsWith("TTU-08LI", StringComparison.OrdinalIgnoreCase) ||
+                                item.StartsWith("TTU-02BIIL1", StringComparison.OrdinalIgnoreCase) ||
+                                item.StartsWith("TTU-03BIIL1", StringComparison.OrdinalIgnoreCase) ||
+                                item.StartsWith("TTU-04BIIL1", StringComparison.OrdinalIgnoreCase) ||
+                                item.StartsWith("TTU-02BIIL2", StringComparison.OrdinalIgnoreCase) ||
+                                item.StartsWith("TTU-03BIIL2", StringComparison.OrdinalIgnoreCase) ||
+                                item.StartsWith("TTU-04BIIL2", StringComparison.OrdinalIgnoreCase) ||
+                                item.StartsWith("TTU-02BIIL3", StringComparison.OrdinalIgnoreCase) ||
+                                item.StartsWith("TTU-03BIIL3", StringComparison.OrdinalIgnoreCase) ||
+                                item.StartsWith("TTU-04BIIL3", StringComparison.OrdinalIgnoreCase) ||
+                                item.StartsWith("TTU-02BIIAC", StringComparison.OrdinalIgnoreCase))
+                            {
+                                ((XYDiagram)chart.Diagram).AxisY.ConstantLines[0].Visible = true;
+                                labelLimiteInferior.ExpressionBindings.Clear();
+                                labelLimiteInferior.Visible = true;
+                                ((XYDiagram)chart.Diagram).AxisY.ConstantLines[0].AxisValue = 15;
+                                labelLimiteInferior.Text = "15,0";
+
+                                ((XYDiagram)chart.Diagram).AxisY.ConstantLines[1].Visible = true;
+                                labelLimiteSuperior.ExpressionBindings.Clear();
+                                labelLimiteSuperior.Visible = true;
+                                ((XYDiagram)chart.Diagram).AxisY.ConstantLines[1].AxisValue = 30;
+                                labelLimiteSuperior.Text = "30,0";
+
+                                objReport.CalculatedFields[4].Expression = "Iif([Value] < 15, 'Red', Iif([Value] > 30, 'Red', 'Black'))";
+                            }
+                            else if (item.StartsWith("TTU-02ANS", StringComparison.OrdinalIgnoreCase) ||
+                                item.StartsWith("TTU-02APN", StringComparison.OrdinalIgnoreCase))
+                            {
+                                ((XYDiagram)chart.Diagram).AxisY.ConstantLines[0].Visible = true;
+                                labelLimiteInferior.ExpressionBindings.Clear();
+                                labelLimiteInferior.Visible = true;
+                                ((XYDiagram)chart.Diagram).AxisY.ConstantLines[0].AxisValue = 20;
+                                labelLimiteInferior.Text = "20,0";
+
+                                ((XYDiagram)chart.Diagram).AxisY.ConstantLines[1].Visible = true;
+                                labelLimiteSuperior.ExpressionBindings.Clear();
+                                labelLimiteSuperior.Visible = true;
+                                ((XYDiagram)chart.Diagram).AxisY.ConstantLines[1].AxisValue = 24;
+                                labelLimiteSuperior.Text = "24,0";
+
+                                objReport.CalculatedFields[4].Expression = "Iif([Value] < 20, 'Red', Iif([Value] > 24, 'Red', 'Black'))";
+                            }
+                            else if (item == "CFR-01UEA")
                             {
                                 ((XYDiagram)chart.Diagram).AxisY.ConstantLines[0].AxisValue = 2;
                                 labelLimiteInferior.ExpressionBindings.Clear();
@@ -190,7 +398,7 @@ namespace rxWebReport.frmAgyliti.JaSaude
                             ((XYDiagram)chart.Diagram).AxisY.WholeRange.MinValue = 0;
                             ((XYDiagram)chart.Diagram).AxisY.WholeRange.MaxValue = 50;
                         }
-                        else if (item.EndsWith("Umidade", StringComparison.OrdinalIgnoreCase) || item.StartsWith("CCL", StringComparison.OrdinalIgnoreCase))
+                        else if (item.EndsWith("Umidade", StringComparison.OrdinalIgnoreCase) || item.EndsWith("Humidade", StringComparison.OrdinalIgnoreCase) || item.StartsWith("CCL", StringComparison.OrdinalIgnoreCase))
                         {
                             var label = item.Contains("Humidade")
                                 ? item.Replace("Humidade", "Umidade")
@@ -205,7 +413,82 @@ namespace rxWebReport.frmAgyliti.JaSaude
                             labelLimiteInferior.Visible = false;
 
                             ((XYDiagram)chart.Diagram).AxisY.ConstantLines[1].Visible = true;
-                            if (item.StartsWith("TTU-03BIPE"))
+                            // Section 4.1-4.7 humidity limits (informative items have none).
+                            if (item.StartsWith("TTU-01LI", StringComparison.OrdinalIgnoreCase) ||
+                                item.StartsWith("TTU-06LI", StringComparison.OrdinalIgnoreCase) ||
+                                item.StartsWith("TTU-07LI", StringComparison.OrdinalIgnoreCase))
+                            {
+                                ((XYDiagram)chart.Diagram).AxisY.ConstantLines[0].Visible = true;
+                                labelLimiteInferior.ExpressionBindings.Clear();
+                                labelLimiteInferior.Visible = true;
+                                ((XYDiagram)chart.Diagram).AxisY.ConstantLines[0].AxisValue = 30;
+                                labelLimiteInferior.Text = "30,0";
+
+                                ((XYDiagram)chart.Diagram).AxisY.ConstantLines[1].Visible = true;
+                                labelLimiteSuperior.ExpressionBindings.Clear();
+                                labelLimiteSuperior.Visible = true;
+                                ((XYDiagram)chart.Diagram).AxisY.ConstantLines[1].AxisValue = 75;
+                                labelLimiteSuperior.Text = "75,0";
+
+                                objReport.CalculatedFields[5].Expression = "Iif([Value] < 30, 'Red', Iif([Value] > 75, 'Red', 'Black'))";
+                            }
+                            else if (item.StartsWith("TTU-02LI", StringComparison.OrdinalIgnoreCase) ||
+                                item.StartsWith("TTU-03LI", StringComparison.OrdinalIgnoreCase) ||
+                                item.StartsWith("TTU-04LI", StringComparison.OrdinalIgnoreCase) ||
+                                item.StartsWith("TTU-05LI", StringComparison.OrdinalIgnoreCase))
+                            {
+                                ((XYDiagram)chart.Diagram).AxisY.ConstantLines[0].Visible = true;
+                                labelLimiteInferior.ExpressionBindings.Clear();
+                                labelLimiteInferior.Visible = true;
+                                ((XYDiagram)chart.Diagram).AxisY.ConstantLines[0].AxisValue = 30;
+                                labelLimiteInferior.Text = "30,0";
+
+                                ((XYDiagram)chart.Diagram).AxisY.ConstantLines[1].Visible = true;
+                                labelLimiteSuperior.ExpressionBindings.Clear();
+                                labelLimiteSuperior.Visible = true;
+                                ((XYDiagram)chart.Diagram).AxisY.ConstantLines[1].AxisValue = 80;
+                                labelLimiteSuperior.Text = "80,0";
+
+                                objReport.CalculatedFields[5].Expression = "Iif([Value] < 30, 'Red', Iif([Value] > 80, 'Red', 'Black'))";
+                            }
+                            else if (item.StartsWith("TTU-02ANS", StringComparison.OrdinalIgnoreCase) ||
+                                item.StartsWith("TTU-02APN", StringComparison.OrdinalIgnoreCase))
+                            {
+                                ((XYDiagram)chart.Diagram).AxisY.ConstantLines[0].Visible = false;
+                                labelLimiteInferior.ExpressionBindings.Clear();
+                                labelLimiteInferior.Visible = false;
+
+                                ((XYDiagram)chart.Diagram).AxisY.ConstantLines[1].Visible = true;
+                                labelLimiteSuperior.ExpressionBindings.Clear();
+                                labelLimiteSuperior.Visible = true;
+                                ((XYDiagram)chart.Diagram).AxisY.ConstantLines[1].AxisValue = 65;
+                                labelLimiteSuperior.Text = "65,0";
+
+                                objReport.CalculatedFields[5].Expression = "Iif([Value] >= 65, 'Red', 'Black')";
+                            }
+                            else if (item.StartsWith("TTU-08LI", StringComparison.OrdinalIgnoreCase) ||
+                                item.StartsWith("TTU-02BIIL1", StringComparison.OrdinalIgnoreCase) ||
+                                item.StartsWith("TTU-03BIIL1", StringComparison.OrdinalIgnoreCase) ||
+                                item.StartsWith("TTU-04BIIL1", StringComparison.OrdinalIgnoreCase) ||
+                                item.StartsWith("TTU-02BIIL2", StringComparison.OrdinalIgnoreCase) ||
+                                item.StartsWith("TTU-03BIIL2", StringComparison.OrdinalIgnoreCase) ||
+                                item.StartsWith("TTU-04BIIL2", StringComparison.OrdinalIgnoreCase) ||
+                                item.StartsWith("TTU-02BIIL3", StringComparison.OrdinalIgnoreCase) ||
+                                item.StartsWith("TTU-03BIIL3", StringComparison.OrdinalIgnoreCase) ||
+                                item.StartsWith("TTU-04BIIL3", StringComparison.OrdinalIgnoreCase) ||
+                                item.StartsWith("TTU-02BIIAC", StringComparison.OrdinalIgnoreCase))
+                            {
+                                ((XYDiagram)chart.Diagram).AxisY.ConstantLines[0].Visible = false;
+                                labelLimiteInferior.ExpressionBindings.Clear();
+                                labelLimiteInferior.Visible = false;
+
+                                ((XYDiagram)chart.Diagram).AxisY.ConstantLines[1].Visible = false;
+                                labelLimiteSuperior.ExpressionBindings.Clear();
+                                labelLimiteSuperior.Visible = false;
+
+                                objReport.CalculatedFields[5].Expression = "'Black'";
+                            }
+                            else if (item.StartsWith("TTU-03BIPE"))
                             {
                                 ((XYDiagram)chart.Diagram).AxisY.ConstantLines[1].AxisValue = 75;
                                 labelLimiteSuperior.ExpressionBindings.Clear();
